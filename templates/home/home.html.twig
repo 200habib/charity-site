@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}Hello HomeController!{% endblock %}
+
+
+        {% block javascripts %}
+             {{ parent() }}
+        {% endblock %} 
+
+
+{% block body %}
+
+<p class="home_lp_textcenter">"Une initiative solidaire qui met à l'honneur l'essentiel : la distribution de nourriture, de boissons et de produits d'hygiène, pour répondre aux besoins fondamentaux de ceux qui en ont le plus besoin."</p>
+
+<section class="home_services_container">
+    <article class="home_service_item">
+     <section class="home_service_content">
+            <h3>Choisir</h3>
+                    <img src="{{ asset('image/home/white-mode/choisir.webp') }}" height="80px" alt="">
+        </section>
+    </article>
+    <article class="home_service_item">
+        <img src="" alt="">
+        <section class="home_service_content">
+            <h3>paye</h3>
+            <img src="{{ asset('image/home/white-mode/sold.jfif') }}" height="80px" alt="">
+        </section>
+    </article>
+    <article class="home_service_item">
+        <img src="" alt="">
+        <section class="home_service_content">
+            <h3>distribue</h3>
+            <img src="{{ asset('image/home/white-mode/help.jpg') }}" height="80px" alt="">
+        </section>
+    </article>
+</section>
+
+<section class="home_services_list">
+    <h3 class="home_services_title">Services</h3>
+    <ul class="home_services_items">
+        <li class="home_services_item">
+            <img src="{{ asset('image/home/white-mode/scooter.avif') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="80px">
+            <p class="home_services_description">Collecter et distribuer</p>
+            <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
+        </li>
+        <li class="home_services_item">
+            <img src="{{ asset('image/home/white-mode/box.avif') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
+            <p class="home_services_description">Suivi des Dons</p>
+            <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
+        </li>
+        <li class="home_services_item">
+            <img src="{{ asset('image/home/white-mode/calendar.avif') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
+            <p class="home_services_description">Suivi des Dons</p>
+            <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
+        </li>
+    </ul>
+</section>
+
+{% endblock %}
