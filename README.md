@@ -6,7 +6,7 @@ This project is a non-profit eCommerce platform designed to support people in ne
 
 ## Tech Stack
 
-- Symfony 7.1.5
+- Symfony 7.1.0
 - Doctrine
 - Sass
 - JavaScript

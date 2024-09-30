@@ -1,0 +1,56 @@
+.navbar {
+    width: 100%;
+    background-color: var(--background-color);
+    border-bottom: 1px solid #ababab;
+    padding: 15px 15px 10px 15px;
+  
+    ul.navbar__list {
+        height: 50px;
+        font-size: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none; 
+  
+        .navbar__item {
+            display: flex;
+            align-items: center;
+  
+              
+        }
+    }
+  }
+  
+
+  @media (max-width: 391px) {
+    .navbar {
+        width: 100%;
+  
+        ul.navbar__list {
+            height: 50px;
+            font-size: 20px;
+            width: 100%;
+            // margin: 20px 0 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+  
+        .navbar__item {
+            display: flex;
+            align-items: center;
+        }
+  
+        // end of the navbar 
+    }
+  
+      .navbar__logo {
+              height: 38px;
+              margin-left: 20px;
+            }
+
+            .navbar__icon_close {
+                height: 50px;
+            }
+
+            // end of the meida query 
+}
