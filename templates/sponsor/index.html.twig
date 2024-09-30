@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SponsorController!{% endblock %}
+
+        {# {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %} #}
+
+{# {% block javascripts %}
+    {{ parent() }}
+{% endblock %} #}
+
+{% block body %}
+<section class="sponsor">
+    <div class="sponsor__content">
+        <h1 class="sponsor__title">Devenez un sponsor de Ulisse</h1>
+        <p class="sponsor__text">
+            Devenir sponsor de Ulisse n'est pas seulement un geste de soutien, c'est un engagement puissant pour provoquer un changement significatif dans notre société. Chez Ulisse, chaque achat de produits essentiels—qu'il s'agisse de nourriture, de boissons ou de produits d'hygiène—se traduit par un soutien direct à ceux qui en ont le plus besoin.
+        </p>
+        <p class="sponsor__text">
+            Être sponsor de Ulisse, c'est bien plus que de simples dons matériels; c'est jouer un rôle actif dans la lutte contre la pauvreté et l'inégalité. Votre contribution nous permet d'améliorer nos opérations, garantissant que chaque article parvienne rapidement et efficacement à sa destination.
+        </p>
+        <p class="sponsor__text">
+            En alignant votre marque avec Ulisse, vous envoyez un message fort à vos parties prenantes et à vos clients : votre organisation est profondément engagée dans la responsabilité sociale et les pratiques commerciales éthiques.
+        </p>
+
+            <a href="#contact" aria-label="Devenez sponsor pour soutenir Ulisse">
+                <button class="sponsor__button">Devenez Sponsor</button>
+            </a>
+
+    </div>
+</section>
+{% endblock %}
