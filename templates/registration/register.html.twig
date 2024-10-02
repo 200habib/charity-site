@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="Register__content">
+<div class="Register__form">
+    <h1 class= "Register__h1">Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email, {
+            'attr': { 'class': 'Label__form' }
+        }) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password',
+            'attr': { 'class': 'Label__form' }
+        }) }}
+        <div class="check__form">
+            {{ form_label(registrationForm.agreeTerms) }}
+            {{ form_widget(registrationForm.agreeTerms, {
+                'attr': { 'class': 'custom-checkbox' }
+            }) }}
+            {{ form_errors(registrationForm.agreeTerms) }}
+        </div>
+
+        <button type="submit" class="login__button">Register</button>
+        <a href="{{ path('app_login') }}" class="Register__link-login">Vous avez déjà un profil ? Connectez-vous ici</a>
+
+    {{ form_end(registrationForm) }}
+</div>
+
+</div>
+
+{% endblock %}
