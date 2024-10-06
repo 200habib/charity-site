@@ -17,9 +17,9 @@
 
         <h1 class="login__title">Please sign in</h1>
         <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="Label__form" autocomplete="email" required autofocus>
+        <input type="email" value="{{ last_username }}" name="_username" id="username" class="general__input" autocomplete="email" required autofocus>
         <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="Label__form" autocomplete="current-password" required>
+        <input type="password" name="_password" id="password" class="general__input" autocomplete="current-password" required>
 
         <input type="hidden" name="_csrf_token"
                value="{{ csrf_token('authenticate') }}"

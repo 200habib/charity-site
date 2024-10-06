@@ -3,7 +3,7 @@
     .menu {
         background-color: var(--footer-background-color);
         position: fixed;
-        top: 70px;
+        top: 75.8px;
         left: 0;
         width: 100%;
         height: 0; 
@@ -70,10 +70,9 @@
 
     // js 
     .menu.open {
-        background-color: var(--background-color);
         transform: translateX(0);
-        height: 92vh;
-        transition: transform 0.3s ease-in-out, height 0s;
+        transition: transform .3s ease-in-out, height 0s;
+        height: 91vh;
         background-color: var(--footer-background-color);
     }
 

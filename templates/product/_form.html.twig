@@ -1,0 +1,63 @@
+{{ form_start(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'class': 'general__input'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, {'attr': {'class': 'general__input'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.price) }}
+        {{ form_widget(form.price, {'attr': {'class': 'general__input'}}) }}
+        {{ form_errors(form.price) }}
+    </div>
+
+    <div>
+        <p>
+            choisise entre volume et masse
+        </p>
+        <div class = "product__quantity">
+        <div>
+            <div class="product__volume">
+                {{ form_label(form.volumeLitre) }}
+                {{ form_widget(form.volumeLitre) }}
+                {{ form_errors(form.volumeLitre) }}
+            </div>
+
+            <div class="product__weight">
+                {{ form_label(form.weight) }}
+                {{ form_widget(form.weight) }}
+                {{ form_errors(form.weight) }}
+            </div>
+        </div>
+    
+            <div class="">
+                {{ form_label(form.unitType) }}
+                {{ form_widget(form.unitType, {'attr': {'class': 'product__unitType'}}) }}
+                {{ form_errors(form.unitType) }}
+            </div>
+        </div>
+        
+
+    </div>
+
+    <div class="form-pd">
+        {{ form_label(form.imageFile) }}
+        {{ form_widget(form.imageFile) }}
+        {{ form_errors(form.imageFile) }}
+    </div>
+
+
+    
+
+    <button class="product__button">{{ button_label|default('enregistrer.') }}</button>
+
+{{ form_end(form) }}
+
+<a href="{{ path('app_product_index') }}" class= "product__backList">retour à la liste.</a>
