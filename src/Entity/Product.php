@@ -7,6 +7,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Entity\ProductUnit;
+
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[Vich\Uploadable()]
@@ -50,6 +52,21 @@ class Product
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ["default" => "CURRENT_TIMESTAMP"])]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(enumType: ProductUnit::class)]
+    private ?ProductUnit $unit = null;
+
+    public function getUnit(): ?ProductUnit
+    {
+        return $this->unit;
+    }
+
+    public function setUnit(ProductUnit $unit): static
+    {
+        $this->unit = $unit;
+
+        return $this;
+    }
+    
     public function __construct()
     {
         $this->createdAt= new \DateTimeImmutable;
