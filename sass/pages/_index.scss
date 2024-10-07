@@ -1,4 +1,5 @@
-@import "./home";
-@import "./sponsor";
-@import "./login";
-@import "./register";
+@use "./home";
+@use "./sponsor";
+@use "./login";
+@use "./register";
+@use "./product/index";
