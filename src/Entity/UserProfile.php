@@ -32,6 +32,9 @@ class UserProfile
     #[ORM\Column(nullable: true)]
     private ?int $phoneNumber = null;
 
+    #[ORM\OneToOne(inversedBy: 'userProfile', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
 
     public function getId(): ?int
     {
@@ -106,6 +109,18 @@ class UserProfile
     public function setPhoneNumber(?int $phoneNumber): static
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

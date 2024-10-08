@@ -31,6 +31,9 @@ class Company
     #[ORM\Column(nullable: true)]
     private ?int $creditPoints = null;
 
+    #[ORM\OneToOne(inversedBy: 'company', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Company
     public function setCreditPoints(?int $creditPoints): static
     {
         $this->creditPoints = $creditPoints;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
