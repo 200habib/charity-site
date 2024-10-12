@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+
+<div>
+    <div class="productDetail">
+        <img src="{{ asset('image/food/Image.png') }}" alt="Tomate fraîche">
+    </div>
+
+    <h1 class="Accessibility__fontsSize">Tomate Romaine</h1>
+    <p class="Accessibility__fontsSize">Prix : 3,00 € / kg</p>
+    <p class="Accessibility__fontsSize">Description : Cette tomate romaine est réputée pour sa chair ferme et juteuse, idéale pour les salades, sauces ou garnitures. Cultivée localement sans pesticides, elle apporte une saveur authentique à tous vos plats. Riche en vitamines et antioxydants, elle est parfaite pour une alimentation saine.</p>
+
+    <div class="productDetail__contentbutton">
+        <button class="productDetail__button  Accessibility__fontsSize">
+            Ajouter au panier
+        </button>
+    </div>
+</div>
+
+
+<div class="Accessibility">
+    <label for="range">Choisissez la taille :</label> <br>
+    <input type="range" id="range" class="Accessibility__range" min="16" max="32" step="1" value="20">
+
+    <div class="Accessibility_button">
+        <button id="resetButton" class="Accessibility_button_reset">Réinitialiser</button>
+        <button id="saveButton" class="Accessibility_button_save">Sauvegarder</button>
+    </div>
+</div>
+
+
+{% endblock %}

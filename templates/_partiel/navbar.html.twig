@@ -26,9 +26,9 @@
         <div class="menu__first-block">
             <section class="menu__content">
                 <ul class="menu__list">
-                    <li class="menu__item"><a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">Home</a></li>
+                    <li class="menu__item"><a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">accueil</a></li>
                     <li class="menu__item"><a href="{{ path('app_sponsor') }}">About Us</a></li>
-                    <li class="menu__item"><a href="">Services</a></li>
+                    <li class="menu__item"><a href="{{ path('app_product_index') }}">product</a></li>
                     <li class="menu__item"><a href="">Contact</a></li>
                     <li class="menu__item"><a href="{{ path('app_sponsor') }}">Sponsor</a></li>
                 </ul>
@@ -46,7 +46,7 @@
 
         <section class="menu__account-contact">
             <p class="menu__account">
-                <a href="{{ path('app_home') }}">Mon compte</a>
+                <a href="{{ path('app_my_account') }}">Mon compte</a>
             </p>
             <p class="menu__contact">Contactez-nous</p>
         </section>

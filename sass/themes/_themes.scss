@@ -2,8 +2,9 @@
     --background-color: #ffffff47;
     --menu-burger-background-color: #ffffff;
     --text-color: #000000;
-    --border-color: #cccccc;
+    --border-color: solid 1px #595959;
     --font-size: 20px;
+    --font-size-h1: 32px;
     --transition: 0.5s ease;
     --border-bottom: #0000005e solid 1px;
     --light-shadow: rgba(0, 0, 0, 0.1);
@@ -11,7 +12,7 @@
 
     // footer 
     --footer-background-color: #ebebeb;
-    --border-color: #cccccc;
+    --border-color-footer: #cccccc;
     --font-size: 20px;
     --transition: 0.3s ease;
     // end footer
@@ -22,8 +23,7 @@
     --menu-burger-background-color: #242329;
     --border-bottom-color: #e0e0e0;
     --text-color: #ffffff;
-    --border-color: #cccccc;
-    --font-size: 20px;
+    --border-color: solid 1px #fff;
     --transition: 0.5s ease;
     --border-bottom: #ffffff7d solid 1px;
     --input-padding-right: 10px;
@@ -31,7 +31,7 @@
     // footer 
     --footer-background-color: #242424;
     --text-color: #ffffff;
-    --border-color: #444444;
+    --border-color-footer: #444444;
     --footer-transition: 0.3s ease;
     --dark-shadow: rgba(255, 255, 255, 0.1);
     // end footer

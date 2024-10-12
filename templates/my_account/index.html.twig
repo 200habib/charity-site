@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profile
+{% endblock %}
+
+{% block body %}
+
+<h1 class="parameter__h1">parametre du compte</h1>
+	<main class="parameter">
+
+  {# <p>Profile</p> #}
+	<ul class="parameter__list">
+        <li><a href="{{ path('app_my_account_account') }}">Gérer les informations de votre profil</a></li>
+        <li><a href="{{ path('app_my_account_edit') }}">Changer l'email ou le mot de passe</a></li>
+		<li><a href="{{ path('app_my_account_edit') }}">Supprimer mon compte</a></li>
+    </ul>
+
+	</div>
+
+	<div class="parameter__list parameter__Accessibility">
+		<a href="{{ path('app_my_account_Accessibility') }}" class="parameter__Contactez_a">accessibilité</a>
+	</div>
+
+
+	<div class="parameter__list parameter__Contactez">
+		<a href="{{ path('app_my_account_edit') }}" class="parameter__Contactez_a">Contactez-nous</a>
+	</div>
+
+
+
+	<button class="parameter__logout">
+		<a href="{{ path('app_logout') }}">Deconnexion</a>
+	</button>
+
+	{# <div>
+		<a href="{{ path('app_logout') }}">servece client</a>
+	</div> #}
+  </main>
+
+
+
+
+{% endblock %}

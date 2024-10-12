@@ -1,0 +1,11 @@
+.UserEdit {
+    display: flex;
+    justify-content: center;
+
+    form {
+        padding: 30px;
+        background-color: var(--footer-background-color);
+        margin: 50px 0 50px 0;
+        border-radius: 20px;
+    }
+}
