@@ -1,0 +1,38 @@
+.UserInfo {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 20px 0;
+    border-radius: 37px;
+}
+
+.UserInfo__h1 {
+    font-size: var(--font-size-h1);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.UserInfo form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 22px;
+    background-color: var(--footer-background-color);
+    width: 95%;
+    border-radius: 19px;
+    height: auto;
+}
+
+.UserInfo__blockList div label{
+    font-size: var(--font-size);
+    color: var(--text-color);
+}
+
+.UserInfo__buttonUpdate {
+    border-radius: 20px;
+    height: 43px;
+    width: 90%;
+    font-size: var(--font-size);
+    background-color: var(--primary);
+    color: white;
+    border: none;
+}

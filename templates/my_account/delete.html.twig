@@ -1,0 +1,21 @@
+{# templates/my_account/delete.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer le compte{% endblock %}
+
+{% block body %}
+    <div class="deleteUser__main">
+    <h1 class="deleteUser__h1">Supprimer le compte</h1>
+
+    <div class="deleteUser">
+    <p>Veuillez saisir votre mot de passe pour confirmer la suppression de votre compte.</p>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="general__button">Supprimer mon compte</button>
+    {{ form_end(form) }}
+    </div>
+    </div>
+    
+    
+{% endblock %}

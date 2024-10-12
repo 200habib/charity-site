@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     volumeField.style.display = 'none';
     weightField.style.display = 'block';
 
-    // Funzione per gestire la selezione
     function handleUnitTypeChange() {
         if (unitTypeSelect.value === 'weight') {
             weightField.style.display = 'block';
