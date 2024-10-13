@@ -16,6 +16,18 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'Accessibility' => [
+        'path' => './assets/javascript/Accessibility.js',
+        'entrypoint' => true,
+    ],
+    'faq' => [
+        'path' => './assets/javascript/faq.js',
+        'entrypoint' => true,
+    ],
+    'product' => [
+        'path' => './assets/javascript/product.js',
+        'entrypoint' => true,
+    ],
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
     ],

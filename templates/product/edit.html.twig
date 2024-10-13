@@ -2,6 +2,12 @@
 
 {% block title %}Edit Product{% endblock %}
 
+    {% block javascripts %}
+                {% block importmap %}
+                    {{ importmap('app', 'product') }}
+                {% endblock %}
+    {% endblock %}
+
 {% block body %}
 
     <div class= "product__conteiner">
