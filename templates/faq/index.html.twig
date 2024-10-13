@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FAQ - Questions Fréquentes{% endblock %}
+
+    {% block javascripts %}
+                {% block importmap %}
+                    {{ importmap('app', 'faq') }}
+                {% endblock %}
+    {% endblock %}
+
+    {% block body %}
+
+<section class="faq">
+    <h2 class="faq__title">FAQ - Questions Fréquentes</h2>
+
+<div class="faq__main">
+
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">1. Comment fonctionne votre site ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Notre site permet aux clients d'acheter des produits directement aux vendeurs. Cependant, au lieu de recevoir les produits chez eux, les articles achetés sont envoyés à une association caritative située à Lyon. De cette manière, les personnes en difficulté peuvent bénéficier de vos achats solidaires.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">2. Où sont envoyés les produits ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Les produits achetés sont expédiés à une organisation caritative partenaire située à Lyon, en France. Pour le moment, notre service est disponible uniquement à Lyon car tous nos vendeurs sont basés dans cette ville. Nous soutenons l'éco-responsabilité et travaillons à réduire les émissions de CO2 en limitant les transports, ce qui contribue à la lutte contre la pollution.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">3. Puis-je choisir l'association caritative à laquelle mon achat sera donné ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Actuellement, tous les produits sont envoyés à notre organisation partenaire à Lyon. Nous prévoyons de collaborer avec d'autres associations à l'avenir, permettant ainsi aux clients de choisir à qui ils souhaitent faire un don.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">4. Comment puis-je être sûr que mon achat sera donné à l'association ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Nous travaillons directement avec des associations caritatives locales qui se chargent de distribuer les produits aux personnes dans le besoin. Après chaque achat, vous recevrez une confirmation par e-mail vous informant lorsque votre commande a été expédiée et livrée à l'association.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">5. Qui paie les frais de livraison ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Les frais de livraison sont inclus dans le prix du produit. Ainsi, il n'y a pas de coûts supplémentaires pour l'envoi du produit à l'association caritative.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">6. Puis-je acheter un produit pour moi-même ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Notre site est conçu pour faciliter les dons de produits aux personnes en difficulté. Pour le moment, il n'est pas possible de recevoir le produit acheté chez vous, car tout est directement donné aux associations caritatives.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">7. Puis-je suivre l'état d'avancement de la livraison du produit ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Oui, une fois que le vendeur a expédié le produit à l'association caritative, nous vous enverrons une notification avec les détails de l'expédition. Vous pourrez suivre la progression de la livraison jusqu'à son arrivée à l'association.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">8. Quels types de produits puis-je acheter ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Nous proposons une large gamme de produits, allant des denrées alimentaires aux biens de première nécessité. La sélection des produits dépend des vendeurs avec lesquels nous collaborons, mais nous veillons à ce que tous les produits soient utiles pour les personnes dans le besoin.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">9. Mon achat est-il déductible fiscalement ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Pour l'instant, nous ne fournissons pas de reçus fiscaux pour les achats effectués sur notre site. Cependant, nous travaillons avec les autorités compétentes pour rendre possibles les déductions fiscales à l'avenir.
+        </p>
+    </div>
+
+    <div class="faq__item">
+        <header class="faq__header">
+            <h3 class="faq__question">10. Puis-je devenir un vendeur sur votre site ?</h3>
+            <img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="faq__icon">
+        </header>
+        <p class="faq__content">
+            Si vous êtes un vendeur intéressé à contribuer à notre projet solidaire, vous pouvez nous contacter via notre formulaire de contact. Nous serons ravis de discuter d'une éventuelle collaboration.
+        </p>
+    </div>
+
+    </div>
+</section>
+
+
+{% endblock %}

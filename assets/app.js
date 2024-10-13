@@ -6,14 +6,11 @@ const savedFontSize = localStorage.getItem('fontSize');
         let savedFontSizeH1= savedFontSize * 1.2
         document.documentElement.style.setProperty('--font-size-h1', savedFontSizeH1+ 'px');
     }
-    
-// import './styles/app.css';
+
 import './styles/styles.css';
 import './javascript/darkMode.js';
 import './javascript/menuburger.js';
-import './javascript/faq.js';
-import './javascript/product.js';
-import './javascript/Accessibility.js';
+import './javascript/footer.js';
 
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

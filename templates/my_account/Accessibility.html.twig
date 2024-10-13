@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}Accessibility{% endblock %}
+
+    {% block javascripts %}
+                {% block importmap %}
+                    {{ importmap('app', 'Accessibility') }}
+                {% endblock %}
+    {% endblock %}
 
 {% block body %}
 

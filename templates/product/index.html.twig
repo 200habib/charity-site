@@ -6,6 +6,11 @@
 	<link rel="stylesheet" href="{{ asset('styles/products.scss') }}">
 {% endblock %}
 
+    {% block javascripts %}
+                {% block importmap %}
+                    {{ importmap('app', 'product') }}
+                {% endblock %}
+    {% endblock %}
 
 {% block body %}
 
