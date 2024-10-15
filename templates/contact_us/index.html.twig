@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block body %}
+    <section class="contact-us">
+    <div class="contact-us__header">
+        <h1 class="contact-us__title">Nous contacter</h1>
+        <p class= "general__border-body">
+            <span class= "general__border"></span>
+        </p>
+        
+        <p class="contact-us__description">
+            Notre équipe Ulisse se tient à votre entière disposition pour répondre à toutes vos questions et vous offrir un accompagnement personnalisé. 
+            Que vous ayez besoin de renseignements supplémentaires sur nos services, d'une assistance technique ou que vous souhaitiez simplement échanger avec nous, nous sommes là pour vous.
+        </p>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success contact-us__alert">{{ message }}</div>
+        {% endfor %}
+    </div>
+        
+
+
+
+
+
+<div class="contact-us__form-body">
+<h2 class="contact-us__form-title">Formulaire de contact</h2>
+
+        <p class="contact-us__form-description">Veuillez remplir le formulaire de contact pour envoyer un message. Un conseiller Ulisse vous répondra dans les plus brefs délais.</p>
+
+        {{ form_start(form, {'attr': {'class': 'contact-us__form'}}) }}
+
+        <div class="form-group contact-us__form-group">
+            {{ form_label(form.name, 'Votre nom', {'label_attr': {'class': 'form-group__label'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-group__input general__input'}}) }}
+        </div>
+
+        <div class="form-group contact-us__form-group">
+            {{ form_label(form.email, 'Votre email', {'label_attr': {'class': 'form-group__label'}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-group__input general__input' }}) }}
+        </div>
+
+        <div class="form-group contact-us__form-group">
+            {{ form_label(form.message, 'Votre message', {'label_attr': {'class': 'form-group__label'}}) }}
+            {{ form_widget(form.message, {'attr': {'class': 'form-group__textarea general__input'}}) }}
+        </div>
+
+        <div class="contact-us__privacy">
+            <input type="checkbox" id="privacy_policy" name="privacy_policy" required class="contact-us__checkbox">
+            <label for="privacy_policy" class="contact-us__privacy-label">
+                J'accepte la <a href="{{ path('app_privacy_policy') }}" class="contact-us__privacy-link">politique de confidentialité</a>.
+            </label>
+        </div>
+
+        <button type="submit" class="general__button">Soumettre</button>
+
+        {{ form_end(form) }}
+</div>
+        
+
+         <div class="contact-us__additional-info">
+            <h2 class="contact-us__info-title">Autres moyens de contact</h2>
+            <p class="contact-us__info-description">
+                Notre équipe est à votre disposition du Lundi au Vendredi, de 9h00 à 18h00 (sauf jours fériés). Vous pouvez nous contacter de différentes manières pour toute question ou demande d'information :
+            </p>
+            <ul class="contact-us__info-list">
+                <li>
+                    <strong>Par téléphone :</strong> Nous sommes joignables au +33 1 23 45 67 89.
+                </li>
+                <li>
+                    <strong>Par e-mail :</strong> Envoyez-nous un message à <a href="mailto:contact@ulisse-services.com">contact@ulisse-services.com</a>.
+                </li>
+                <li>
+                    <strong>Via les réseaux sociaux :</strong> Vous pouvez également nous contacter via nos pages sur Facebook et LinkedIn, où nous sommes actifs et disponibles pour répondre à vos questions ou demandes.
+                </li>
+            </ul>
+            <p class="contact-us__info-description">
+                Nous mettons tout en œuvre pour répondre à vos demandes dans les meilleurs délais et vous offrir un service à la hauteur de vos attentes.
+            </p>
+        </div>
+    </section>
+{% endblock %}

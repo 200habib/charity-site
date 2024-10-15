@@ -1,0 +1,13 @@
+.general__border-body {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.general__border {
+    border-bottom: 3px solid var(--primary);
+    width: 60%;
+    border-radius: 15px;
+    display: block;
+    margin-bottom: 1.5rem;
+}
