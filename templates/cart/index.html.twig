@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!
+{% endblock %}
+
+{% block body %}
+
+
+	<ul class='cart'>
+		{% for product in products %}
+
+			<li class='cart__list'>
+				<div class='cart__List_image'>
+					<img src="{{ vich_uploader_asset(product) }}" alt="">
+				</div>
+				<div>
+					Product:
+					{{ product.name }}
+					x
+					{{ app.session.get('cart')[product.id]}}
+					<p>Price:
+						{{ product.price | format_currency('EUR', locale='fr') }}
+                    </p>
+					<p>total:
+						{{ (product.price * app.session.get('cart')[product.id]) | format_currency('EUR', locale='fr') }}
+
+                    </p>
+				</div>
+
+
+			</li>
+
+		{% endfor %}
+
+
+		<div class='cart__total'>
+        <div>
+        <div class='cart__total_sub'>
+            <div>
+				TOTAL:
+            </div>
+			<div>
+                {{totalPrice | format_currency('EUR', locale='fr')}}
+            </div>
+        </div>
+            <div class='cart__total_tva'>
+                * TVA comprise
+            </div>
+        </div>
+        
+		</div>
+
+        <button class="general__button">
+            Commander
+        </button>
+
+
+	</ul>
+
+
+{% endblock %}

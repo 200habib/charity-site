@@ -18,7 +18,8 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'attr' => ['class' => 'product__name']
+                'attr' => ['class' => 'product__name'],
+                'required' => true,
             ])
             ->add('description', null, [
                 'attr' => ['class' => 'product__description']
@@ -28,21 +29,22 @@ class ProductType extends AbstractType
                 'html5' => true 
             ])
             ->add('volumeLitre', NumberType::class, [
-                'attr' => ['class' => 'product__volume general__input', 'placeholder' => 'Volume (litri)'],
+                'attr' => ['class' => 'product__volume general__input', 'placeholder' => 'Quantité'],
                 'required' => false,
                 'label' => false,
+                'html5' => true 
             ])
             ->add('weight', NumberType::class, [
-                'attr' => ['class' => 'product__weight general__input', 'placeholder' => 'Masse (kg)'],
-                'required' => false,
+                'attr' => ['class' => 'product__weight general__input', 'placeholder' => 'Quantité'],
+                'required' => true,
                 'label' => false,
+                'html5' => true 
             ])
             ->add('unitType', ChoiceType::class, [
                 'choices' => [
-                    'Masse (kg)' => 'weight',
-                    'Volume (litres)' => 'volumeLitre',
+                    'masse' => 'weight',
+                    'Volume' => 'volumeLitre',
                 ],
-                'attr' => ['class' => 'product__unitType'],
                 'mapped' => false,
                 'data' => 'weight', 
                 'required' => true,
@@ -50,7 +52,7 @@ class ProductType extends AbstractType
             ])
             ->add('imageFile', VichFileType::class, [
                 'label' => false,
-                'required' => false,
+                'required' => true,
                 'allow_delete' => true,
                 'download_uri' => true,
                 'attr' => ['class' => 'product__imageFile']
@@ -58,13 +60,13 @@ class ProductType extends AbstractType
             ->add('category', null, [
                 'class' => Category::class,
                 'choice_label' => 'name', 
-                'placeholder' => 'Seleziona una categoria',
+                'placeholder' => 'Sélectionnez une catégorie',
                 'required' => true,
             ])
             ->add('unit', ChoiceType::class, [
                 'choices' => ProductUnit::cases(),
                 'choice_label' => fn($choice) => $choice->value,
-                'placeholder' => 'Seleziona un\'unità',
+                'placeholder' => 'Sélectionnez une unité',
                 'required' => true,
             ]);
     }

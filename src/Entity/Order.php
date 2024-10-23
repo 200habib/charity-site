@@ -27,15 +27,14 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Status $status = null;
-
     /**
      * @var Collection<int, OrderItem>
      */
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'orderNumber')]
     private Collection $orderItems;
+
+    #[ORM\Column(length: 150)]
+    private ?string $Status = null;
 
     public function __construct()
     {
@@ -83,18 +82,6 @@ class Order
         return $this;
     }
 
-    public function getStatus(): ?Status
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?Status $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, OrderItem>
      */
@@ -121,6 +108,18 @@ class Order
                 $orderItem->setOrderNumber(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->Status;
+    }
+
+    public function setStatus(string $Status): static
+    {
+        $this->Status = $Status;
 
         return $this;
     }

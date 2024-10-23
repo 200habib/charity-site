@@ -17,12 +17,6 @@
     color: white;
 }
 
-.productDetail__contentbutton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 
 .productDetail__relatedList {
     display: flex;
@@ -47,4 +41,47 @@
 
 .productDetail__recommendation {
     margin: 20px 0 20px 0;
+}
+
+.productDetail__contentbutton {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 0 25px 0;
+}
+
+.productDetail__button {
+    &_delete {
+        width: 45%;
+        padding: 10px;
+        border: none;
+        border-radius: 30px;
+        
+        cursor: pointer;
+        background-color: #a90606;
+
+        button {
+            color: var(--text-color);
+            font-size: var(--font-size);
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: center;
+        }
+        
+    }
+
+    &_edit {
+        width: 45%;
+        padding: 10px;
+        border: none;
+        border-radius: 30px;
+        
+        font-size: var(--font-size);
+        cursor: pointer;
+        background-color: #007bff;
+
+        a {
+            color: var(--text-color);
+        }
+    }
 }

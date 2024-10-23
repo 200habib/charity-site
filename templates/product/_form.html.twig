@@ -1,45 +1,45 @@
 {{ form_start(form) }}
 
-    <div class="form-group">
+    <div class="form_product form_product__Name">
         {{ form_label(form.name) }}
-        {{ form_widget(form.name, {'attr': {'class': 'general__input'}}) }}
+        {{ form_widget(form.name, {'attr': {'class': 'general__input  form_product__label'}}) }}
         {{ form_errors(form.name) }}
     </div>
 
-    <div class="form-group">
+    <div class="form_product">
         {{ form_label(form.description) }}
-        {{ form_widget(form.description, {'attr': {'class': 'general__input'}}) }}
+        {{ form_widget(form.description, {'attr': {'class': 'general__input form_product__label'}}) }}
         {{ form_errors(form.description) }}
     </div>
 
-    <div class="form-group">
+    <div class="form_product">
         {{ form_label(form.price) }}
-        {{ form_widget(form.price, {'attr': {'class': 'general__input'}}) }}
+        {{ form_widget(form.price, {'attr': {'class': 'general__input form_product__label'}}) }}
         {{ form_errors(form.price) }}
     </div>
 
-    <div>
-        <p>
+    <div class = "form_product">
+        <label>
             choisise entre volume et masse
-        </p>
-        <div class = "product__quantity">
+        </label>
+        <div class = "product__quantity ">
         <div>
-            <div class="product__volume">
+            <div class="product__volume form_product">
                 {{ form_label(form.volumeLitre) }}
-                {{ form_widget(form.volumeLitre) }}
+                {{ form_widget(form.volumeLitre, {'attr': {'class': 'product__unitType form_product__label'}}) }}
                 {{ form_errors(form.volumeLitre) }}
             </div>
 
-            <div class="product__weight">
+            <div class="product__weight form_product">
                 {{ form_label(form.weight) }}
-                {{ form_widget(form.weight) }}
+                {{ form_widget(form.weight, {'attr': {'class': 'product__unitType form_product__label'}}) }}
                 {{ form_errors(form.weight) }}
             </div>
         </div>
     
-            <div class="">
+            <div class="form_product">
                 {{ form_label(form.unitType) }}
-                {{ form_widget(form.unitType, {'attr': {'class': 'product__unitType'}}) }}
+                {{ form_widget(form.unitType, {'attr': {'class': 'product__unitType form_product__label'}}) }}
                 {{ form_errors(form.unitType) }}
             </div>
         </div>
@@ -47,7 +47,19 @@
 
     </div>
 
-    <div class="form-pd">
+    <div class="form_product">
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category, {'attr': {'class': 'form_product__option form_product__label'}}) }}
+        {{ form_errors(form.category) }}
+    </div>
+
+    <div class="form_product">
+        {{ form_label(form.unit) }}
+        {{ form_widget(form.unit, {'attr': {'class': 'form_product__option form_product__label'}}) }}
+        {{ form_errors(form.unit) }}
+    </div>
+
+    <div class="form-pd form_product">
         {{ form_label(form.imageFile) }}
         {{ form_widget(form.imageFile) }}
         {{ form_errors(form.imageFile) }}
@@ -60,4 +72,6 @@
 
 {{ form_end(form) }}
 
-<a href="{{ path('app_product_index') }}" class= "product__backList">retour à la liste.</a>
+<div class= "form_product__backList">
+        <a href="{{ path('app_product_index') }}">Retour à la liste.</a>
+</div>
