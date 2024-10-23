@@ -3,7 +3,7 @@
 {% block title %}New Product{% endblock %}
     {% block javascripts %}
                 {% block importmap %}
-                    {{ importmap('app', 'product') }}
+                    {{ importmap(['app', 'product']) }}
                 {% endblock %}
     {% endblock %}
 {% block body %}

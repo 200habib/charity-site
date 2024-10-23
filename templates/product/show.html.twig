@@ -1,90 +1,104 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
-    {% block javascripts %}
-                {% block importmap %}
-                    {{ importmap('app', 'product') }}
-                {% endblock %}
-    {% endblock %}
+{% block title %}Product
+{% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'product']) }}
+	{% endblock %}
+{% endblock %}
 {% block body %}
 
-    <div>
-        <div class="productDetail">
-            <img src="{{ vich_uploader_asset(product) }}" alt="">
-        </div>
-    
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.price }} €</p>
-        <p>{{ product.description }}</p>
+	<div>
+		<div class="productDetail">
+			<img src="{{ vich_uploader_asset(product) }}" alt="">
+		</div>
 
-        <div class="productDetail__contentbutton">
-                {# {% if roles.user != vendeur %} #}
-						<button class="productDetail__button">
-							Ajouter au panier
-						</button>
-					{# {% else %}
-						<button class="productDetail__button">
-							<a href="{{ path('app_product_edit', { 'id': product.id }) }}">Modifier</a>
-						</button>
-					{% endif %} #}
-        </div>
+		<h1>{{ product.name }}</h1>
+		<p>{{ product.price }}
+			€</p>
+		<p>{{ product.description }}</p>
 
-        <div>
-            <div>
-                <h2>detail</h2>
-                <p>{{ product.volumeLitre }}</p>
-            </div>
-            
-            <div>
-                <div>Weight</div>
-                <div>{{ product.weight }}</div>
-            </div>
-            
-
-            {% if is_granted('ROLE_VENDEUR') %}
-                <div>
-                    <div>UpdatedAt</div>
-                    <div>{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</div>
-                </div>
-                <div>
-                    <div>CreatedAt</div>
-                    <div>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</div>
-                </div>
-            {% endif %}
-
-        </div>
-
-        <div class="productDetail__recommendation">
-                <h2>
-                       Dans la même catégorie
-                </h2>
-
-                <div class="productDetail__relatedList">
-                    {% for product in products|slice(0, 5) %}
-                        <div class="productDetail__container">
-                            <a href="{{ path('app_product_show', { 'id': product.id }) }}" class="product__card">
-                                <img src="{{ vich_uploader_asset(product) }}" class="card-img-top" alt="{{ product.name }}">
-
-                                <div class="productList__body">
-                                    <h5 class="productList__title">
-                                        {{ product.name }}
-                                    </h5>
-                                    <p class="productDetail__price">Prix : {{ product.price }} €</p> 
-                                </div>
-                                
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
+		<div class="productDetail__contentbutton">
+			{% if is_granted('ROLE_SELLER') %}
+			<form action="{{ path('app_product_delete', { 'id': product.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');"  class="productDetail__button_delete">
+    			<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+				<button>
+						Supprimer
+				</button>
+			</form>
 
 
-        </div>
-                
-    </div>
-   
+			<button class="productDetail__button_edit">
+				<a href="{{ path('app_product_edit', { 'id': product.id }) }}">
+					Modifier
+				</a>
+			</button>
+				
+
+			{% else %}
+				<button class="general__button">
+					Ajouter au panier
+				</button>
+			{% endif %}
+
+		</div>
+
+		<div>
+			<div>
+				<h2>detail</h2>
+				<p>{{ product.volumeLitre }}</p>
+			</div>
+
+			<div>
+				<div>Weight</div>
+				<div>{{ product.weight }}</div>
+			</div>
 
 
- 
+			{% if is_granted('ROLE_VENDEUR') %}
+				<div>
+					<div>UpdatedAt</div>
+					<div>{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '' }}</div>
+				</div>
+				<div>
+					<div>CreatedAt</div>
+					<div>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</div>
+				</div>
+			{% endif %}
 
-    {# {{ include('product/_delete_form.html.twig') }} #}
+		</div>
+
+		<div class="productDetail__recommendation">
+			<h2>
+				Dans la même catégorie
+			</h2>
+
+			<div class="productDetail__relatedList">
+				{% for product in products|slice(0, 5) %}
+					<div class="productDetail__container">
+						<a href="{{ path('app_product_show', { 'id': product.id }) }}" class="product__card">
+							<img src="{{ vich_uploader_asset(product) }}" class="card-img-top" alt="{{ product.name }}">
+
+							<div class="productList__body">
+								<h5 class="productList__title">
+									{{ product.name }}
+								</h5>
+								<p class="productDetail__price">Prix :
+									{{ product.price }}
+									€</p>
+							</div>
+
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+	{# {{ include('product/_delete_form.html.twig') }} #}
 {% endblock %}

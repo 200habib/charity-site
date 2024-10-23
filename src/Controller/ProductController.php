@@ -3,25 +3,42 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\OrderItem;
+use App\Form\ProductQuantityType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_USER')]
+
 #[Route('/product')]
 class ProductController extends AbstractController
 {
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    public function index(ProductRepository $productRepository, SessionInterface $session): Response
     {
+        $products = $productRepository->findAll();
+        $forms = [];
+    
+        foreach ($products as $product) {
+            $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
+                'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
+                'method' => 'POST'
+            ])->createView();
+        }
+
+        $cart = $session->get('cart', []);
+    
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $products,
+            'forms' => $forms,
+            'cart' => $cart
         ]);
     }
 
@@ -51,7 +68,6 @@ class ProductController extends AbstractController
         ]);
     }
     
-    #[IsGranted('ROLE_SELLER')]
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
     public function show(Product $product, ProductRepository $productRepository): Response
     {
@@ -65,8 +81,13 @@ class ProductController extends AbstractController
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
-        if (!$this->isGranted('ROLE_SELLER')) {
-            throw new AccessDeniedException('Vous n\'avez pas l\'autorisation de créer un produit.');
+        $orderItems = $product->getOrderItems();
+        $user = $this->getUser();
+        $price = $orderItems->getPrice();
+        dd($price);
+
+        if ($product->getSeller() !== $user) {
+            throw new AccessDeniedException('Vous n\'avez pas l\'autorisation de modifier ce produit.');
         }
 
         $form = $this->createForm(ProductType::class, $product);
@@ -85,12 +106,9 @@ class ProductController extends AbstractController
     }
 
     #[IsGranted('ROLE_SELLER')]
-    #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'app_product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
-        if (!$this->isGranted('ROLE_SELLER')) {
-            throw new AccessDeniedException('Vous n\'avez pas l\'autorisation de créer un produit.');
-        }
         
         $user = $this->getUser();
 

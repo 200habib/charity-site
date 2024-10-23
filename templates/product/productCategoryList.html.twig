@@ -1,0 +1,17 @@
+	<ul class="product__category-list">
+		<li>nourriture</li>
+		<li>boissons</li>
+		<li>hygiène</li>
+
+		<li class="product__category_filter"><img src="{{ asset('image/category/Vector.png') }}" alt=""></li>
+        
+		{% if app.user is not null and 'ROLE_SELLER' in app.user.getRoles() %}
+		    <li class="product__category_new">
+		        <a href="{{ path('app_product_new') }}">
+		            <img src="{{ asset('image/category/morebutton.png') }}" alt="">
+		        </a>
+		    </li>
+		{% endif %}
+
+
+	</ul>

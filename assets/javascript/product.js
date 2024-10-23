@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const volumeField = document.querySelector('.product__volume');
     const weightField = document.querySelector('.product__weight');
 
+    const inputVolumeLitre = document.getElementById('product_volumeLitre');
+    const inputWeight = document.getElementById('product_weight');
+    
+
     volumeField.style.display = 'none';
     weightField.style.display = 'block';
 
