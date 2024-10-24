@@ -136,4 +136,12 @@ class MyAccountController extends AbstractController
         ]);
 
     }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/Terms-and-Conditions', name: 'app_my_Terms_and_Conditions', methods: ['GET', 'POST'])]
+    public function TermsAndConditions(): Response
+    {
+        return $this->render('my_account/TermsAndConditions.html.twig', [
+        ]);
+    }
 }

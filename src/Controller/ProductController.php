@@ -16,14 +16,29 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
+
+
 
 #[Route('/product')]
 class ProductController extends AbstractController
 {
+    private CategoryRepository $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
+
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository, SessionInterface $session): Response
     {
+        $categories = $this->categoryRepository->findAll();
         $products = $productRepository->findAll();
+
+        // dd($categories);
         $forms = [];
     
         foreach ($products as $product) {
@@ -36,6 +51,7 @@ class ProductController extends AbstractController
         $cart = $session->get('cart', []);
     
         return $this->render('product/index.html.twig', [
+            'categories' => $categories,
             'products' => $products,
             'forms' => $forms,
             'cart' => $cart
@@ -119,5 +135,34 @@ class ProductController extends AbstractController
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
+
+
+    #[Route('/change-category/{categoryId}', name: 'change_category', methods: ['GET'])]
+    public function changeCategory(int $categoryId, ProductRepository $productRepository, SessionInterface $session): Response
+    {
+        $products = $productRepository->findByCategoryId($categoryId);
+        $categories = $this->categoryRepository->findAll();
+        
+        $forms = [];
+    
+        foreach ($products as $product) {
+            $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
+                'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
+                'method' => 'POST'
+            ])->createView();
+        }
+
+        $cart = $session->get('cart', []);
+    
+        return $this->render('product/index.html.twig', [
+            'categories' => $categories,
+            'products' => $products,
+            'forms' => $forms,
+            'cart' => $cart
+        ]);
     }
 }
