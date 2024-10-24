@@ -1,7 +1,17 @@
 	<ul class="product__category-list">
-		<li>nourriture</li>
+
+    {% for category in categories %}
+        <li>
+            <a href="{{ path('change_category', { categoryId: category.id }) }}">
+                {{ category.name }}
+            </a>
+        </li>
+    {% else %}
+        <li>No categories found.</li>
+    {% endfor %}
+		{# <li>nourriture</li>
 		<li>boissons</li>
-		<li>hygiène</li>
+		<li>hygiène</li> #}
 
 		<li class="product__category_filter"><img src="{{ asset('image/category/Vector.png') }}" alt=""></li>
         
