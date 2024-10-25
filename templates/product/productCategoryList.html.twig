@@ -1,6 +1,9 @@
 	<ul class="product__category-list">
 
-    {% for category in categories %}
+	<li>
+		<a href="{{ path('app_product_index') }}">Tous</a>
+	</li>
+    {% for category in categories|slice(0, 3) %}
         <li>
             <a href="{{ path('change_category', { categoryId: category.id }) }}">
                 {{ category.name }}

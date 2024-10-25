@@ -66,10 +66,11 @@ class ProductController extends AbstractController
             throw new AccessDeniedException('Vous n\'avez pas l\'autorisation de créer un produit.');
         }
 
+        $user = $this->getUser();
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-
+        $product->setUser($user);
         if ($form->isSubmitted() && $form->isValid()) {
             
             $entityManager->persist($product);
