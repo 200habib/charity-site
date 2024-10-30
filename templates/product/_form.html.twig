@@ -19,9 +19,6 @@
     </div>
 
     <div class = "form_product">
-        <label>
-            choisise entre volume et masse
-        </label>
         <div class = "product__quantity ">
         <div>
             <div class="product__volume form_product">
@@ -57,6 +54,11 @@
         {{ form_label(form.unit) }}
         {{ form_widget(form.unit, {'attr': {'class': 'form_product__option form_product__label'}}) }}
         {{ form_errors(form.unit) }}
+    </div>
+    <div>
+        {{ form_errors(form.stock.availableQuantity) }}
+        <label for="{{ form.stock.availableQuantity.vars.id }}">Quantité Disponible *</label>
+        {{ form_widget(form.stock.availableQuantity, {'attr': {'class': 'form_product__option form_product__label'}}) }}
     </div>
 
     <div class="form-pd form_product">

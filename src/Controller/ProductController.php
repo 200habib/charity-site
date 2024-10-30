@@ -2,7 +2,13 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Stock;
+// use App\Form\StockType;
+
+
 use App\Entity\Product;
+use App\Form\FilterType;
 use App\Entity\OrderItem;
 use App\Form\ProductQuantityType;
 use App\Form\ProductType;
@@ -25,36 +31,62 @@ use App\Repository\CategoryRepository;
 class ProductController extends AbstractController
 {
     private CategoryRepository $categoryRepository;
+    private ProductRepository $productRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository, ProductRepository $productRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
     }
 
 
-    #[Route('/', name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository, SessionInterface $session): Response
+
+    #[Route('/', name: 'app_product_index', methods: ['GET', 'POST'])]
+    public function index(ProductRepository $productRepository, SessionInterface $session, Request $request): Response
     {
         $categories = $this->categoryRepository->findAll();
-        $products = $productRepository->findAll();
 
-        // dd($categories);
+        // Retrieve products and create forms for each
+        $products = $this->productRepository->findAll();
         $forms = [];
-    
         foreach ($products as $product) {
             $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
                 'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
                 'method' => 'POST'
             ])->createView();
         }
+    
 
         $cart = $session->get('cart', []);
+
+        $filterForm = $this->createForm(FilterType::class);
+        $filterForm->handleRequest($request);
     
+        $filters = [
+            'sortPrice' => 'asc',
+            'showSellerProducts' => false,
+        ];
+    
+        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+            $filters = $filterForm->getData();
+        }
+
+        
+        $products = $this->productRepository->findByFilters(
+            $filters['sortPrice'],
+            $filters['showSellerProducts'],
+        );
+        dump($products);
+
+        
+    $selectedCategor= "";
         return $this->render('product/index.html.twig', [
             'categories' => $categories,
             'products' => $products,
-            'forms' => $forms,
-            'cart' => $cart
+            'productForms' => $forms,
+            'cart' => $cart,
+            'filterForm' => $filterForm->createView(),
+            'selectedCategory' => $selectedCategor
         ]);
     }
 
@@ -65,17 +97,19 @@ class ProductController extends AbstractController
         if (!$this->isGranted('ROLE_SELLER')) {
             throw new AccessDeniedException('Vous n\'avez pas l\'autorisation de créer un produit.');
         }
-
         $user = $this->getUser();
         $product = new Product();
+        $stock = new Stock();
+        $product->setStock($stock);
+        $product->setUser($user);
+    
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-        $product->setUser($user);
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $entityManager->persist($product);
             $entityManager->flush();
-
+    
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -100,12 +134,30 @@ class ProductController extends AbstractController
     {
         $orderItems = $product->getOrderItems();
         $user = $this->getUser();
-        $price = $orderItems->getPrice();
-        dd($price);
 
-        if ($product->getSeller() !== $user) {
-            throw new AccessDeniedException('Vous n\'avez pas l\'autorisation de modifier ce produit.');
+
+        if ($product->getUser() !== $user) {
+            $entityManager->remove($user);
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('app_homepage', [
+                'message' => 'Votre profil a été supprimé car vous n\'êtes pas autorisé à modifier ce produit.'
+                ]);
         }
+
+
+
+
+         $prices = [];
+        
+         
+         foreach ($orderItems as $orderItem) {
+        
+            $prices[] = $orderItem->getPrice(); 
+        
+        }
+        // dd($price);
+
 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -121,6 +173,11 @@ class ProductController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
+
+
+
 
     #[IsGranted('ROLE_SELLER')]
     #[Route('/{id}/delete', name: 'app_product_delete', methods: ['POST'])]
@@ -147,23 +204,30 @@ class ProductController extends AbstractController
     {
         $products = $productRepository->findByCategoryId($categoryId);
         $categories = $this->categoryRepository->findAll();
-        
-        $forms = [];
-    
+        $selectedCategory = $this->categoryRepository->find($categoryId);
+        $productForms = []; 
+        $filterForm = $this->createForm(FilterType::class)->createView();
+
         foreach ($products as $product) {
-            $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
+            $productForms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
                 'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
                 'method' => 'POST'
             ])->createView();
         }
-
+    
         $cart = $session->get('cart', []);
     
         return $this->render('product/index.html.twig', [
             'categories' => $categories,
             'products' => $products,
-            'forms' => $forms,
-            'cart' => $cart
+            'productForms' => $productForms, 
+            'cart' => $cart,
+            'filterForm' => $filterForm,
+            'selectedCategory' => $selectedCategory 
         ]);
+        
+        
     }
+    
+    
 }
