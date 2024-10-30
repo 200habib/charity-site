@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Status;
+use App\Entity\Stock;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Status>
+ * @extends ServiceEntityRepository<Stock>
  */
-class StatusRepository extends ServiceEntityRepository
+class StockRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Status::class);
+        parent::__construct($registry, Stock::class);
     }
 
     //    /**
-    //     * @return Status[] Returns an array of Status objects
+    //     * @return Stock[] Returns an array of Stock objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class StatusRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Status
+    //    public function findOneBySomeField($value): ?Stock
     //    {
     //        return $this->createQueryBuilder('s')
     //            ->andWhere('s.exampleField = :val')

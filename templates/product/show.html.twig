@@ -20,27 +20,25 @@
 		<p>{{ product.description }}</p>
 
 		<div class="productDetail__contentbutton">
-			{% if is_granted('ROLE_SELLER') %}
-			<form action="{{ path('app_product_delete', { 'id': product.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');"  class="productDetail__button_delete">
-    			<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-				<button>
+			{% if is_granted('ROLE_SELLER') and product.user.id == app.user.id %}
+				<form action="{{ path('app_product_delete', { 'id': product.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');" class="productDetail__button_delete">
+					<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+					<button>
 						Supprimer
+					</button>
+				</form>
+
+				<button class="productDetail__button_edit">
+					<a href="{{ path('app_product_edit', { 'id': product.id }) }}">
+						Modifier
+					</a>
 				</button>
-			</form>
-
-
-			<button class="productDetail__button_edit">
-				<a href="{{ path('app_product_edit', { 'id': product.id }) }}">
-					Modifier
-				</a>
-			</button>
-				
-
 			{% else %}
 				<button class="general__button">
 					Ajouter au panier
 				</button>
 			{% endif %}
+
 
 		</div>
 

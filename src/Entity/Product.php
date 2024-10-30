@@ -67,6 +67,13 @@ class Product
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'product')]
     private Collection $orderItems;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\OneToOne(mappedBy: 'product', cascade: ['persist', 'remove'])]
+    private ?Stock $stock = null;
+
     public function getUnit(): ?ProductUnit
     {
         return $this->unit;
@@ -241,6 +248,35 @@ class Product
                 $orderItem->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStock(): ?Stock
+    {
+        return $this->stock;
+    }
+
+    public function setStock(Stock $stock): static
+    {
+        // set the owning side of the relation if necessary
+        if ($stock->getProduct() !== $this) {
+            $stock->setProduct($this);
+        }
+
+        $this->stock = $stock;
 
         return $this;
     }

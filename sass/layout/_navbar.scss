@@ -30,7 +30,6 @@
             height: 50px;
             font-size: 20px;
             width: 100%;
-            // margin: 20px 0 10px 0;
             display: flex;
             justify-content: space-between;
         }
@@ -39,8 +38,6 @@
             display: flex;
             align-items: center;
         }
-  
-        // end of the navbar 
     }
   
       .navbar__logo {
@@ -51,6 +48,18 @@
             .navbar__icon_close {
                 height: 50px;
             }
+}
 
-            // end of the meida query 
+.navbar__cart {
+    position: relative;
+
+    span {
+        position: absolute;
+        background-color: var(--primary);
+        color: white;
+        padding: 0px 5px 0px 5px;
+        border-radius: 50px;
+        top: -7px;
+        left: 10px;
+    }
 }

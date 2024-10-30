@@ -1,0 +1,37 @@
+{{ form_start(filterForm) }}
+
+<section class="filters">
+    <div class="filters__sort">
+        {{ form_label(filterForm.sortPrice) }}
+        <div class="filters__sort-options">
+            {% for choice in filterForm.sortPrice %}
+                <div class="filters__sort-option">
+                    {{ form_widget(choice) }}
+                    {{ form_label(choice) }}
+                </div>
+            {% endfor %}
+        </div>
+        {{ form_errors(filterForm.sortPrice) }}
+    </div>
+
+    {% if is_granted('ROLE_SELLER') %}
+        <div class="filters__seller">
+            {{ form_widget(filterForm.showSellerProducts, {'attr': {'class': 'filters__checkbox', 'id': 'showSellerProducts'}}) }}
+            {{ form_label(filterForm.showSellerProducts, null, {'label_attr': {'for': 'showSellerProducts'}}) }}
+            {{ form_errors(filterForm.showSellerProducts) }}
+        </div>
+    {% endif %}
+
+    <div class="filters__selectedCategory_name" 
+         {% if not selectedCategory or selectedCategory.name == '' %} 
+             style="display: none;" 
+         {% endif %}>
+        {% if selectedCategory %}
+            <a href="{{ path('app_product_index') }}"> x {{ selectedCategory.name }}</a>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="filters__button">Appliquer les Filtres</button>
+</section>
+
+{{ form_end(filterForm, {render_rest: false}) }}
