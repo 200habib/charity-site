@@ -20,21 +20,21 @@
 .sponsor__title {
     font-size: 36px;
     color: var(--text-color);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
-    position: relative;
+    // position: relative;
 }
 
-.sponsor__title::after {
-    content: "";
-    width: 60px;
-    height: 3px;
-    background-color: var(--primary);
-    display: block;
-    margin: 10px auto 0 auto;
-}
+// .sponsor__title::after {
+//     content: "";
+//     width: 60px;
+//     height: 3px;
+//     background-color: var(--primary);
+//     display: block;
+//     margin: 10px auto 0 auto;
+// }
 
 .sponsor__text {
     font-size: 18px;

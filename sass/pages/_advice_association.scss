@@ -1,0 +1,89 @@
+.advice-association {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+
+  &__header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+
+      h1 {
+          font-size: var(--font-size-h1);
+          color: var(--text-color);
+          margin-bottom: 0.5rem;
+      }
+
+      p {
+          font-size: var(--font-size);
+          color: var(--text-color);
+          line-height: 1.5;
+          margin: 0 auto;
+          max-width: 500px;
+      }
+  }
+
+  &__alert {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      font-size: var(--font-size);
+      text-align: center;
+      transition: var(--transition);
+
+      &--success {
+          background-color: var(--primary);
+          border: var(--border-color);
+          color: var(--menu-burger-background-color);
+          box-shadow: 0 4px 6px var(--light-shadow);
+      }
+  }
+
+  &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          &__label {
+              font-size: var(--font-size);
+              font-weight: bold;
+              color: var(--text-color);
+          }
+
+          &__input {
+              padding: 0.75rem;
+              font-size: var(--font-size);
+              border: var(--border-color);
+              border-radius: 4px;
+              transition: var(--transition);
+              box-shadow: 0 2px 4px var(--light-shadow);
+
+              &:focus {
+                  border-color: var(--primary);
+                  outline: none;
+                  box-shadow: 0 0 8px var(--light-shadow);
+              }
+          }
+      }
+  }
+
+  &__btn-submit {
+      padding: 0.75rem;
+      font-size: var(--font-size);
+      color: var(--menu-burger-background-color);
+      background-color: var(--primary);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition);
+
+  }
+}

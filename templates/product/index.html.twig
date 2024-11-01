@@ -31,30 +31,34 @@
 								{{ product.name }}
 							</h5>
 							{% if product.weight is not null and product.weight > 0 %}
-								<div
-									class="productList__body_prix">
 
-									{# <p class="productList__prix">
-																		{{ product.weight }}
-																		{{ product.unit.value }}
-																	</p> #}
-									<p class="productList__prix">
-										{{ product.price | format_currency('EUR', locale='fr') }}
-									</p>
-									<p>
-										(
-										{{ (product.price / product.weight) | number_format(2, '.', ',') }}
-										€/{{ product.unit.value }}
-										)
-									</p>
+								{% if not is_granted('ROLE_CHARITY_ASSOCIATION') %}
+									<div class="productList__body_prix">
+										<p class="productList__prix">
+											{{ product.price | format_currency('EUR', locale='fr') }}
+										</p>
+										<p>
+											(
+											{{ (product.price / product.weight) | number_format(2, '.', ',') }}
+											€/{{ product.unit.value }}
+											)
+										</p>
+									</div>
+								{% else %}
+									<div class="productList__body_prix">
+										<p class="productList__prix">
+											{{ (product.price * 2) | format_currency('point', locale='fr') }}
+										</p>
+									</div>
+								{% endif %}
 
-								</div>
 
 							{% elseif product.volumeLitre is not null and product.volumeLitre > 0 %}
 								<p class="productList__prix">
 									{{ product.volumeLitre }}
 									{{ product.unit.value }}
 								</p>
+
 								<div>
 									(
 									{{ (product.price / product.volumeLitre) | number_format(2, '.', ',') }}
@@ -68,10 +72,15 @@
 
 
 					</a>
-					{{ form_start(productForms[product.id]) }}
-					{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
-					<button type="submit" class="productList__AddToBasket">Ajouter au panier</button>
-					{{ form_end(productForms[product.id]) }}
+					{% if productForms[product.id] is defined %}
+						{{ form_start(productForms[product.id]) }}
+						{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
+						<button type="submit" class="productList__AddToBasket">Ajouter au panier</button>
+						{{ form_end(productForms[product.id]) }}
+					{% else %}
+						<span>gregerger</span>
+					{% endif %}
+
 
 				</div>
 

@@ -20,11 +20,11 @@
 					{{ app.session.get('cart')[product.id]}}
 					<p>Price:
 						{{ product.price | format_currency('EUR', locale='fr') }}
-                    </p>
+					</p>
 					<p>total:
 						{{ (product.price * app.session.get('cart')[product.id]) | format_currency('EUR', locale='fr') }}
 
-                    </p>
+					</p>
 				</div>
 
 
@@ -34,25 +34,24 @@
 
 
 		<div class='cart__total'>
-        <div>
-        <div class='cart__total_sub'>
-            <div>
-				TOTAL:
-            </div>
 			<div>
-                {{totalPrice | format_currency('EUR', locale='fr')}}
-            </div>
-        </div>
-            <div class='cart__total_tva'>
-                * TVA comprise
-            </div>
-        </div>
-        
-		</div>
+				<div class='cart__total_sub'>
+					<div>
+						TOTAL:
+					</div>
+					<div>
+						{{totalPrice | format_currency('EUR', locale='fr')}}
+					</div>
+				</div>
+				<div class='cart__total_tva'>
+					* TVA comprise
+				</div>
+			</div>
 
-        <button class="general__button">
-            Commander
-        </button>
+		</div>
+		<button onclick="location.href='{{ path('cart_checkout') }}'" class="general__button cart__button_submit">
+			Commander
+		</button>
 
 
 	</ul>

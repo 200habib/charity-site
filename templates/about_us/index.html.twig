@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos de nous{% endblock %}
+
+{% block body %}
+<section class="about-us">
+    <header class="about-us__header">
+        <h1 class="about-us__title">À propos de nous</h1>
+        <p class= "general__border-body">
+            <span class= "general__border"></span>
+        </p>
+        <p class="about-us__subtitle">Transformer vos achats en soutien pour les associations caritatives.</p>
+    </header>
+
+    <div class="about-us__section about-us__section--mission">
+        <h2 class="about-us__section-title">Notre Mission</h2>
+        <p class="about-us__section-content">
+            Nous connectons vos achats à une cause. À chaque produit acheté sur notre site, vous soutenez directement une ou plusieurs associations caritatives partenaires qui œuvrent pour améliorer la vie des personnes en difficulté.
+        </p>
+    </div>
+
+    <section class="about-us__section about-us__section--how-it-works">
+        <h2 class="about-us__section-title">Comment ça marche ?</h2>
+        <ol class="about-us__steps">
+            <li class="about-us__step">
+                <strong class="about-us__step-title"> Vous achetez un produit :</strong> 
+                Parcourez notre catalogue et choisissez parmi une large sélection de produits solidaires.
+            </li>
+            <li class="about-us__step">
+                <strong class="about-us__step-title"> Nous gérons la distribution :</strong> 
+                Pour chaque achat, nous collaborons avec des associations locales pour acheminer les produits aux personnes qui en ont besoin.
+            </li>
+            <li class="about-us__step">
+                <strong class="about-us__step-title"> Vous contribuez à une cause :</strong> 
+                En achetant, vous soutenez directement des initiatives sociales et humanitaires.
+            </li>
+        </ol>
+    </section>
+
+    <section class="about-us__section about-us__section--impact">
+        <h2 class="about-us__section-title">Notre Impact</h2>
+        <p class="about-us__section-content">
+            Grâce à vous, nous avons déjà distribué des milliers de produits essentiels. Ensemble, nous pouvons faire une réelle différence pour ceux qui en ont le plus besoin.
+        </p>
+    </section>
+
+    <section class="about-us__section about-us__section--partners">
+        <h2 class="about-us__section-title">Nos Partenaires</h2>
+        <p class="about-us__section-content">
+            Nous travaillons main dans la main avec des associations caritatives locales et nationales qui partagent notre vision d'un monde plus équitable et solidaire.
+        </p>
+    </section>
+</section>
+{% endblock %}
