@@ -11,6 +11,15 @@
     border-radius: 10px;
 }
 
+// body {
+//     background-color: var(--footer-background-color);
+// }
+
+.cart__button_sumit {
+    margin: 0 15px 15px 10px;
+    width: 95%;
+}
+
 .cart__total {
     padding: 10px 0 10px 0;
     background-color: var(--footer-background-color);

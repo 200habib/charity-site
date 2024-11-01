@@ -17,6 +17,11 @@
         font-size: var(--font-size);
     }
 
+    .menu__rights_reserved {
+        display: flex;
+        justify-content: center;
+    }
+
     .menu__list > .menu__item {
         padding: 20px;
         border-bottom: 1px black solid;

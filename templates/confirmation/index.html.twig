@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Commande confirmée</h2>
+    <p>Merci pour votre achat ! Votre commande n°{{ order.id }} a été confirmée.</p>
+    <p>Total : {{ order.totalPrice | format_currency('EUR', locale='fr') }}</p>
+
+    
+{% endblock %}
+

@@ -3,28 +3,26 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProductQuantityType extends AbstractType
+class AdviceAssociationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('quantity', IntegerType::class, [
-                'attr' => [
-                    'max' => $options['quantity'],
-                    'value' => 1
-                ]
-            ])
-        ;
+            ->add('message', TextareaType::class, [
+                'label' => 'Votre message',
+                'attr' => ['class' => 'form-control'],
+                'required' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'quantity' => null
+            // Configura qui le opzioni, se necessario
         ]);
     }
 }

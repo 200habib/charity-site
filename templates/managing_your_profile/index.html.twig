@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ManagingYourProfileController!{% endblock %}
+
+{% block body %}
+	<main class="parameter managing__your_profile">
+	<ul class="parameter__list">
+        <li><a href="{{ path('app_my_account_account') }}">Gérer les informations de votre profil</a></li>
+        <li><a href="{{ path('app_my_account_edit') }}">Changer l'email ou le mot de passe</a></li>
+		<li><a href="{{ path('app_my_account_delete') }}">Supprimer mon compte</a></li>
+    </ul>
+  </main>
+{% endblock %}

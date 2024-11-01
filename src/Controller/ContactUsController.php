@@ -24,7 +24,11 @@ class ContactUsController extends AbstractController
                 ->from('hello@example.com')
                 ->to('you@example.com')
                 ->subject('New Contact Message')
-                ->html('<p>You have received a new message:</p><p><strong>Name:</strong> '.$data['name'].'</p><p><strong>Email:</strong> '.$data['email'].'</p><p><strong>Message:</strong> '.$data['message'].'</p>');
+                ->html('<p>Vous avez reçu un nouveau message depuis la page de contact :</p>
+                        <p><strong>Nom :</strong> ' . htmlspecialchars($data['name']) . '</p>
+                        <p><strong>Email :</strong> ' . htmlspecialchars($data['email']) . '</p>
+                        <p><strong>Message :</strong> ' . nl2br(htmlspecialchars($data['message'])) . '</p>');
+
             $mailer->send($email);
             $this->addFlash('success', 'Your message has been sent!');
             return $this->redirectToRoute('app_contact_us');

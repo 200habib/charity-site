@@ -2,20 +2,17 @@
 	<ul class="navbar__list">
 		<li class="navbar__item" id="menu-burger">
 			<div class="menu-burger__icon-container">
-				<div class="menu-burger__icon" aria-label="fermer le menu"></div>
+				<div class="menu-burger__icon" aria-label="Fermer le menu"></div>
 			</div>
 			<img data-light-src="{{ asset('image/navbar/white-mode/Menu.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/Menu.png') }}" alt="Menu" class="navbar__icon" id="navbar__icon_open_menu" aria-label="Ouvrir le menu">
-			<img data-light-src="{{ asset('image/navbar/white-mode/closeMenu.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/closeMenu.png') }}" alt="fermeture du menu" aria-label="Fermer le menu" class="navbar__icon_close" id="navbar__icon_close">
+			<img data-light-src="{{ asset('image/navbar/white-mode/closeMenu.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/closeMenu.png') }}" alt="Fermeture du menu" aria-label="Fermer le menu" class="navbar__icon_close" id="navbar__icon_close">
 
 			<a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">
-
 				<img data-light-src="{{ asset('image/navbar/white-mode/logo.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/logo.png') }}" alt="Logo" class="navbar__logo">
-
 			</a>
 		</li>
 		<li class="navbar__item">
-			<a
-				href="{{ path('cart') }}" aria-label="Accéder au panier" class="navbar__cart">
+			<a href="{{ path('cart') }}" aria-label="Accéder au panier" class="navbar__cart">
                 <span>
                     {% set cart = app.session.get('cart') %}
                     {% set total = 0 %}
@@ -25,9 +22,7 @@
                     {% endfor %}
                     {{ total }}
                 </span>
-				{# {{ dump(app.session.get('cart')) }} #}
-				
-				<img data-light-src="{{ asset('image/navbar/white-mode/Shopping.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/Shopping.png') }}" alt="Shopping" class="navbar__shopping-icon">
+				<img data-light-src="{{ asset('image/navbar/white-mode/Shopping.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/Shopping.png') }}" alt="Panier" class="navbar__shopping-icon">
 			</a>
 		</li>
 	</ul>
@@ -42,17 +37,19 @@
 						<a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">Accueil</a>
 					</li>
 					<li class="menu__item">
-						<a href="{{ path('app_sponsor') }}">À propos de nous</a>
+						<a href="{{ path('app_about_us') }}">À propos de nous</a>
 					</li>
 					<li class="menu__item">
-						<a href="{{ path('app_product_index') }}">Product</a>
-					</li>
-					{# <li class="menu__item"><a href="{{ path('app_contact_us') }}">Contact</a></li> #}
-					<li class="menu__item">
-						<a href="{{ path('app_sponsor') }}">Sponsor</a>
+						<a href="{{ path('app_product_index') }}">Produits</a>
 					</li>
 					<li class="menu__item">
-						<a href="{{ path('app_faq') }}">Faq</a>
+						<a href="{{ path('app_sponsor') }}">Devenir Sponsor</a>
+					</li>
+					<li class="menu__item">
+						<a href="{{ path('app_faq') }}">FAQ</a>
+					</li>
+					<li class="menu__item">
+						<a href="{{ path('app_my_Terms_and_Conditions') }}">Termes et Conditions</a>
 					</li>
 				</ul>
 			</section>
@@ -61,7 +58,7 @@
 				<h6 class="menu__appearance-settings__title">Apparence</h6>
 				<button class="menu__appearance-settings__toggle" id="theme-toggle">
 					<figure class="menu__appearance-settings__figure">
-						<img data-light-src="{{ asset('image/menuburger/white-mode/dark_mode.svg') }}" data-dark-src="{{ asset('image/menuburger/dark-mode/light_mode.svg') }}" alt="Shopping" class="navbar__shopping-icon">
+						<img data-light-src="{{ asset('image/menuburger/white-mode/dark_mode.svg') }}" data-dark-src="{{ asset('image/menuburger/dark-mode/light_mode.svg') }}" alt="Mode sombre" class="menu__appearance-settings__icon">
 					</figure>
 				</button>
 			</aside>
@@ -73,5 +70,6 @@
 			</p>
 			<p class="menu__contact">Contactez-nous</p>
 		</section>
+		<p class="menu__rights_reserved">© 2024 Ulisse. Tous droits réservés.</p>
 	</section>
 </aside>

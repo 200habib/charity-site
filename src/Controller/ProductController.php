@@ -24,8 +24,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
-
-
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 #[Route('/product')]
 class ProductController extends AbstractController
@@ -42,18 +41,28 @@ class ProductController extends AbstractController
 
 
     #[Route('/', name: 'app_product_index', methods: ['GET', 'POST'])]
-    public function index(ProductRepository $productRepository, SessionInterface $session, Request $request): Response
-    {
+    public function index(
+        ProductRepository $productRepository,
+        SessionInterface $session,
+        Request $request,
+        AuthorizationCheckerInterface $authorizationChecker
+    ): Response {
         $categories = $this->categoryRepository->findAll();
 
         // Retrieve products and create forms for each
         $products = $this->productRepository->findAll();
         $forms = [];
+        /** @var Product $product */
         foreach ($products as $product) {
-            $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
-                'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
-                'method' => 'POST'
-            ])->createView();
+            $quantity = $authorizationChecker->isGranted('ROLE_CHARITY_ASSOCIATION') ? $product->getStock()->getPurchasedQuantity() : $product->getStock()->getAvailableQuantity();
+
+            if($quantity > 0) {
+                $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
+                    'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
+                    'method' => 'POST',
+                    'quantity' => $quantity
+                ])->createView();
+            }
         }
     
 
@@ -156,7 +165,6 @@ class ProductController extends AbstractController
             $prices[] = $orderItem->getPrice(); 
         
         }
-        // dd($price);
 
 
         $form = $this->createForm(ProductType::class, $product);

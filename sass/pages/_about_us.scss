@@ -1,0 +1,71 @@
+.about-us {
+    padding: 2rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    &__header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    &__title {
+        font-size: var(--font-size-h1);
+        color: var(--text-color);
+        margin-bottom: 10px;
+    }
+
+    &__subtitle {
+        font-size: var(--font-size);
+    }
+
+    &__section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border-bottom: var(--border-bottom);
+
+        &--mission,
+        &--how-it-works,
+        &--impact,
+        &--partners {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__section-title {
+        font-size: calc(var(--font-size) + 4px);
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+    }
+
+    &__section-content {
+        font-size: var(--font-size);
+        line-height: 1.6;
+        color: var(--text-color);
+    }
+
+    &__steps {
+        list-style-type: decimal;
+        padding-left: 1.5rem;
+
+        &__step {
+            margin-bottom: 1rem;
+            font-size: var(--font-size);
+            color: var(--text-color);
+        }
+
+        &__step-title {
+            color: var(--text-color);
+            font-weight: bold;
+        }
+    }
+
+    &__steps {
+        font-size: var(--font-size);
+        color: var(--text-color);
+        margin-bottom: 10px;
+    }
+
+    &__step {
+        margin-bottom: 15px;
+    }
+}

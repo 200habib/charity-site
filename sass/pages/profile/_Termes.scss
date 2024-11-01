@@ -7,6 +7,11 @@ h1.terms__h1 {
 
 main.terms {
     padding: 20px;
+
+    p {
+        color: var(--text-color);
+        font-size: var(--font-size);
+    }
 }
 
 h2.section-title {
@@ -22,6 +27,8 @@ h2.section-title {
     
     ul {
         margin: 10px 0 20px 20px;
+            color: var(--text-color);
+            font-size: var(--font-size);
     }
 
     a {

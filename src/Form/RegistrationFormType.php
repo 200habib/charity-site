@@ -18,35 +18,43 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max' => 4096,
-                    ]),
-                ],
-                'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'general__input']],
-                'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
-            ]);
+        ->add('email', null, [
+            'label' => 'Email *',
+            'attr' => ['class' => 'general__input'],
+        ])
+        
+        ->add('agreeTerms', CheckboxType::class, [
+            'mapped' => false,
+            'label' => '<a href="{{ path(\'app_my_Terms_and_Conditions\') }}">Terms and Conditions</a> *',
+            'label_html' => true,
+            'constraints' => [
+                new IsTrue([
+                    'message' => 'You should agree to our terms.',
+                ]),
+            ],
+        ])
+        
+        ->add('plainPassword', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'mapped' => false,
+            'attr' => ['autocomplete' => 'new-password'],
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Please enter a password',
+                ]),
+                new Length([
+                    'min' => 6,
+                    'minMessage' => 'Your password should be at least {{ limit }} characters',
+                    'max' => 4096,
+                ]),
+            ],
+            'invalid_message' => 'The password fields must match.',
+            'options' => ['attr' => ['class' => 'general__input']],
+            'required' => true,
+            'first_options'  => ['label' => 'Password *'],
+            'second_options' => ['label' => 'Repeat Password *'],
+        ]);
+        
         ;
     }
 

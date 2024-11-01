@@ -1,0 +1,111 @@
+.advice__container {
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--font-size);
+
+    h1 {
+        font-size: var(--font-size-h1);
+        color: var(--text-color);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .general__border-body {
+        text-align: center;
+        margin-bottom: 20px;
+
+        .general__border {
+            display: inline-block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+    }
+
+    p {
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .advice__all-seasons, .advice__seasonal {
+        margin-top: 20px;
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            border-bottom: var(--border-bottom);
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-top: 20px;
+            border-bottom: var(--border-color-footer);
+            padding-bottom: 5px;
+        }
+
+        .advice__list {
+            margin-top: 10px;
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 15px;
+                padding: 10px;
+                border: var(--border-color);
+                border-radius: 5px;
+                background-color: var(--footer-background-color);
+                box-shadow: 0 2px 5px var(--light-shadow);
+
+                h4 {
+                    font-size: 1.2rem;
+                    color: var(--text-color);
+                    margin-bottom: 5px;
+                }
+
+                p {
+                    font-size: var(--font-size);
+                    color: var(--text-color);
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .advice__closing {
+        margin-top: 30px;
+        font-size: var(--font-size);
+        line-height: 1.5;
+        text-align: center;
+        color: var(--text-color);
+    }
+}
+
+.advice__contribution-message {
+    margin-bottom: 21px;
+    padding: 20px;
+    background-color: var(--footer-background-color);
+    border: var(--border-color-footer);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px var(--light-shadow);
+    color: var(--text-color);
+    font-size: var(--font-size);
+    text-align: center;
+    margin-top: 20px;
+    transition: var(--transition);
+
+    &__link {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: var(--primary);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+
+    }
+}

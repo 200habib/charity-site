@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conseils de Produits
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="advice__container">
+		<h1>Conseils de Produits pour les Associations Caritatives</h1>
+		<p class="general__border-body">
+			<span class="general__border"></span>
+		</p>
+
+		{% if is_granted('ROLE_CHARITY_ASSOCIATION') %}
+			<div class="advice__contribution-message">
+				<p>
+					Vous pouvez contribuer en nous envoyant un message avec vos suggestions et idées. 
+					            Merci pour votre collaboration et votre soutien 
+				</p>
+				<a href="{{ path('app_advice_association') }}" class="advice__contribution-message__link">Envoyer un message</a>
+			</div>
+		{% endif %}
+
+
+		<p>Ce guide propose des suggestions de produits essentiels que vous pouvez fournir aux associations caritatives tout au long de l'année. En tenant compte des besoins spécifiques de chaque saison, vous aidez à améliorer le bien-être de ceux qui en ont le plus besoin.</p>
+
+		<div class="advice__all-seasons">
+			<h2>Produits Recommandés pour Toutes les Saisons</h2>
+			<ul class="advice__list">
+				<li>
+					<h4>Produits d'hygiène</h4>
+					<p>Des produits de base comme le savon, le dentifrice, les brosses à dents et le papier hygiénique sont toujours nécessaires.</p>
+				</li>
+				<li>
+					<h4>Aliments Non Périssables</h4>
+					<p>Les aliments en conserve (légumes, fruits, soupes), les pâtes et le riz sont des options idéales pour répondre aux besoins alimentaires tout au long de l’année.</p>
+				</li>
+				<li>
+					<h4>Articles de Santé et de Sécurité</h4>
+					<p>Des articles comme les pansements, les désinfectants pour les mains et les masques peuvent s’avérer essentiels en toutes saisons.</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="advice__seasonal">
+			<h2>Produits Recommandés par Saison</h2>
+
+			<div class="seasonal__spring">
+				<h3>Printemps</h3>
+				<ul class="advice__list">
+					<li>
+						<h4>Aliments Légers et Sains</h4>
+						<p>Le printemps est parfait pour offrir des fruits en conserve, des salades en conserve, et des snacks légers.</p>
+					</li>
+					<li>
+						<h4>Produits d’hygiène de base</h4>
+						<p>Les produits de soins personnels comme les shampoings doux et les gels douche sont particulièrement utiles.</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="seasonal__summer">
+				<h3>Été</h3>
+				<ul class="advice__list">
+					<li>
+						<h4>Boissons Rafraîchissantes</h4>
+						<p>Les jus, l'eau en bouteille et les boissons isotoniques permettent aux personnes aidées de rester hydratées.</p>
+					</li>
+					<li>
+						<h4>Protection Solaire</h4>
+						<p>Les crèmes solaires, les casquettes et autres articles pour se protéger du soleil sont essentiels.</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="seasonal__fall">
+				<h3>Automne</h3>
+				<ul class="advice__list">
+					<li>
+						<h4>Snacks Nutritifs</h4>
+						<p>Les barres énergétiques, les noix, et les fruits séchés sont pratiques et faciles à distribuer.</p>
+					</li>
+					<li>
+						<h4>Produits de Soins de la Peau</h4>
+						<p>Avec l’arrivée de l’air plus sec, les crèmes hydratantes pour les mains et le visage sont utiles.</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="seasonal__winter">
+				<h3>Hiver</h3>
+				<ul class="advice__list">
+					<li>
+						<h4>Soupe et Repas Chauds</h4>
+						<p>Les soupes, les ragoûts et autres aliments chauds en conserve aident à réchauffer les personnes pendant les mois les plus froids.</p>
+					</li>
+					<li>
+						<h4>Vêtements d'Hiver et Accessoires</h4>
+						<p>Les gants, bonnets et chaussettes épaisses sont très demandés en hiver.</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="advice__closing">
+			<p>Ces recommandations permettent d’apporter un soutien saisonnier adapté aux personnes aidées par les associations caritatives. Merci de votre contribution pour leur bien-être.</p>
+		</div>
+	</div>
+{% endblock %}
