@@ -12,10 +12,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
+use App\Repository\UserRepository;
+
+use App\Service\JWTService;
+use App\Service\SendEmailService;
+
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, 
+    UserPasswordHasherInterface $userPasswordHasher, 
+    Security $security, 
+    EntityManagerInterface $entityManager,
+    JWTService $jwt,
+    SendEmailService $mail
+    ): Response
     {
 
         if ($this->getUser()) {
@@ -32,13 +43,68 @@ class RegistrationController extends AbstractController
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
             $entityManager->persist($user);
+            $user->setVerified(false);
             $entityManager->flush();
 
-            return $security->login($user, 'form_login', 'main');
+
+            $header = [
+                'typ' => 'JWT',
+                'alg' => 'HS256'
+            ];
+    
+            $payload = [
+                'user_id' => $user->getId()
+            ];
+    
+            $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
+
+
+            $mail->send(
+                'no-reply@openblog.test',
+                $user->getEmail(),
+                'Activation de votre compe sur le site Ulisse',
+                'register',
+                compact('user', 'token')
+            );
+
+            // dd($token);
+            // return $security->login($user, 'form_login', 'main');
+            return $this->redirectToRoute('app_home');
         }
+
+
+
+        
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
         ]);
+    }
+
+
+
+
+
+
+
+    #[Route('/verif/{token}', name: 'verify_user')]
+    public function verifUser(
+        UserRepository $UserRepository,
+    EntityManagerInterface $em,
+    JWTService $jwt,
+    $token
+    ): Response {
+        if($jwt->isValid($token) && !$jwt->isExpired($token) && $jwt->check($token, $this->getParameter('app.jwtsecret'))) {
+            $payload = $jwt->getPayload($token);
+
+            $user = $UserRepository->find($payload['user_id']);
+            if ($user && !$user->isVerified()) {
+                $user->setVerified(true);
+                $em->flush();
+
+                return $this->redirectToRoute('app_home');
+            }
+            // dd($payload);
+        }
     }
 }

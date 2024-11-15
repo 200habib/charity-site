@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputVolumeLitre = document.getElementById('product_volumeLitre');
     const inputWeight = document.getElementById('product_weight');
     
-
+if (volumeField) {
     volumeField.style.display = 'none';
     weightField.style.display = 'block';
 
@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
             volumeField.style.display = 'block';
         }
     }
-
     unitTypeSelect.addEventListener('change', handleUnitTypeChange);
+}
+
+
 
 });

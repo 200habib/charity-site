@@ -2,6 +2,10 @@
     height: 70px;
 }
 
+.cart {
+    padding: 30px 22px 40px 22px;
+}
+
 .cart__list {
     display: flex;
     justify-content: space-between;
@@ -11,9 +15,22 @@
     border-radius: 10px;
 }
 
-// body {
-//     background-color: var(--footer-background-color);
-// }
+.cart__Points_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 55px;
+    font-size: 18px;
+    background-color: var(--footer-background-color);
+    margin-bottom: 20px;
+    padding: 0 20px 0 20px;
+}
+
+.cart__Points_content_show {
+    padding: 10px;
+    background-color: var(--border-color-footer);
+    border-radius: 30px;
+}
 
 .cart__button_sumit {
     margin: 0 15px 15px 10px;
@@ -44,4 +61,11 @@
 
     }
     
+}
+
+@media (min-width: 1064px) {
+    .cart {
+        padding: 30px 22px 40px 22px;
+        margin: 0 300px 0 300px;
+    }
 }

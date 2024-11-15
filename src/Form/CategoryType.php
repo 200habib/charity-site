@@ -2,33 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\Company;
-use App\Entity\User;
-use App\Entity\UserProfile;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class User1Type extends AbstractType
+class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('roles')
-            ->add('password')
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
-'choice_label' => 'id',
-            ])
+            ->add('name')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Category::class,
         ]);
     }
 }

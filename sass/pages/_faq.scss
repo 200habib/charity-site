@@ -3,6 +3,8 @@
     background-color: var(--background-color);
 }
 
+
+
 .faq__main {
     background-color: var(--footer-background-color);
 padding: 20px;
@@ -61,4 +63,17 @@ margin: 30px 0 30px 0;
 
 .faq__item.active .faq__icon {
     transform: rotate(180deg);
+}
+
+
+@media (min-width: 1064px) {
+    .faq__main {
+
+        margin: 0 350px;
+
+    }
+
+    .faq__title {
+        margin: 0 355px;
+    }
 }

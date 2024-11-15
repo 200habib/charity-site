@@ -1,0 +1,105 @@
+.category-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    // background-color: var(--background-color);
+    box-shadow: 0 4px 8px var(--light-shadow);
+    // border-radius: 8px;
+    background-color: var(--footer-background-color);
+    border-radius: 20px;
+
+
+    &__title {
+        font-size: var(--font-size-h1);
+        color: var(--primary);
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    &__field {
+        margin-bottom: 1.5rem;
+
+        &-label {
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        &-input {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: var(--font-size);
+            border: var(--border-color);
+            border-radius: 4px;
+        }
+
+        &-error {
+            color: red;
+            font-size: 0.875rem;
+        }
+    }
+
+    &__submit {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: var(--font-size);
+        color: #fff;
+        background-color: var(--primary);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: var(--transition);
+
+    }
+
+    &__back-link {
+        display: block;
+        margin-top: 1rem;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+        
+        font-weight: bold;
+        transition: var(--transition);
+
+        a {
+            text-decoration: none;
+           color: var(--text-color); 
+           text-align: center;
+        }
+
+        form {
+            button {
+                background-color: var(--primary);
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 23px 10px 23px;
+    border: none;
+    margin-top: 10px;
+            }
+        }
+    }
+}
+
+.general__title {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 391px) {
+    .category-form {
+        max-width: 600px;
+        margin: 0 25px 0 25px;
+        padding: 1rem;
+        box-shadow: 0 4px 8px var(--light-shadow);
+        background-color: var(--footer-background-color);
+        border-radius: 20px;
+    }
+    }

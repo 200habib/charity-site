@@ -1,4 +1,38 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_start(form, { 'attr': {'class': 'user_form'} }) }}
+
+<div class="user_form__group">
+    {{ form_label(form.email, null, {'label_attr': {'class': 'user_form__group-label '}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'user_form__group-widget'}}) }}
+    {{ form_errors(form.email, {'attr': {'class': 'user_form__group-error'}}) }}
+</div>
+
+<div class="user_form__group">
+    {{ form_label(form.roles, null, {'label_attr': {'class': 'user_form__group-label'}}) }}
+    {{ form_widget(form.roles, {'attr': {'class': 'user_form__group-widget'}}) }}
+    {{ form_errors(form.roles, {'attr': {'class': 'user_form__group-error'}}) }}
+</div>
+
+{% if not edit_mode %}
+    <div class="user_form__group">
+        {{ form_label(form.password, null, {'label_attr': {'class': 'user_form__group-label '}}) }}
+        {{ form_widget(form.password, {'attr': {'class': 'user_form__group-widget'}}) }}
+        {{ form_errors(form.password, {'attr': {'class': 'user_form__group-error'}}) }}
+    </div>
+{% endif %}
+
+<div class="user_form__group" id="userProfileGroup" style="display: none;">
+    {{ form_label(form.userProfile, null, {'label_attr': {'class': 'user_form__group-label'}}) }}
+    {{ form_widget(form.userProfile, {'attr': {'class': 'user_form__group-widget'}}) }}
+    {{ form_errors(form.userProfile, {'attr': {'class': 'user_form__group-error'}}) }}
+</div>
+
+<div class="user_form__group" id="companyGroup" style="display: none;">
+    {{ form_label(form.company, null, {'label_attr': {'class': 'user_form__group-label'}}) }}
+    {{ form_widget(form.company, {'attr': {'class': 'user_form__group-widget'}}) }}
+    {{ form_errors(form.company, {'attr': {'class': 'user_form__group-error'}}) }}
+</div>
+
+
+<button type="submit" class="user_form__button">{{ button_label|default('Save') }}</button>
+
+{{ form_end(form, {render_rest: false}) }}

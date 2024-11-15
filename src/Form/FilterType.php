@@ -15,6 +15,7 @@ class FilterType extends AbstractType
         $builder
             ->add('sortPrice', ChoiceType::class, [
                 'choices' => [
+                    'Pertinence' => '',
                     'Prix croissant' => 'asc',
                     'Prix décroissant' => 'desc',
                 ],
@@ -22,13 +23,13 @@ class FilterType extends AbstractType
                 'multiple' => false,
                 'label' => 'Trier par prix',
                 'required' => false,
-            ])
-
-            ->add('showSellerProducts', CheckboxType::class, [
-                'label' => 'Afficher mes produits',
-                'required' => false,
-                'data' => false, 
             ]);
+
+            // ->add('showSellerProducts', CheckboxType::class, [
+            //     'label' => 'Afficher mes produits',
+            //     'required' => false,
+            //     'data' => false, 
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

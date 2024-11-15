@@ -1,3 +1,21 @@
+.menu {
+    display: none;
+}
+.menu__appearance-settings__toggle {
+    background-color: var(--footer-background-color);
+    border-radius: 20px;
+    border: none;
+    width: 68px;
+    display: flex;
+    padding: 0 10px 0 10px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menu__appearance-settings__figure img {
+    height: 25px;
+
+}
 @media (max-width: 391px) {
 
     .menu {
@@ -51,7 +69,7 @@
 
 
     .menu__appearance-settings {
-        padding: 20px 0 20px 0;
+        // padding: 20px 0 20px 0;
         display: flex;
         justify-content: space-around;
     }
@@ -81,6 +99,8 @@
         background-color: var(--footer-background-color);
     }
 
-    
+    .menu__appearance-settings-padding {
+        padding: 0;
+    }
     
 }

@@ -1,0 +1,75 @@
+<aside>
+	<section class="menu">
+		<div class="menu__first-block">
+			<section class="menu__content">
+				<ul class="menu__list">
+
+					{% if is_granted('ROLE_CHARITY_ASSOCIATION') %}
+
+						<li class="menu__item">
+							<div class="navbar__Points_content">
+								<p>Points de crédit:</p>
+								<p class="navbar__Points_content_show">
+									{{ app.session.get('creditPoints', 0) }}
+									points
+								</p>
+							</div>
+						</li>
+
+					{% endif %}
+
+					<li class="menu__item">
+						<a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">Accueil</a>
+					</li>
+					<li class="menu__item">
+						<a href="{{ path('app_about_us') }}">À propos de nous</a>
+					</li>
+					<li class="menu__item">
+						<a href="{{ path('app_product_index') }}">Produits</a>
+					</li>
+					<li class="menu__item">
+						<a href="{{ path('app_sponsor') }}">Devenir Sponsor</a>
+					</li>
+					<li class="menu__item">
+						<a href="{{ path('app_faq') }}">FAQ</a>
+					</li>
+					<li class="menu__item">
+						<a href="{{ path('app_my_Terms_and_Conditions') }}">Termes et Conditions</a>
+					</li>
+
+			<li class="menu__item nav__settings__toggl">
+				<aside class="menu__appearance-settings">
+				<p class="menu__appearance-textContent">dz</p>
+					<button class="menu__appearance-settings__toggle theme-toggle">
+						<figure class="menu__appearance-settings__figure">
+							<img data-light-src="{{ asset('image/menuburger/white-mode/dark_mode.svg') }}" data-dark-src="{{ asset('image/menuburger/dark-mode/light_mode.svg') }}" alt="Mode sombre" class="menu__appearance-settings__icon">
+						</figure>
+					</button>
+				</aside>
+
+
+					<li class="menu__item menu__appearance-settings_toggle">
+						<aside class="menu__appearance-settings menu__appearance-settings-padding">
+							<h6 class="menu__appearance-settings__title_active">Activer le mode contraste élevé</h6>
+							<button class="menu__appearance-settings__toggle" id="theme-toggle-contraste">
+								<figure class="menu__appearance-settings__figure">
+									<img data-light-src="{{ asset('image/menuburger/white-mode/dark_mode.svg') }}" data-dark-src="{{ asset('image/menuburger/dark-mode/light_mode.svg') }}" alt="Mode sombre" class="menu__appearance-settings__icon">
+								</figure>
+							</button>
+						</aside>
+					</li>
+
+				</ul>
+			</section>
+
+		</div>
+
+		<section class="menu__account-contact">
+			<p class="menu__account">
+				<a href="{{ path('app_my_account') }}">Mon compte</a>
+			</p>
+			<p class="menu__contact">Contactez-nous</p>
+		</section>
+		<p class="menu__rights_reserved">© 2024 Ulisse. Tous droits réservés.</p>
+	</section>
+</aside>

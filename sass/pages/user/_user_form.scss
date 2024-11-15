@@ -1,0 +1,60 @@
+.user_form {
+    background-color: var(--footer-background-color);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--light-shadow);
+    max-width: 600px;
+    margin: 0 30px 0 30px;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+
+        &-label {
+            font-size: var(--font-size-label);
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        &-widget {
+            padding: 0.75rem;
+            font-size: var(--font-size);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--input-background);
+            color: var(--text-color);
+            transition: border-color 0.3s;
+
+            &:focus {
+                border-color: var(--primary);
+                outline: none;
+                box-shadow: 0 0 0 2px var(--light-shadow);
+            }
+        }
+
+        &-error {
+            color: var(--error-color);
+            font-size: var(--font-size-small);
+            margin-top: 0.5rem;
+        }
+    }
+
+    &__button {
+        background-color: var(--primary);
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        font-size: var(--font-size);
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+
+        &:hover {
+            background-color: var(--primary-dark);
+        }
+    }
+}

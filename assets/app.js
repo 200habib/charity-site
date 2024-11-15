@@ -11,7 +11,10 @@ import './styles/styles.css';
 import './javascript/darkMode.js';
 import './javascript/menuburger.js';
 import './javascript/footer.js';
-import './javascript/cursor.js';
-import './javascript/filtre.js';
+// import './javascript/cursor.js';
+import './javascript/cursorStorage.js';
+import './javascript/home_profile.js';
+import './javascript/ContrastAccessibility.js';
+// import './javascript/filtre.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

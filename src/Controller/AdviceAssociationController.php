@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class AdviceAssociationController extends AbstractController
 {
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_CHARITY_ASSOCIATION')]
     #[Route('/advice/association', name: 'app_advice_association')]
     public function index(Request $request, MailerInterface $mailer): Response
     {
@@ -36,7 +36,6 @@ class AdviceAssociationController extends AbstractController
                     nl2br(htmlspecialchars($data['message']))
                 ));
                 
-            // Invia l'email
             $mailer->send($email);
             $this->addFlash('success', 'Your message has been sent!');
             return $this->redirectToRoute('app_advice_association');

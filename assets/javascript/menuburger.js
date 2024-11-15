@@ -6,6 +6,7 @@ closeMenuIcon.style.display = 'none';
 
 toggleButton.addEventListener('click', function() {
     if (menu) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         menu.classList.add('open');
         document.body.style.overflow = 'hidden';
 

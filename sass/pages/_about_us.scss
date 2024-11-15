@@ -3,6 +3,7 @@
     background-color: var(--background-color);
     color: var(--text-color);
 
+
     &__header {
         text-align: center;
         margin-bottom: 2rem;
@@ -69,3 +70,12 @@
         margin-bottom: 15px;
     }
 }
+
+
+
+@media (min-width: 1064px) {
+    .about-us {
+        margin: 0 230px;
+    }
+}
+

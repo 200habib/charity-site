@@ -16,6 +16,23 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'flashMessages' => [
+        'path' => './assets/javascript/flashMessages.js',
+        'entrypoint' => true,
+    ],
+    'cursor' => [
+        'path' => './assets/javascript/cursor.js',
+        'entrypoint' => true,
+    ],
+
+    'filtre' => [
+        'path' => './assets/javascript/filtre.js',
+        'entrypoint' => true,
+    ],
+    'userRole' => [
+        'path' => './assets/javascript/userRole.js',
+        'entrypoint' => true,
+    ],
     'Accessibility' => [
         'path' => './assets/javascript/Accessibility.js',
         'entrypoint' => true,
