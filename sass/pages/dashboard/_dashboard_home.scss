@@ -1,0 +1,120 @@
+.dashboard_home__card-content_dash {
+    color: var(--text-color);
+}
+
+.general__dashboard_form {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_form__group-widget {
+  border: 2px solid var(--text-color);
+}
+
+.dashboard_home {
+  border-radius: 20px;
+}
+
+.dashboard_home__title {
+  font-size: var(--font-size-h1);
+  color: var(--primary);
+}
+
+.dashboard_home__subtitle {
+  color: var(--border-color);
+}
+.dashboard_home__card {
+  padding: 40px;
+  background-color: var(--footer-background-color);
+  /* border: var(--border-color-footer); */
+  /* box-shadow: var(--light-shadow); */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  border-radius: 20px;
+  margin: 30px;
+}
+/* Media Queries */
+
+/* Per schermi più piccoli o uguali a 390px */
+@media (max-width: 390px) {
+
+  .dashboard_home__container {
+    padding: 40px;
+        /* background-color: var(--footer-background-color); */
+        /* box-shadow: var(--light-shadow); */
+        border-radius: 20px;
+  }
+
+  .dashboard_home__title {
+    font-size: 24px; 
+  }
+
+  .dashboard_home__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+
+
+  .dashboard_home__card-value {
+    font-size: 18px;
+  }
+
+  .dashboard_home__card-label {
+    font-size: 14px;
+  }
+
+  .dashboard_home__card-change {
+    font-size: 14px;
+  }
+}
+
+/* Per schermi superiori a 391px */
+@media (min-width: 1064px) {
+
+
+  .dashboard_home__container {
+    padding: 40px;
+    margin-bottom: 150px;
+        /* background-color: var(--footer-background-color); */
+        /* box-shadow: var(--light-shadow); */
+        border-radius: 20px;
+  }
+
+  .dashboard_home__title {
+    font-size: var(--font-size-h1);
+  }
+
+  .dashboard_home__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .dashboard_home__card {
+    padding: 40px;
+    background-color: var(--footer-background-color);
+    border: var(--border-color-footer);
+    box-shadow: var(--light-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+  }
+
+  .dashboard_home__card-value {
+    font-size: 24px;
+  }
+
+  .dashboard_home__card-label {
+    font-size: 16px;
+  }
+
+  .dashboard_home__card-change {
+    font-size: 16px;
+  }
+}

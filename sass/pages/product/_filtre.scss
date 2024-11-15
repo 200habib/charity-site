@@ -1,0 +1,140 @@
+.productList_navbar {
+    position: relative;
+}
+
+.filters__sort-option {
+    label {
+        font-size: var(--font-size);
+    }
+}
+
+.filters__button {
+    font-size: var(--font-size);
+}
+.product__category_filter_content {
+    position: relative;
+}
+
+
+
+
+.filters {
+    padding: 1em;
+    border-radius: 8px;
+    max-width: 300px;
+    position: absolute;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--footer-background-color);
+    top: -145px;
+    opacity: 0;
+    transition: opacity 0s ease;
+    z-index: -88888;
+  
+    &__sort {
+        font-size: var(--font-size);
+    }
+
+    &.visible {
+        transition: opacity 0s ease;
+        opacity: 1;
+        z-index: 1111;
+        left: -86px;
+        top: 42px;
+        width: 221px;
+    }
+  
+    &.hidden {
+        transition: opacity 0.5s ease;
+      opacity: 0;
+    }
+
+    &__sort,
+    &__availability,
+    &__seller {
+        margin-bottom: 1em;
+    }
+
+    &__label {
+        font-size: var(--font-size);
+        color: var(--text-color);
+
+    }
+
+    &__select {
+        width: 100%;
+        padding: 0.5em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    &__checkbox-label {
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+        color: var(--text-color);
+    }
+
+    &__checkbox {
+        margin-right: 0.5em;
+    }
+
+    &__button {
+        padding: 0.75em 1em;
+        background-color: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+    }
+
+    &__selectedCategory_name {
+        background-color: rgba(175, 175, 175, .3803921569);
+        padding: 3px 20px;
+        border-radius: 21px;
+        margin-bottom: 15px;
+        font-size: var(--font-size);
+
+        a {
+            color: var(--text-color);
+        }
+    }
+}
+
+.filters__selected_autres_categorie {
+    margin: 15px 0px;
+
+    ul li {
+        color: var(--text-color);
+        font-size: var(--font-size);
+        margin-left: 5px;
+    }
+
+    h3 {
+        color: var(--text-color);
+        font-size: var(--font-size);
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 391px)  {
+
+
+    
+    .filters.visible {
+        transition: opacity 0s ease;
+        opacity: 1;
+        z-index: 1111;
+        left: -155px;
+        top: 42px;
+        width: 221px;
+    }
+
+
+
+
+
+}

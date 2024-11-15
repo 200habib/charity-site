@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User Details
+{% endblock %}
+
+{% block body %}
+
+	<main class="user-show">
+
+
+		<h1 class="user-show__title">User Details</h1>
+		<p class="general__border-body">
+			<span class="general__border"></span>
+		</p>
+
+		<table class="user-show__table">
+			<tbody>
+				<tr class="user-show__table-row">
+					<th class="user-show__table-header">Id</th>
+					<td class="user-show__table-data">{{ user.id }}</td>
+				</tr>
+				<tr class="user-show__table-row">
+					<th class="user-show__table-header">Email</th>
+					<td class="user-show__table-data">{{ user.email }}</td>
+				</tr>
+				<tr class="user-show__table-row">
+					<th class="user-show__table-header">Roles</th>
+					<td class="user-show__table-data">
+						{% set role_names = {
+                    'ROLE_SELLER': 'Vendeur',
+                    'ROLE_USER': 'Client',
+                    'ROLE_CHARITY_ASSOCIATION': 'Association Caritative'
+                } %}
+						{% for role in user.roles %}
+							{{ role_names[role] ?? role }}
+							{% if not loop.last %},
+							{% endif %}
+						{% endfor %}
+					</td>
+				</tr>
+
+				{% if user.userProfile %}
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Prénom</th>
+						<td class="user-show__table-data">{{ user.userProfile.firstName }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Nom</th>
+						<td class="user-show__table-data">{{ user.userProfile.lastName }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Adresse</th>
+						<td class="user-show__table-data">{{ user.userProfile.address }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Ville</th>
+						<td class="user-show__table-data">{{ user.userProfile.city }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Code postal</th>
+						<td class="user-show__table-data">{{ user.userProfile.postalCode }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Numéro de téléphone</th>
+						<td class="user-show__table-data">{{ user.userProfile.phoneNumber }}</td>
+					</tr>
+
+				{% endif %}
+
+
+				{% if user.company %}
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Nom de l'entreprise</th>
+						<td class="user-show__table-data">{{ user.company.companyName }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Numéro SIREN</th>
+						<td class="user-show__table-data">{{ user.company.numberSiren }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Adresse</th>
+						<td class="user-show__table-data">{{ user.company.companyAddress }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Ville</th>
+						<td class="user-show__table-data">{{ user.company.companyCity }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Code postal</th>
+						<td class="user-show__table-data">{{ user.company.companyPostalCode }}</td>
+					</tr>
+					<tr class="user-show__table-row">
+						<th class="user-show__table-header">Points de crédit</th>
+						<td class="user-show__table-data">{{ user.company.creditPoints }}</td>
+					</tr>
+				{% endif %}
+			</tbody>
+		</table>
+
+
+		<div class="user-show__actions">
+			<a class="user-show__actions__link" href="{{ path('app_user_edit', {'id': user.id}) }}">Edit</a>
+		</div>
+
+		{{ include('user/_delete_form.html.twig') }}
+
+	</main>
+{% endblock %}

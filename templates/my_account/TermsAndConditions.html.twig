@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Termes et Conditions
+{% endblock %}
+
+{% block body %}
+
+<div class="terms_content">
+
+<h1 class="terms__h1">Termes et Conditions d'Utilisation</h1>
+<p class= "general__border-body">
+            <span class= "general__border"></span>
+        </p>
+
+
+<main class="terms">
+
+  <p><strong>Dernière mise à jour :</strong> 2024 </p>
+
+  <p>Bienvenue sur Ulisse ! Notre site sert de plateforme intermédiaire entre les vendeurs et les associations caritatives, permettant aux utilisateurs d'acheter des produits qui seront ensuite envoyés directement à l'association désignée par le vendeur. En utilisant notre site Web, vous acceptez les termes et conditions suivants. Si vous n'acceptez pas ces termes, veuillez ne pas utiliser le site.</p>
+
+  <h2 class="section-title">1. Acceptation des Termes</h2>
+  <p>L'accès et l'utilisation d'Ulisse sont soumis aux termes et conditions suivants. L'utilisation du site implique l'acceptation pleine et entière de ces termes.</p>
+
+  <h2 class="section-title">2. Modifications des Termes</h2>
+  <p>Nous nous réservons le droit de modifier ces termes et conditions à tout moment. Les modifications prendront effet à partir de leur publication sur le site. Nous vous recommandons de consulter régulièrement cette page pour rester informé des mises à jour.</p>
+
+  <h2 class="section-title">3. Services Offerts</h2>
+  <p>Ulisse propose une plateforme en ligne permettant aux utilisateurs d'acheter des produits qui seront envoyés par les vendeurs directement à une association caritative désignée. Ulisse ne vend pas directement les produits et ne gère pas la logistique de l'expédition, qui est entièrement à la charge du vendeur.</p>
+
+  <h2 class="section-title">4. Rôle d'Intermédiaire</h2>
+  <p>Ulisse agit uniquement en tant qu'intermédiaire entre le vendeur et l'association caritative. Nous ne sommes pas responsables de la qualité des produits achetés ni des problèmes liés à l'expédition ou à la livraison de la part du vendeur. Toutes les transactions sont soumises aux conditions du vendeur.</p>
+
+  <h2 class="section-title">5. Utilisation du Site</h2>
+  <p>L'utilisation du site est autorisée uniquement à des fins légales et en conformité avec les lois locales, nationales et internationales. Il est interdit d'utiliser le site pour :</p>
+  <ul>
+      <li>Envoyer des contenus offensants ou illégaux.</li>
+      <li>Tenter de compromettre la sécurité ou le fonctionnement du site, y compris l'utilisation de techniques telles que l'injection SQL ou toute autre forme d'attaque informatique. Si un utilisateur tente de réaliser de telles actions, son compte sera immédiatement suspendu et supprimé. Nous nous réservons également le droit de signaler ces activités aux autorités compétentes.</li>
+  </ul>
+
+  <h2 class="section-title">6. Inscription et Compte</h2>
+  <p>Pour effectuer un achat sur Ulisse, vous devez créer un compte personnel. Vous êtes responsable de la sécurité de vos identifiants et de toutes les activités réalisées via votre compte. Nous nous réservons le droit de suspendre ou de supprimer un compte en cas de violation de ces termes.</p>
+
+  <h2 class="section-title">7. Achats et Paiements</h2>
+  <p>Les utilisateurs peuvent acheter des produits via la plateforme Ulisse. Tous les paiements sont gérés par des prestataires de services de paiement tiers. Ulisse n'est pas responsable des erreurs de paiement ou des fraudes éventuelles.</p>
+
+  <h2 class="section-title">8. Expédition</h2>
+  <p>Les produits achetés par les utilisateurs seront expédiés directement par les vendeurs à l'association caritative sélectionnée. Ulisse n'est pas responsable des retards ou des problèmes liés à la livraison des produits. Tout problème d'expédition doit être résolu directement avec le vendeur.</p>
+
+  <h2 class="section-title">9. Propriété Intellectuelle</h2>
+  <p>Tous les contenus présents sur Ulisse sont protégés par des lois sur les droits d'auteur, les marques et d'autres lois sur la propriété intellectuelle. Il est interdit de copier, distribuer, modifier ou reproduire tout contenu sans le consentement écrit du propriétaire.</p>
+
+  <h2 class="section-title">10. Limitation de Responsabilité</h2>
+  <p>Ulisse ne sera pas responsable des dommages directs, indirects, accidentels ou consécutifs découlant de l'utilisation du site ou de l'incapacité à l'utiliser, y compris les dommages liés à la perte de données ou de revenus, même si nous avons été informés de la possibilité de tels dommages. Ulisse n'est pas responsable des problèmes liés à la qualité des produits ou à l'expédition de la part du vendeur.</p>
+
+  <h2 class="section-title">11. Liens Externes</h2>
+  <p>Notre site peut contenir des liens vers des sites Web tiers. Nous ne sommes pas responsables du contenu ou de la confidentialité de ces sites, et l'accès à ces sites se fait à vos propres risques.</p>
+
+  <h2 class="section-title">12. Confidentialité</h2>
+  <p>Votre confidentialité est importante pour nous. Nous vous invitons à lire notre <a href="{{ path('app_privacy_policy') }}  ">Politique de Confidentialité</a> pour comprendre comment nous recueillons, utilisons et protégeons vos données personnelles.</p>
+
+  <h2 class="section-title">13. Loi Applicable</h2>
+  <p>Ces termes et conditions sont régis par les lois France.</p>
+
+  <h2 class="section-title">14. Contactez-nous</h2>
+  <p>Pour toute question ou demande concernant ces termes et conditions, vous pouvez <a href="{{ path('app_contact_us') }}">nous contacter</a>.</p>
+
+</main>
+
+</div>
+{% endblock %}

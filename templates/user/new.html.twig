@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User
+{% endblock %}
+
+
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'userRole']) }}
+	{% endblock %}
+{% endblock %}
+
+
+{% block body %}
+	<header class="user-index__header">
+			<h1>Liste des utilisateurs</h1>
+		</header>
+<p class= "general__border-body">
+            <span class= "general__border"></span>
+        </p>
+		<div class= "general__dashboard_form">
+		{{ include('user/_form.html.twig') }}
+
+	<a href="{{ path('app_user_index') }}">back to list</a>	
+		</div>
+
+{% endblock %}

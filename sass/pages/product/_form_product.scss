@@ -1,0 +1,38 @@
+
+
+.form_product {
+    font-size: var(--font-size);
+
+            &__backList {
+                width: 100%;
+                text-align: center;
+
+                    a  {
+                        color: var(--text-color);
+                        font-size: var(--font-size);
+                    }
+            }
+
+            &__Name {
+                margin-top: 10px;
+            }
+
+            &__option {
+                width: 100%;
+                height: 34px;
+                margin-bottom: 20px;
+            
+            }
+
+            &__label {
+                margin-top: 10px;
+            }
+}
+
+.product__quantity {
+    margin-bottom: 10px;
+}
+
+.productList__total {
+    width: 100%;
+}

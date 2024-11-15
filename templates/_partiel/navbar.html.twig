@@ -1,0 +1,116 @@
+<nav class="navbar">
+
+	<ul class="navbar__list">
+		<li class="navbar__item" id="menu-burger">
+			<div class="navbar_menu-burger__icon-container">
+				<div class="navbar_menu-burger__icon" aria-label="Fermer le menu"></div>
+			</div>
+			<img data-light-src="{{ asset('image/navbar/white-mode/Menu.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/Menu.png') }}" alt="Menu" class="navbar__icon" id="navbar__icon_open_menu" aria-label="Ouvrir le menu">
+			<img data-light-src="{{ asset('image/navbar/white-mode/closeMenu.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/closeMenu.png') }}" alt="Fermeture du menu" aria-label="Fermer le menu" class="navbar__icon_close" id="navbar__icon_close">
+
+			<a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">
+				<img data-light-src="{{ asset('image/navbar/white-mode/logo.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/logo.png') }}" alt="Logo" class="navbar__logo">
+			</a>
+		</li>
+
+		<ul class="navbar_menu">
+			<li class="navbar_menu__item">
+				<a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">Accueil</a>
+			</li>
+			<li class="navbar_menu__item">
+				<a href="{{ path('app_about_us') }}">À propos de nous</a>
+			</li>
+			<li class="navbar_menu__item">
+				<a href="{{ path('app_product_index') }}">Produits</a>
+			</li>
+			{% if is_granted('ROLE_USER') %}
+				<li class="navbar_menu__item navbar__myProfile_content">
+					<img src="{{ asset('image/navbar/3135768-removebg-preview.png') }}" class="navbar__show_menu_profile" alt="menu profile" width="50px">
+
+
+					<div class="navbar__myProfile" id="profileMenu">
+						<main class="navbar__myProfile__parameter">
+
+							<ul class="navbar__myProfile_parameter__list">
+
+								<li>
+									<a href="{{ path('app_managing_your_profile') }}">Gestion de Votre Profil</a>
+								</li>
+								<li>
+									<a href="{{ path('app_accessibility') }}">Accessibilité</a>
+								</li>
+								<li>
+									<a href="{{ path('app_my_Terms_and_Conditions') }}">Termes et Conditions</a>
+								</li>
+								<li>
+									<a href="{{ path('app_contact_us') }}">Contactez-nous</a>
+								</li>
+
+
+								{% if is_granted('ROLE_USER') %}
+									<li>
+										<a href="{{ path('app_product_advice') }}">Conseils pour des produits à acheter</a>
+									</li>
+								{% endif %}
+
+								{% if is_granted('ROLE_ADMIN') %}
+									<li>
+										<a href="{{ path('app_dashboard') }}">Dashboard</a>
+									</li>
+								{% endif %}
+
+							</ul>
+						</main>
+					</div>
+				</li>
+			{% endif %}
+			{# <li class="navbar_menu__item">
+																					                <a href="{{ path('app_faq') }}">FAQ</a>
+																					            </li> #}
+
+		</ul>
+
+
+		<ul class="navbar__item_login_cart">
+
+			<li class="menu__item nav__settings__toggle">
+				<aside class="menu__appearance-settings">
+					<button class="menu__appearance-settings__toggle theme-toggle">
+						<figure class="menu__appearance-settings__figure">
+							<img data-light-src="{{ asset('image/menuburger/white-mode/dark_mode.svg') }}" data-dark-src="{{ asset('image/menuburger/dark-mode/light_mode.svg') }}" alt="Mode sombre" class="menu__appearance-settings__icon">
+						</figure>
+					</button>
+				</aside>
+			</li>
+
+		</li>
+
+		<li class="navbar__item_login">
+			{% if is_granted('ROLE_USER') %}
+				<a href="{{ path('app_logout') }}" class="btn-logout general__button">Se déconnecter</a>
+			{% else %}
+				<a href="{{ path('app_login') }}" class="navbar__btn-login general__button">Se connecter / S'enregistrer</a>
+			{% endif %}
+		</li>
+
+
+		
+			{% set cart = app.session.get('cart') %}
+			<li class="navbar__item">
+			{% if cart is not empty %}
+				<a href="{{ path('cart') }}" aria-label="Accéder au panier" class="navbar__cart">
+					<span>
+						{% set total = 0 %}
+						{% for quantity in cart %}
+							{% set total = total + quantity %}
+						{% endfor %}
+						{{ total }}
+					</span>
+					<img data-light-src="{{ asset('image/navbar/white-mode/Shopping.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/Shopping.png') }}" alt="Panier" class="navbar__shopping-icon">
+				</a></li>
+			{% endif %}
+		
+
+	</ul>
+
+</ul></nav>{% include '_partiel/_menu_burger.html.twig' %}

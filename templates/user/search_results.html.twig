@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur
+{% endblock %}
+
+{% block body %}
+<header class="user-index__header">
+			<h1>Liste des Utilisateurs</h1>
+			<p class="general__border-body">
+				<span class="general__border"></span>
+			</p>
+		</header>
+		
+    <section class="user-index">
+	{% if user %}
+		<div class="user-index__card">
+			<div class="user-index__card-row">
+				<strong>ID :</strong>
+				{{ user.id }}</div>
+			<div class="user-index__card-row">
+				<strong>Email :</strong>
+				{{ user.email }}</div>
+			<div class="user-index__card-row">
+				Client
+				<strong>Rôle :</strong>
+				{% if user.roles is not empty %}
+					{% set role_displayed = 'Unknown Role' %}
+					{% for role in user.roles %}
+						{% if role == 'ROLE_SELLER' %}
+							{% set role_displayed = 'Vendeur' %}
+						{% elseif role == 'ROLE_USER' %}
+							{% set role_displayed = 'Client' %}
+						{% elseif role == 'ROLE_CHARITY_ASSOCIATION' %}
+							{% set role_displayed = 'Association Caritative' %}
+						{% endif %}
+					{% endfor %}
+					{{ role_displayed }}
+				{% else %}
+					No roles assigned
+				{% endif %}
+
+			</div>
+			<div class="user-index__card-actions">
+				<a href="{{ path('app_user_show', {'id': user.id}) }}" class="user-index__link">Voir</a>
+				<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="user-index__link">Éditer</a>
+			</div>
+		</div>
+	{% else %}
+		<h1>Nessun utente trovato per questa email.</h1>
+	{% endif %}
+</section>
+
+{% endblock %}

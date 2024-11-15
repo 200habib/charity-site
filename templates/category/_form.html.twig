@@ -1,0 +1,15 @@
+
+    {{ form_start(form, {'attr': {'class': 'category-form'}}) }}
+    
+    <div class="category-form__field">
+        {{ form_label(form.name, 'Nom de la catégorie', {'label_attr': {'class': 'category-form__label'}}) }}
+        {{ form_widget(form.name, {'attr': {'class': ' general__input'}}) }}
+        {{ form_errors(form.name) }}
+    </div>
+    
+    <button type="submit" class="category-form__submit">Enregistrer</button>
+    
+    {{ form_end(form) }}
+
+ 
+

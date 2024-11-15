@@ -1,0 +1,28 @@
+<ul class="product__category-list">
+
+	{% for category in categories|slice(0, 3) %}
+		<li>
+			<a href="{{ path('change_category', { categoryId: category.id }) }}">
+				{{ category.name }}
+			</a>
+		</li>
+	{% else %}
+		<li>No categories found.</li>
+	{% endfor %}
+
+<ul class= "product__category_filter_content">
+	<li class="product__category_filter"><img data-light-src="{{ asset('image/category/vectorlight.png') }}" data-dark-src="{{ asset('image/category/Vector.png') }}" alt="category filter"></li>
+	{{ include('product/_partiel/productFiltres.html.twig') }}
+</ul>
+
+
+	{% if is_granted('ROLE_SELLER') %}
+		<li class="product__category_new">
+			<a href="{{ path('app_product_new') }}">
+				<img src="{{ asset('image/category/morebutton.png') }}" alt="more button">
+			</a>
+		</li>
+	{% endif %}
+
+
+</ul>

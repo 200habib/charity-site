@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product
+{% endblock %}
+
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'product']) }}
+	{% endblock %}
+{% endblock %}
+
+{% block body %}
+	<div class="productView">
+
+		<div class="productView__container">
+
+			<div class="productView__imageWrapper">
+				<img src="{{ vich_uploader_asset(product) }}" alt="{{ product.name }}">
+			</div>
+
+			<div class="productView__details">
+
+				<h1 class="productView__name">
+					{{ product.name }}</h1>
+				<div class="productView__price">
+					<p>
+						<strong>prix :
+						</strong>
+					</p>
+					<p>{{ product.price }}
+						€</p>
+
+				</div>
+
+				<div class="productView__description">
+					<p>
+						<strong>description :
+						</strong>
+					</p>
+					<p>{{ product.description }}</p>
+				</div>
+
+<p>Choisissez la quantité souhaitée pour l'ajouter à votre panier.</p>
+				<div class="productView__buttons">
+					{% if is_granted('ROLE_SELLER') and userId == product.user.id %}
+						<form action="{{ path('app_product_delete', { 'id': product.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');" class="productView__deleteForm">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+							<button class="productView__deleteButton">Supprimer</button>
+						</form>
+						<a href="{{ path('app_product_edit', { 'id': product.id }) }}" class="productView__editButton">Modifier</a>
+						
+					{% else %}
+					
+
+						{% if productForms[product.id] is defined %}
+							{{ form_start(productForms[product.id]) }}
+							{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
+							<button type="submit" class="productList__AddToBasket">Ajouter au panier</button>
+							{{ form_end(productForms[product.id]) }}
+						{% else %}
+							<button class="productList__AddToBasket">Indisponible</button>
+						{% endif %}
+					{% endif %}
+				</div>
+
+				<div class="productView__additionalInfo">
+					<div class="productView__infoItem">
+						<h3 class="productView__infoTitle">Détails</h3>
+						<p class="productView__infoValue">{{ product.volumeLitre }}</p>
+					</div>
+					<div class="productView__infoItem">
+						<div class="productView__infoTitle">
+							<strong>Poids :</strong>
+						</div>
+						<div class="productView__infoValue">{{ product.weight }}
+							{{ product.unit.value }}</div>
+						{# <div>{{ dump(product) }}</div> #}
+
+					</div>
+					{% if is_granted('ROLE_SELLER') %}
+						<div class="productView__infoItem">
+							<div class="productView__infoTitle">Créé le</div>
+							<div class="productView__infoValue">{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</div>
+						</div>
+					{% endif %}
+				</div>
+
+			</div>
+
+		</div>
+
+		{# <div class="productView__recommendations">
+					<h2 class="productView__recommendationsTitle">Dans la même catégorie</h2>
+					<div class="productView__relatedList">
+						{% for relatedProduct in products|slice(0, 5) %}
+							<div class="productView__relatedItem">
+								<a href="{{ path('app_product_show', { 'id': relatedProduct.id }) }}" class="productView__relatedLink">
+									<img src="{{ vich_uploader_asset(relatedProduct) }}" class="productView__relatedImage" alt="{{ relatedProduct.name }}">
+									<div class="productView__relatedBody">
+										<h5 class="productView__relatedTitle">{{ relatedProduct.name }}</h5>
+										<p class="productView__relatedPrice">Prix : {{ relatedProduct.price }} €</p>
+									</div>
+								</a>
+								{% if productForms[relatedProduct.id] is defined %}
+									{{ form_start(productForms[relatedProduct.id]) }}
+									{{ form_widget(productForms[relatedProduct.id].quantity, {'attr': {'class': 'productView__relatedQuantity'}}) }}
+									<button type="submit" class="productView__relatedAddToCart">Ajouter au panier</button>
+									{{ form_end(productForms[relatedProduct.id]) }}
+								{% else %}
+									<button class="productView__relatedUnavailable">Indisponible</button>
+								{% endif %}
+							</div>
+						{% endfor %}
+					</div>
+				</div> #}
+	</div>
+{% endblock %}

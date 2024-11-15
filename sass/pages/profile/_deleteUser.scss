@@ -1,0 +1,26 @@
+.deleteUser__h1 {
+    text-align: center;
+    font-size: var(--font-size-h1);
+    margin-top: 20px;
+}
+
+.deleteUser {
+    background-color: var(--footer-background-color);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px 0 41px 0;
+    width: 355px;
+
+        p {
+            font-size: var(--font-size);
+            margin-bottom: 20px;
+        }
+}
+
+
+.deleteUser__main {
+    height: 53vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

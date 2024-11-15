@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+    {% block javascripts %}
+                {% block importmap %}
+                    {{ importmap(['app', 'product']) }}
+                {% endblock %}
+    {% endblock %}
+{% block body %}
+<div class= "general__dashboard_form">
+<div class= "product__conteiner">
+<div class= "product__form-conteiner">
+    <h1>Create new Product</h1>
+
+    {{ include('product/_form.html.twig') }}
+</div>
+
+
+</div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+ {% block javascripts %}
+            {% block importmap %}{{ importmap(['app', 'userRole']) }}{% endblock %}
+        {% endblock %}
+
+{% block body %}
+    <header class="user-index__header">
+			<h1>Mise à jour</h1>
+
+			<p class="general__border-body">
+				<span class="general__border"></span>
+			</p>
+		</header>
+    <div class="user-edit__edit_form">
+        {{ include('user/_form.html.twig', {'button_label': 'Update', 'edit_mode': true}) }}
+    </div>
+
+
+
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

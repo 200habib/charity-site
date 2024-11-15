@@ -1,0 +1,25 @@
+{# {% set errorMessages = app.flashes('error') %}
+{% set successMessages = app.flashes('success') %}
+
+{% if errorMessages|length > 0 %}
+    <div class="alert alert-danger flash-message">
+        {% for message in errorMessages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if successMessages|length > 0 %}
+    <div class="alert alert-success flash-message">
+        {% for message in successMessages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %} #}
+
+{# {% for message in app.flashes('success') %}
+    <div class="flash flash-success">
+        {{ message }}
+    </div>
+{% endfor %} #}
+

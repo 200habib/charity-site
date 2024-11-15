@@ -1,0 +1,32 @@
+.accessibility {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 55vh;
+            
+        &__list {
+            height: auto;
+            background-color: var(--footer-background-color);
+            max-width: 570px;
+            width: 90%;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 20px;
+        
+            > li {
+                display: flex;
+                justify-content: center;
+            
+                a{
+                    display: block;
+                border-bottom: var(--border-color);
+                width: 93%;
+                padding: 15px;
+                margin-bottom: 13px;
+                color: var(--text-color);
+                font-size: var(--font-size);
+                }
+            }  
+        }
+}
+

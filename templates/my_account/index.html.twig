@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profile
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="parameter__h1">parametre du compte</h1>
+	<main class="parameter">
+
+		<ul class="parameter__list">
+
+			<li>
+				<a href="{{ path('app_managing_your_profile') }}">Gestion de Votre Profil</a>
+			</li>
+			<li>
+				<a href="{{ path('app_accessibility') }}">Accessibilité</a>
+			</li>
+			<li>
+				<a href="{{ path('app_my_Terms_and_Conditions') }}">Termes et Conditions</a>
+			</li>
+			<li>
+				<a href="{{ path('app_contact_us') }}">Contactez-nous</a>
+			</li>
+
+
+			{% if is_granted('ROLE_USER') %}
+				<li>
+					<a href="{{ path('app_product_advice') }}">Conseils pour des produits à acheter</a>
+				</li>
+			{% endif %}
+
+			{% if is_granted('ROLE_ADMIN') %}
+				<li>
+					<a href="{{ path('app_admin') }}">Dashboard</a>
+				</li>
+			{% endif %}
+
+		</ul>
+
+
+		<button class="parameter__logout">
+			<a href="{{ path('app_logout') }}">Deconnexion</a>
+		</button>
+
+		{# <div>
+						<a href="{{ path('app_logout') }}">servece client</a>
+					</div> #}
+	</main>
+
+
+{% endblock %}
