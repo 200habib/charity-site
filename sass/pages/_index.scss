@@ -1,8 +1,17 @@
+@use "./product/index" as product;
+@use "./user/index" as user;
+@use "./category/index" as category;
+@use "./dashboard/index" as dashboard;
+@use "./reset/index" as reset;
+
+
+
+
+@use "./order-summary";
 @use "./home";
 @use "./sponsor";
 @use "./login";
 @use "./register";
-@use "./product/index";
 @use "./profile";
 @use "./faq";
 @use "./cart";
@@ -10,5 +19,6 @@
 @use "./advice_association";
 @use "./acessibility";
 @use "./about_us";
+
 @use "./contact-us";
 @use "./privacy-policy";

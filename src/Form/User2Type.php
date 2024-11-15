@@ -8,6 +8,7 @@ use App\Entity\UserProfile;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType; // Aggiunto per i ruoli
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class User2Type extends AbstractType
@@ -16,17 +17,29 @@ class User2Type extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles')
-            ->add('password')
-            ->add('userProfile', EntityType::class, [
-                'class' => UserProfile::class,
-'choice_label' => 'id',
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Vendeur' => 'ROLE_SELLER',
+                    'Client' => 'ROLE_USER',
+                    'Association Caritative' => 'ROLE_CHARITY_ASSOCIATION',
+                ],
+                'expanded' => true,
+                'multiple' => true, 
             ])
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
-'choice_label' => 'id',
+            
+            
+            ->add('password', null, [
+                'required' => false,
+                'empty_data' => '',
             ])
-        ;
+            ->add('userProfile', UserProfileType::class, [
+                'label' => 'User Profile',
+                'required' => false,
+            ])
+            ->add('company', CompanyType::class, [
+                'label' => 'Company',
+                'required' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

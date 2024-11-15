@@ -1,0 +1,48 @@
+.dashboard_nav {
+    display: flex;
+    flex-direction: row;  // Gli elementi principali sono disposti orizzontalmente
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;  // Aggiungi una larghezza per limitare il contenitore
+  
+    &__logo {
+      margin-right: 20px;
+    }
+  
+    &__menu {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;  // Permette lo scroll orizzontale
+      white-space: nowrap;  // Impedisce la rottura della riga dei menu item
+      -webkit-overflow-scrolling: touch;  // Aggiunge uno scroll fluido su dispositivi mobili
+    }
+  
+    &__menu-list {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  
+    &__menu-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      cursor: pointer;
+  
+      &--active {
+        background-color: #f0f0f0;  // Evidenzia l'elemento attivo
+      }
+  
+      &:hover {
+        background-color: #e0e0e0;  // Effetto hover
+      }
+  
+      .dashboard_nav__menu-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  

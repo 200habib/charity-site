@@ -1,4 +1,185 @@
 
+
+
+
+
+
+
+
+
+
+
+.productList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  min-height: 60vh;
+  
+    &__title {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+  
+    &__body {
+      color: var(--text-color);
+      padding: 20px 0;
+      font-size: 1rem;
+    }
+  
+    &__AddToBasket {
+      background-color: var(--primary);
+      color: #fff;
+      font-size: 16px;
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 25px;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+  
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  
+    &__no-products {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      font-size: 24px;
+      font-weight: bold;
+      height: 60vh;
+    }
+  }
+  
+  .product__card {
+    border: 2px solid var(--footer-background-color);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+    padding: 20px;
+    text-align: center;
+  
+    &:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  
+    .productList__body {
+      padding: 15px;
+      font-size: 1rem;
+    }
+  
+    .productList__prix {
+      font-weight: bold;
+      color: var(--primary);
+    }
+  
+    &__backList {
+      display: block;
+      color: var(--text-color);
+      font-size: 18px;
+      margin-top: 10px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: underline;
+  
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @media (min-width: 1064px) {
+
+    .productList {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin: 10px 250px;
+      min-height: 60vh;
+    }
+  
+    .product__card {
+      padding: 30px;
+    }
+  
+    .productList__AddToBasket {
+      font-size: 18px;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 391px) {
 .productList {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -60,4 +241,5 @@
         color: var(--text-color);
         font-size: 20px;
     }
+}
 }

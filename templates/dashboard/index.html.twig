@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord - DashboardController
+{% endblock %}
+
+{% block body %}
+
+	<div class="dashboard_home">
+		<div class="dashboard_home__container">
+			<section class="dashboard_home__sales-summary">
+				<header class="dashboard_home__sales-summary-header">
+					<h2 class="dashboard_home__title">Dashboard</h2>
+				</header>
+
+				<div class="dashboard_home__cards">
+
+					<a href="{{ path('app_user_index') }}" class="dashboard_home__card-content_dash">
+						<div class="dashboard_home__card dashboard_home__card--products">
+							<div class="dashboard_home__card-icon dashboard_home__card-icon--products"></div>
+							<div class="dashboard_home__card-content">
+								<h3 class="dashboard_home__card-value">Total des Utilisateurs:
+									{{ user_count }}</h3>
+							</div>
+						</div>
+					</a>
+
+					<a href="{{ path('app_category_index') }}" class="dashboard_home__card-content_dash">
+						<div class="dashboard_home__card dashboard_home__card--sales">
+							<div class="dashboard_home__card-icon dashboard_home__card-icon--sales">📊</div>
+							<div class="dashboard_home__card-content">
+								<h3 class="dashboard_home__card-value">Total des Catégories:
+									{{ category_count }}</h3>
+							</div>
+						</div>
+					</a>
+
+					<!-- Carte pour le Total des Produits -->
+					<div class="dashboard_home__card dashboard_home__card--orders" class="dashboard_home__card-content_dash">
+						<div class="dashboard_home__card-icon dashboard_home__card-icon--orders">🛍️</div>
+						<div class="dashboard_home__card-content">
+							<h3 class="dashboard_home__card-value">Total des Produits:
+								{{ product_count }}</h3>
+						</div>
+					</div>
+
+					<!-- Carte 2 -->
+
+
+				<!-- Carte 3 -->
+
+
+					<!-- Carte 4 -->
+					{# <div class="dashboard_home__card dashboard_home__card--customers">
+															          <div class="dashboard_home__card-icon dashboard_home__card-icon--customers">👤</div>
+															          <div class="dashboard_home__card-content">
+															            <h3 class="dashboard_home__card-value">12</h3>
+															            <p class="dashboard_home__card-label">Nouveaux Clients</p>
+															            <p class="dashboard_home__card-change dashboard_home__card-change--positive">+3% par rapport à hier</p>
+															          </div>
+															        </div> #}
+				</div>
+			</section>
+		</div>
+	</div>
+
+{% endblock %}

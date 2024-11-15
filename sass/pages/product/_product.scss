@@ -1,5 +1,15 @@
 
 
+.product__form-conteiner {
+  height: auto;
+  width: 330px;
+  padding: 20px;
+  border-radius: 21px;
+  background-color: var(--footer-background-color);
+  margin: 25px 0 25px 0;
+  width: 70%;
+  max-width: 600px;
+}
 @media (max-width: 391px) {
   .product__conteiner {
     display: flex;
@@ -62,3 +72,5 @@
     color: black;
   }
 }
+
+

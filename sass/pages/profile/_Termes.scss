@@ -5,6 +5,8 @@ h1.terms__h1 {
     margin-top: 20px;
 }
 
+
+
 main.terms {
     padding: 20px;
 
@@ -45,5 +47,23 @@ h2.section-title {
 
 
 
+
+
+
+
+
+
+
+
+@media (min-width: 391px) {
+
+    .terms__h1 {
+        padding-bottom: 20px;    
+    }
+
+    .terms_content {
+        margin: 50px 300px 70px 300px;
+    }
+}
 
 

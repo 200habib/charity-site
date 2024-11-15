@@ -14,8 +14,21 @@
         }
 }
 
+.productDetail_conteiner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.productDetail_sub_conteiner {
+    margin-top: 32px;
+    p {
+        margin-top: 15px;
+    }
+}
+
 .Accessibility__fontsSize {
     font-size: var(--font-size);
+    max-width: 570px;
 }
 
 .Accessibility__range {

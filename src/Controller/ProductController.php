@@ -40,64 +40,6 @@ class ProductController extends AbstractController
 
 
 
-    #[Route('/', name: 'app_product_index', methods: ['GET', 'POST'])]
-    public function index(
-        ProductRepository $productRepository,
-        SessionInterface $session,
-        Request $request,
-        AuthorizationCheckerInterface $authorizationChecker
-    ): Response {
-        $categories = $this->categoryRepository->findAll();
-
-        // Retrieve products and create forms for each
-        $products = $this->productRepository->findAll();
-        $forms = [];
-        /** @var Product $product */
-        foreach ($products as $product) {
-            $quantity = $authorizationChecker->isGranted('ROLE_CHARITY_ASSOCIATION') ? $product->getStock()->getPurchasedQuantity() : $product->getStock()->getAvailableQuantity();
-
-            if($quantity > 0) {
-                $forms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
-                    'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
-                    'method' => 'POST',
-                    'quantity' => $quantity
-                ])->createView();
-            }
-        }
-    
-
-        $cart = $session->get('cart', []);
-
-        $filterForm = $this->createForm(FilterType::class);
-        $filterForm->handleRequest($request);
-    
-        $filters = [
-            'sortPrice' => 'asc',
-            'showSellerProducts' => false,
-        ];
-    
-        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
-            $filters = $filterForm->getData();
-        }
-
-        
-        $products = $this->productRepository->findByFilters(
-            $filters['sortPrice'],
-            $filters['showSellerProducts'],
-        );
-        dump($products);
-
-        
-    $selectedCategor= "";
-        return $this->render('product/index.html.twig', [
-            'categories' => $categories,
-            'products' => $products,
-            'productForms' => $forms,
-            'cart' => $cart,
-            'filterForm' => $filterForm->createView(),
-            'selectedCategory' => $selectedCategor
-        ]);
-    }
 
     #[IsGranted('ROLE_SELLER')]
     #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
@@ -106,6 +48,9 @@ class ProductController extends AbstractController
         if (!$this->isGranted('ROLE_SELLER')) {
             throw new AccessDeniedException('Vous n\'avez pas l\'autorisation de créer un produit.');
         }
+
+        
+        
         $user = $this->getUser();
         $product = new Product();
         $stock = new Stock();
@@ -118,9 +63,14 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($product);
             $entityManager->flush();
-    
+            $this->addFlash('success', 'Le produit a été créé avec succès.');
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+        } else {
+            if ($form->isSubmitted() && !$form->isValid()) {
+                $this->addFlash('error', 'Veuillez corriger les erreurs dans le formulaire.');
+            }
         }
+        
 
         return $this->render('product/new.html.twig', [
             'product' => $product,
@@ -128,14 +78,40 @@ class ProductController extends AbstractController
         ]);
     }
     
-    #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
-    public function show(Product $product, ProductRepository $productRepository): Response
-    {
-        return $this->render('product/show.html.twig', [
-            'product' => $product,
-            'products' => $productRepository->findAll(),
-        ]);
+#[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
+public function show(Product $product, ProductRepository $productRepository, AuthorizationCheckerInterface $authorizationChecker): Response
+{
+    $user = $this->getUser();
+    $userId = $user ? $user->getId() : null;
+
+    // Ottieni tutti i prodotti
+    $products = $productRepository->findAll();
+    $forms = [];
+
+    // Loop per generare i form per ciascun prodotto
+    /** @var Product $loopProduct */
+    foreach ($products as $loopProduct) {
+        $quantity = $authorizationChecker->isGranted('ROLE_CHARITY_ASSOCIATION')
+            ? $loopProduct->getStock()->getPurchasedQuantity()
+            : $loopProduct->getStock()->getAvailableQuantity();
+
+        if ($quantity > 0) {
+            $forms[$loopProduct->getId()] = $this->createForm(ProductQuantityType::class, null, [
+                'action' => $this->generateUrl('add_to_cart', ['id' => $loopProduct->getId()]),
+                'method' => 'POST',
+                'quantity' => $quantity
+            ])->createView();
+        }
     }
+
+    return $this->render('product/show.html.twig', [
+        'productForms' => $forms,
+        'product' => $product, 
+        'products' => $products, 
+        'userId' => $userId,
+    ]);
+}
+
 
     #[IsGranted('ROLE_SELLER')]
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
@@ -207,35 +183,176 @@ class ProductController extends AbstractController
 
 
 
-    #[Route('/change-category/{categoryId}', name: 'change_category', methods: ['GET'])]
-    public function changeCategory(int $categoryId, ProductRepository $productRepository, SessionInterface $session): Response
-    {
-        $products = $productRepository->findByCategoryId($categoryId);
-        $categories = $this->categoryRepository->findAll();
-        $selectedCategory = $this->categoryRepository->find($categoryId);
-        $productForms = []; 
-        $filterForm = $this->createForm(FilterType::class)->createView();
 
-        foreach ($products as $product) {
-            $productForms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
-                'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
-                'method' => 'POST'
-            ])->createView();
+
+
+
+
+
+
+
+
+
+
+
+    
+        #[Route('/', name: 'app_product_index', methods: ['GET', 'POST'])]
+        public function index(
+            ProductRepository $productRepository,
+            SessionInterface $session,
+            Request $request,
+            AuthorizationCheckerInterface $authorizationChecker,
+        ): Response {
+
+
+            $form = $this->createForm(FilterType::class);
+
+            // Gestisci il form
+            $form->handleRequest($request);
+        
+            // Debug per verificare lo stato del form dopo la gestione della richiesta
+            // dd($form->isSubmitted(), $form->isValid(), $form->getData());
+            $sortPrice = '';
+            if ($form->isSubmitted()) {
+                $sortPrice = $form->get('sortPrice')->getData();
+            }
+
+
+
+
+
+            // $page = $request->query->getInt('page', 1);
+            // $limit = $request->query->getInt('limit', 1);
+
+            // $houses = $productRepository->paginate($page, $limit); 
+ 
+
+            // $selectedCategory = $this->categoryRepository->find($categoryId);
+
+
+            $categories = $this->categoryRepository->findAll();
+            $filters = $this->initializeFilters($request);
+    
+            // $products = $this->productRepository->findByFilters(
+            //     $filters['sortPrice'],
+            //     $filters['showSellerProducts']
+            // );
+            if ($sortPrice !=='') {
+$products = $this->productRepository->findByFilters([],['id'=>$sortPrice]);
+dd();
+            } else {
+                $sortPrice = 'desc';
+                $products = $this->productRepository->findByFilters([],['id'=>$sortPrice]);
+            }
+            
+
+    
+            $productForms = $this->generateProductForms($products, $authorizationChecker);
+            $cart = $session->get('cart', []);
+            $selectedCategory = "";
+    
+            return $this->render('product/index.html.twig', [
+                'categories' => $categories,
+                'products' => $products,
+                'productForms' => $productForms,
+                'cart' => $cart,
+                'filterForm' => $filters['formView'],
+                'selectedCategory' => $selectedCategory,
+                'products' => $productRepository->findByFilters([],['id'=>$sortPrice])
+                // 'houses' => $houses
+            ]);
         }
     
-        $cart = $session->get('cart', []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #[Route('/change-category/{categoryId}', name: 'change_category', methods: ['GET', 'POST'])]
+        public function changeCategory(
+            int $categoryId,
+            ProductRepository $productRepository,
+            SessionInterface $session,
+            Request $request,
+            AuthorizationCheckerInterface $authorizationChecker
+        ): Response {
+            $selectedCategory = $this->categoryRepository->find($categoryId);
+            $products = $productRepository->findByCategoryId($categoryId);
+            $categories = $this->categoryRepository->findAll();
     
-        return $this->render('product/index.html.twig', [
-            'categories' => $categories,
-            'products' => $products,
-            'productForms' => $productForms, 
-            'cart' => $cart,
-            'filterForm' => $filterForm,
-            'selectedCategory' => $selectedCategory 
-        ]);
-        
-        
+            $filters = $this->initializeFilters($request);
+            $productForms = $this->generateProductForms($products, $authorizationChecker);
+            $cart = $session->get('cart', []);
+    
+            return $this->render('product/index.html.twig', [
+                'categories' => $categories,
+                'products' => $products,
+                'productForms' => $productForms,
+                'cart' => $cart,
+                'filterForm' => $filters['formView'],
+                'selectedCategory' => $selectedCategory
+            ]);
+        }
+    
+        private function initializeFilters(Request $request): array
+        {
+            $filterForm = $this->createForm(FilterType::class);
+            $filterForm->handleRequest($request);
+            $filters = [
+                'sortPrice' => 'asc',
+                'showSellerProducts' => false,
+            ];
+    
+            if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+                $filters = $filterForm->getData();
+            }
+    
+            return [
+                'sortPrice' => $filters['sortPrice'],
+                'showSellerProducts' => $filters['showSellerProducts'],
+                'formView' => $filterForm->createView()
+            ];
+        }
+    
+        private function generateProductForms(array $products, AuthorizationCheckerInterface $authorizationChecker): array
+        {
+            $productForms = [];
+            foreach ($products as $product) {
+                $quantity = $authorizationChecker->isGranted('ROLE_CHARITY_ASSOCIATION')
+                    ? $product->getStock()->getPurchasedQuantity()
+                    : $product->getStock()->getAvailableQuantity();
+    
+                if ($quantity > 0) {
+                    $productForms[$product->getId()] = $this->createForm(ProductQuantityType::class, null, [
+                        'action' => $this->generateUrl('add_to_cart', ['id' => $product->getId()]),
+                        'method' => 'POST',
+                        'quantity' => $quantity
+                    ])->createView();
+                }
+            }
+            return $productForms;
+        }
     }
     
     
-}
+    
+

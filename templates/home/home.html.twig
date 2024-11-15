@@ -9,51 +9,66 @@
 
 
 {% block body %}
+	{# {% include '_partiel/_flash_message.html.twig' %} #}
+    <img src="{{ asset('image/home/white-mode/home.png') }}" width="100%" alt="" class="home_services_header_logo">
+
+
+<div>
+
 
 <p class="home_lp_textcenter">"Une initiative solidaire qui met à l'honneur l'essentiel : la distribution de nourriture, de boissons et de produits d'hygiène, pour répondre aux besoins fondamentaux de ceux qui en ont le plus besoin."</p>
 
-<section class="home_services_container">
-    <article class="home_service_item">
-     <section class="home_service_content">
+<section class="service-steps-container">
+    <article class="service-step-item">
+        <section class="service-step-content">
             <h3>Choisir</h3>
-                    <img src="{{ asset('image/home/white-mode/choisir.webp') }}" height="80px" alt="">
+            <img src="{{ asset('image/home/white-mode/undraw_Add_to_cart_re_wrdo-removebg-preview.png') }}" height="250px" alt="Image illustrant le choix des produits">
+            <p>Sélectionnez les produits essentiels dont les bénéficiaires ont le plus besoin. En choisissant, vous participez directement à répondre à des besoins spécifiques et immédiats.</p>
         </section>
     </article>
-    <article class="home_service_item">
-        <img src="" alt="">
-        <section class="home_service_content">
-            <h3>paye</h3>
-            <img src="{{ asset('image/home/white-mode/sold.jfif') }}" height="80px" alt="">
+    
+    <article class="service-step-item">
+        <section class="service-step-content">
+            <h3>Payer</h3><img src="{{ asset('image/home/white-mode/undraw_Reminder_re_fe15-removebg-preview.png') }}" height="250px" alt="Image illustrant la distribution">
+            
+            <p>En effectuant votre paiement, vous garantissez que ces biens seront envoyés et distribués en toute sécurité. Chaque transaction contribue à rendre la solidarité plus concrète et impactante.</p>
         </section>
     </article>
-    <article class="home_service_item">
-        <img src="" alt="">
-        <section class="home_service_content">
-            <h3>distribue</h3>
-            <img src="{{ asset('image/home/white-mode/help.jpg') }}" height="80px" alt="">
+    
+    <article class="service-step-item">
+        <section class="service-step-content">
+            <h3>Distribuer</h3>
+            <img src="{{ asset('image/home/white-mode/undraw_Deliveries_2r4y-removebg-preview.png') }}" height="250px" alt="Image illustrant le paiement des produits">
+            <p>Notre équipe se charge de distribuer les produits aux personnes qui en ont le plus besoin. Nous veillons à ce que chaque don atteigne directement les bénéficiaires, en préservant leur dignité et en répondant à leurs besoins de manière appropriée.</p>
         </section>
     </article>
 </section>
+
+
 
 <section class="home_services_list">
     <h3 class="home_services_title">Services</h3>
     <ul class="home_services_items">
         <li class="home_services_item">
-            <img src="{{ asset('image/home/white-mode/scooter.avif') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="80px">
+            <img src="{{ asset('image/home/colect.svg') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="80px">
             <p class="home_services_description">Collecter et distribuer</p>
             <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
         </li>
         <li class="home_services_item">
-            <img src="{{ asset('image/home/white-mode/box.avif') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
+            <img src="{{ asset('image/home/white-mode/suividedons.svg') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
             <p class="home_services_description">Suivi des Dons</p>
             <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
         </li>
         <li class="home_services_item">
-            <img src="{{ asset('image/home/white-mode/calendar.avif') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
+            <img src="{{ asset('image/home/white-mode/dons.svg') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
             <p class="home_services_description">Suivi des Dons</p>
             <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
         </li>
     </ul>
 </section>
+
+
+</div>
+
 
 {% endblock %}

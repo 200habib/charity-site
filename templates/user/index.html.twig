@@ -1,39 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste des Utilisateurs
+{% endblock %}
+
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'flashMessages']) }}
+	{% endblock %}
+{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{% include '_partiel/_flash_message.html.twig' %}
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+	<section class="user-index">
+		<header class="user-index__header">
+			<h1>Liste des Utilisateurs</h1>
+			<p class="general__border-body">
+				<span class="general__border"></span>
+			</p>
+		</header>
+		<a href="{{ path('app_user_new') }}" class="user-index__create-new general__button">Créer un nouvel utilisateur</a>
+
+		<form action="{{ path('app_user_search') }}" method="GET" class="user-index__search">
+			<input type="email" name="email" placeholder="Recherche par email" class="user-index__search_input" required>
+			<button type="submit" class="user-index__search_button">Rechercher</button>
+		</form>
+
+
+		<div class="user-index__table">
+{% for user in users %}
+    {% if 'ROLE_ADMIN' not in user.roles %}
+        <div class="user-index__card">
+            <div class="user-index__card-row">
+                <strong>ID :</strong>
+                {{ user.id }}
+            </div>
+            <div class="user-index__card-row">
+                <strong>Email :</strong>
+                {{ user.email }}
+            </div>
+            <div class="user-index__card-row">
+                <strong>Rôle :</strong>
+                {% if user.roles is not empty %}
+                    {% set role_displayed = 'Unknown Role' %}
+                    {% for role in user.roles %}
+                        {% if role == 'ROLE_SELLER' %}
+                            {% set role_displayed = 'Vendeur' %}
+                        {% elseif role == 'ROLE_USER' %}
+                            {% set role_displayed = 'Client' %}
+                        {% elseif role == 'ROLE_CHARITY_ASSOCIATION' %}
+                            {% set role_displayed = 'Association Caritative' %}
+                        {% endif %}
+                    {% endfor %}
+                    {{ role_displayed }}
+                {% else %}
+                    No roles assigned
+                {% endif %}
+            </div>
+            <div class="user-index__card-actions">
+                <a href="{{ path('app_user_show', {'id': user.id}) }}" class="user-index__link">Voir</a>
+                <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="user-index__link">Éditer</a>
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+    <p class="user-index__no-records">Aucun utilisateur trouvé</p>
+{% endfor %}
+
+		</div>
+	</section>
 {% endblock %}

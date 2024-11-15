@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+<div class="general__title">
+            <h1 class="sponsor__title">Devenez un sponsor de Ulisse</h1>
+        <p class= "general__border-body">
+            <span class= "general__border"></span>
+        </p>
+</div>
+
+
+    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {{ include('category/_delete_form.html.twig') }}
+{% endblock %}

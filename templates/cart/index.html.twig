@@ -3,8 +3,20 @@
 {% block title %}Hello CartController!
 {% endblock %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'flashMessages']) }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block body %}
 
+	{% include '_partiel/_flash_message.html.twig' %}
+
+	{% if is_granted('ROLE_CHARITY_ASSOCIATION') %}
+		{% include 'cart/_partiel/money.html.twig' %}
+	{% endif %}
 
 	<ul class='cart'>
 		{% for product in products %}
@@ -18,13 +30,27 @@
 					{{ product.name }}
 					x
 					{{ app.session.get('cart')[product.id]}}
-					<p>Price:
-						{{ product.price | format_currency('EUR', locale='fr') }}
-					</p>
-					<p>total:
-						{{ (product.price * app.session.get('cart')[product.id]) | format_currency('EUR', locale='fr') }}
+					{% if not is_granted('ROLE_CHARITY_ASSOCIATION') %}
+						<p>Price:
+							{{ product.price | format_currency('EUR', locale='fr') }}
+						</p>
+						<p>total:
+							{{ (product.price * app.session.get('cart')[product.id]) | format_currency('EUR', locale='fr') }}
 
-					</p>
+
+						</p>
+					{% else %}
+						<p>Price:
+							{{ (product.price * 2) | number_format(0, ',', ' ') }}
+							points
+						</p>
+						<p>total:
+							{{ ((product.price * 2) * app.session.get('cart')[product.id]) | number_format(0, ',', ' ') }}
+							points
+
+
+						</p>
+					{% endif %}
 				</div>
 
 
@@ -40,12 +66,19 @@
 						TOTAL:
 					</div>
 					<div>
-						{{totalPrice | format_currency('EUR', locale='fr')}}
+						{% if not is_granted('ROLE_CHARITY_ASSOCIATION') %}
+							{{totalPrice | format_currency('EUR', locale='fr')}}
+						{% else %}
+							{{ (totalPrice * 2) | number_format(0, ',', ' ') }}
+							points
+						{% endif %}
 					</div>
 				</div>
-				<div class='cart__total_tva'>
-					* TVA comprise
-				</div>
+				{% if not is_granted('ROLE_CHARITY_ASSOCIATION') %}
+					<div class='cart__total_tva'>
+						* TVA comprise
+					</div>
+				{% endif %}
 			</div>
 
 		</div>

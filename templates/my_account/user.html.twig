@@ -1,70 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon Profile
-{% endblock %}
+{% block title %}Mon Profile{% endblock %}
 
 {% block body %}
 
+    <h1 class="UserInfo__h1">Détails du profil</h1>
 
-	<h1 class="UserInfo__h1">Détails du profil</h1>
-  <div class="UserInfo">
-	{{ form_start(form) }}
+    <div class="UserInfo">
+        {{ form_start(form) }}
 
-  
-  
-	<div class="UserInfo__blockList">
-		<div>
-			{{ form_label(form.firstName) }}
-			{{ form_widget(form.firstName) }}
-			{{ form_errors(form.firstName) }}
-		</div>
 
-		<div>
-			{{ form_label(form.lastName) }}
-			{{ form_widget(form.lastName) }}
-			{{ form_errors(form.lastName) }}
-		</div>
+    <div class="UserInfo__blockList">
+        <div>
+            {{ form_label(form.firstName) }}
+            {{ form_widget(form.firstName) }}
+            {{ form_errors(form.firstName) }}
+        </div>
 
-		<div>
-			{{ form_label(form.address) }}
-			{{ form_widget(form.address) }}
-			{{ form_errors(form.address) }}
-		</div>
+        <div>
+            {{ form_label(form.lastName) }}
+            {{ form_widget(form.lastName) }}
+            {{ form_errors(form.lastName) }}
+        </div>
 
-		<div>
-			{{ form_label(form.city) }}
-			{{ form_widget(form.city) }}
-			{{ form_errors(form.city) }}
-		</div>
+        <div>
+            {{ form_label(form.address) }}
+            {{ form_widget(form.address) }}
+            {{ form_errors(form.address) }}
+        </div>
 
-		<div>
-			{{ form_label(form.postalCode) }}
-			{{ form_widget(form.postalCode) }}
-			{{ form_errors(form.postalCode) }}
-		</div>
+        <div>
+            {{ form_label(form.city) }}
+            {{ form_widget(form.city) }}
+            {{ form_errors(form.city) }}
+        </div>
 
-		<div>
-			{{ form_label(form.phoneNumber) }}
-			{{ form_widget(form.phoneNumber) }}
-			{{ form_errors(form.phoneNumber) }}
-		</div>
-	</div>
+        <div>
+            {{ form_label(form.postalCode) }}
+            {{ form_widget(form.postalCode) }}
+            {{ form_errors(form.postalCode) }}
+        </div>
 
-	<button type="submit" class="UserInfo__buttonUpdate">Update Profile</button>
+        <div>
+            {{ form_label(form.phoneNumber) }}
+            {{ form_widget(form.phoneNumber) }}
+            {{ form_errors(form.phoneNumber) }}
+        </div>
+    </div>
 
-	{{ form_end(form) }}
-</div>
 
-	{# {% if userProfile %}
-	    <h2>Profile Information</h2>
-	    <p>First Name: {{ userProfile.firstName }}</p>
-	    <p>Last Name: {{ userProfile.lastName }}</p>
-	    <p>Address: {{ userProfile.address }}</p>
-	    <p>City: {{ userProfile.city }}</p>
-	    <p>Postal Code: {{ userProfile.postalCode }}</p>
-	    <p>Phone Number: {{ userProfile.phoneNumber }}</p>
-	{% else %}
-	    <p>No profile information available.</p>
-	{% endif %} #}
+
+        <button type="submit" class="UserInfo__buttonUpdate">Mettre à jour</button>
+
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}

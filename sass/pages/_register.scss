@@ -1,9 +1,11 @@
+
+
 .Register__h1 {
     margin-bottom: 10px;
 }
 
 .Register__content {
-    height: 55vh;
+    // height: 55vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,4 +45,18 @@
     align-items: center;
     justify-content: space-around;
     margin-bottom: 10px;
+}
+
+
+@media (min-width: 392px) {
+    .Register__form {
+        width: 550px;
+    }
+
+    .Register__content {
+        // height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

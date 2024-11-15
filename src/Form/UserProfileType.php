@@ -18,42 +18,42 @@ class UserProfileType extends AbstractType
                 'label' => 'First Name',
                 'required' => false,
                 'attr' => [
-                    'class' => 'general__input',  // Sostituisci con il nome della classe che desideri
+                    'class' => 'general__input', 
                 ],
             ])
             ->add('lastName', TextType::class, [
                 'label' => 'Last Name',
                 'required' => false,
                 'attr' => [
-                    'class' => 'general__input',  // Sostituisci con il nome della classe che desideri
+                    'class' => 'general__input',
                 ],
             ])
             ->add('address', TextType::class, [
                 'label' => 'Address',
                 'required' => false,
                 'attr' => [
-                    'class' => 'general__input',  // Sostituisci con il nome della classe che desideri
+                    'class' => 'general__input', 
                 ],
             ])
             ->add('city', TextType::class, [
                 'label' => 'City',
                 'required' => false,
                 'attr' => [
-                    'class' => 'general__input',  // Sostituisci con il nome della classe che desideri
+                    'class' => 'general__input',  
                 ],
             ])
             ->add('postalCode', IntegerType::class, [
                 'label' => 'Postal Code',
                 'required' => false,
                 'attr' => [
-                    'class' => 'general__input',  // Sostituisci con il nome della classe che desideri
+                    'class' => 'general__input', 
                 ],
             ])
             ->add('phoneNumber', IntegerType::class, [
                 'label' => 'Phone Number',
                 'required' => false,
                 'attr' => [
-                    'class' => 'general__input',  // Sostituisci con il nome della classe che desideri
+                    'class' => 'general__input',  
                 ],
                 
             ]);

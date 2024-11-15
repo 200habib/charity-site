@@ -17,6 +17,10 @@
             label: 'Password',
             'attr': { 'class': 'general__input' }
         }) }}
+
+        <p>
+        Le mot de passe doit contenir au minimum huit caractères, avec au moins une lettre majuscule, une lettre minuscule, un chiffre, et un caractère spécial  (#?!@$ %^&*-_).
+        </p>
         <div class="Register__check">
             {{ form_label(registrationForm.agreeTerms) }}
             {{ form_widget(registrationForm.agreeTerms, {
@@ -25,8 +29,18 @@
             {{ form_errors(registrationForm.agreeTerms) }}
         </div>
 
+
         <button type="submit" class="general__button">Register</button>
-        <a href="{{ path('app_login') }}" class="Register__link-login">Vous avez déjà un profil ? Connectez-vous ici</a>
+
+        {# <a href="{{ path('app_login') }}" class="Register__link-login">Vous avez déjà un profil ? Connectez-vous ici</a> #}
+
+			<div class="login__link-Inscrivez-vous_content">
+				<p class="login__link-Inscrivez-vous">Vous avez déjà un profil ?</p>
+				<button class="general__button ">
+					<a href="{{ path('app_login') }}" class="login__link-Inscrivez-vous">
+						Connectez-vous ici</a>
+				</button>
+			</div>
 
     {{ form_end(registrationForm) }}
 </div>

@@ -1,10 +1,86 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h2>Commande confirmée</h2>
-    <p>Merci pour votre achat ! Votre commande n°{{ order.id }} a été confirmée.</p>
-    <p>Total : {{ order.totalPrice | format_currency('EUR', locale='fr') }}</p>
-
-    
+{% block title %}Résumé du Panier
 {% endblock %}
 
+{% block body %}
+
+{% if is_granted('ROLE_CHARITY_ASSOCIATION') %}
+{% if creditPoints is not null %}
+	<div class="cart__Points_content">
+		<p>Points de crédit:</p>
+		<p class="cart__Points_content_show">
+            {{ creditPoints }}
+			points
+        </p>
+	</div>
+{% endif %}
+
+
+
+
+    <div class="order-summary__conteiner">
+        <h1 class="order-summary__title">Résumé de votre commande</h1>
+
+        <table class="order-summary__table table">
+            <thead class="order-summary__table-header">
+                <tr class="order-summary__table-row">
+                    <th class="order-summary__table-header-cell">Email vendeur</th>
+                    <th class="order-summary__table-header-cell">Produit</th>
+                    <th class="order-summary__table-header-cell">Quantité</th>
+                    <th class="order-summary__table-header-cell">Prix Unitaire</th>
+                    <th class="order-summary__table-header-cell">Total</th>
+                </tr>
+            </thead>
+
+            {% set totalPoints = 0 %}
+            <tbody class="order-summary__table-body">
+
+                {% for item in order.orderItems %}
+                    {% set product = item.product %}
+                    {% set vendor = product.getUser %}
+                    <tr class="order-summary__table-row">
+                        <td class="order-summary__table-cell">{{ vendor.email | default('N/A') }}</td>
+                        <td class="order-summary__table-cell">{{ product.name }}</td>
+                        <td class="order-summary__table-cell">{{ item.quantity }}</td>
+                        <td class="order-summary__table-cell">{{ (item.price * 2) | number_format(0, ',', ' ') }} points</td>
+                        <td class="order-summary__table-cell">{{ (item.price * item.quantity * 2) | number_format(0, ',', ' ') }} points</td>
+                    </tr>
+                    {% set totalPoints = totalPoints + (item.price * item.quantity * 2) %}
+                {% endfor %}
+            </tbody>
+            <tfoot class="order-summary__table-footer">
+                <tr class="order-summary__table-row">
+                    <td class="order-summary__table-cell" colspan="4">
+                        <strong>Total de la commande :</strong>
+                    </td>
+                    <td class="order-summary__table-cell">
+                        <strong>{{ totalPoints | number_format(2, ',', ' ') }} points</strong>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="order-summary__note">
+            <strong>Informations importantes pour la réception de la commande :</strong>
+            <ul>
+                <li><strong>Confidentialité du vendeur :</strong> Pour des raisons de confidentialité, nous ne partageons pas l'adresse physique du vendeur.</li>
+                <li><strong>Contact par email :</strong> Vous pouvez contacter le vendeur directement par email à l'adresse indiquée ci-dessus.</li>
+                <li><strong>Organisation de la livraison :</strong> Utilisez cet email pour convenir des détails de la livraison des produits et organiser la réception de la marchandise.</li>
+                <li><strong>Communication continue :</strong> Nous vous encourageons à continuer de communiquer par email pour toute question ou information concernant la commande.</li>
+            </ul>
+            <p><strong>Responsabilité d'Ulisse :</strong>
+
+Ulisse se dégage de toute responsabilité quant à la qualité ou l’état du matériel. En cas de souci concernant un produit acheté, l'acheteur est invité à se mettre directement en contact avec le vendeur via l'adresse email fournie. Ulisse agit uniquement comme intermédiaire et ne peut garantir la conformité des produits ni l’exécution des échanges. Pour toute question, merci de bien vouloir contacter le vendeur pour organiser la livraison et obtenir les informations nécessaires.</p>
+        </div>
+    </div>
+{% else %}
+    <div class="order-summary__thank-you">
+        <p>Merci pour votre achat !</p>
+        <p>Grâce à votre soutien, vous contribuez à aider des personnes moins fortunées.</p>
+        <p>Chaque produit que vous achetez fait une différence.</p>
+    </div>
+{% endif %}
+
+
+{% endblock %}

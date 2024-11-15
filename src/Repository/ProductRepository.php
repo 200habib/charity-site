@@ -6,7 +6,10 @@ use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\SecurityBundle\Security;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 /**
  * @extends ServiceEntityRepository<Product>
  */
@@ -14,7 +17,7 @@ class ProductRepository extends ServiceEntityRepository
 {
     private Security $security;
 
-    public function __construct(ManagerRegistry $registry, Security $security)
+    public function __construct(ManagerRegistry $registry, Security $security, public PaginatorInterface $paginator)
     {
         parent::__construct($registry, Product::class);
         $this->security = $security;
@@ -29,24 +32,34 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByFilters(string $sortPrice, bool $showSellerProducts): array
+    public function findByFilters(array $filters, array $sort = [])
     {
-        $qb = $this->createQueryBuilder('p');
-
-        $qb->orderBy('p.price', $sortPrice === 'asc' ? 'ASC' : 'DESC');
-
-        if ($showSellerProducts) {
-            $user = $this->security->getUser();
-
-            if ($user) {
-                $qb
-                    ->leftJoin('p.seller', 'seller')
-                    ->andWhere('seller.id = :currentUserId')
-                    ->setParameter('currentUserId', $user->getId());
-            }
+        $queryBuilder = $this->createQueryBuilder('p');
+    
+        // Applica i filtri
+        foreach ($filters as $field => $value) {
+            $queryBuilder->andWhere("p.$field = :$field")
+                         ->setParameter($field, $value);
         }
-
-        return $qb->getQuery()->getResult();
+    
+        // Applica l'ordinamento
+        foreach ($sort as $field => $order) {
+            $queryBuilder->addOrderBy("p.$field", $order);
+        }
+    
+        return $queryBuilder->getQuery()->getResult();
     }
+    
+
+
+    public function Paginate(int $page = 1, int $limit = 1) : PaginationInterface {
+        return $this->paginator->paginate(
+            $this->createQueryBuilder('l'),
+            $page,
+            $limit
+        );
+    }
+    
+    
 
 }

@@ -1,14 +1,19 @@
 import "./buttonToggle.js";
 
-
-const themeToggleButton = document.getElementById('theme-toggle');
+const themeToggleButtons = document.querySelectorAll('.theme-toggle');
 const darkModeImages = document.querySelectorAll('img[data-dark-src]');
 
+const darkModetextContent = document.querySelector('.menu__appearance-textContent');
+
+// Initialize dark mode based on localStorage
 verifyDarkMode();
 
-themeToggleButton.addEventListener("click", () => {
-    toggleDarkMode();
-    toggleButtonDisplayMode();
+// Add event listeners for each toggle button
+themeToggleButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        toggleDarkMode();
+        toggleButtonDisplayMode(button);
+    });
 });
 
 function toggleDarkMode() {
@@ -31,7 +36,9 @@ function verifyDarkMode() {
 }
 
 function setDarkMode() {
+    darkModetextContent.textContent = "activer le mode clair"
     document.documentElement.setAttribute('data-theme', 'dark');
+    
     darkModeImages.forEach(img => {
         const darkSrc = img.getAttribute('data-dark-src');
         if (darkSrc) {
@@ -42,7 +49,9 @@ function setDarkMode() {
 }
 
 function setLightMode() {
+    darkModetextContent.textContent = "activer le mode sombre"
     document.documentElement.removeAttribute('data-theme');
+    
     darkModeImages.forEach(img => {
         const lightSrc = img.getAttribute('data-light-src');
         if (lightSrc) {
@@ -52,6 +61,6 @@ function setLightMode() {
     });
 }
 
-function toggleButtonDisplayMode() {
-    themeToggleButton.classList.toggle('flex-mode');
+function toggleButtonDisplayMode(button) {
+    button.classList.toggle('flex-mode');
 }

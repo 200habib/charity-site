@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+<div class="general__title">
+            <h1 class="sponsor__title">Devenez un sponsor de Ulisse</h1>
+        <p class= "general__border-body">
+            <span class= "general__border"></span>
+        </p>
+</div>
+
+<div class="category-index__conteiner">
+    <div class="category__details">
+        <div class="category__details-row">
+            <span class="category__details-row-label">Id:</span>
+            <span class="category__details-row-value">{{ category.id }}</span>
+        </div>
+        <div class="category__details-row">
+            <span class="category__details-row-label">Name:</span>
+            <span class="category__details-row-value">{{ category.name }}</span>
+        </div>
+    </div>
+
+    <div class="category__actions">
+        <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="category__actions-link">Edit</a>
+    </div>
+</div>
+
+
+    {{ include('category/_delete_form.html.twig') }}
+{% endblock %}

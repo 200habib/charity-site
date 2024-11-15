@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="Cache-Control" content="max-age=3600, public">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Cache-Control" content="max-age=3600, public">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
 
-    </head>
-    <body>
+	</head>
+	<body>
 
-        {% include './_partiel/navbar.html.twig' %}
 
-	{# {% set total = 0 %}
-	{% for productId, quantity in cart %}
-		{% set total = total + quantity %}
-	{% endfor %} #}
-    <div class="cursor"></div>
-            {% block body %}
 
-            {% endblock %}
+{# {% for label, messages in app.flashes %}
+    {% for message in messages %}
+        {% if message.title is defined %}
+            <div class="alert-container {% if label == 'success' %}success{% else %}error{% endif %}" role="alert">
+                <strong class="alert-title">{{ message.title }}</strong>
+                <span class="alert-message">{{ message.message }}</span>
+                <button type="button" class="alert-close" onclick="this.parentElement.style.display='none';">
+                    <svg class="close-icon" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <title>Close</title>
+                        <path d="M14.348 14.849a1 1 0 01-1.414 0L10 11.415l-2.934 2.934a1 1 0 01-1.414-1.414l2.934-2.934-2.934-2.934a1 1 0 011.414-1.414l2.934 2.934 2.934-2.934a1 1 0 011.414 1.414L11.415 10l2.934 2.934a1 1 0 010 1.415z"/>
+                    </svg>
+                </button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %} #}
 
-        {% include './_partiel/footer.html.twig' %}
+{# 
 
-        {# <script type="module" src="{{ asset("app.js")}}"</script> #}
-    </body>
+
+
+
+
+
+
+
+
+
+
+ #}
+
+		{% include './_partiel/navbar.html.twig' %}
+
+		<div class="cursor" id="cursor"></div>
+		{% block body %}{% endblock %}
+
+		{% include './_partiel/footer.html.twig' %}
+
+	</body>
 </html>
