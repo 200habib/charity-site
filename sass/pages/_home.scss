@@ -273,7 +273,14 @@ ul {
 
 
 
-@media only screen and (max-width: 391px) {
+@media only screen and (max-width: 431px) {
+
+.home_services_items_color {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 
   .home_services_list {
     padding: 20px;
@@ -296,13 +303,11 @@ ul {
   }
   
   .home_services_item {
-      font-family: "Times New Roman", sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      border-bottom: 1px solid black;
-      padding: 25px 15px 25px 15px;
-      font-size: 20px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #000;
+        padding: 25px 0;
+        font-size: 20px;
   
       .home_services_description {
         width: 135px;

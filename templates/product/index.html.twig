@@ -40,10 +40,8 @@
 											{{ product.price | format_currency('EUR', locale='fr') }}
 										</p>
 										<p>
-											(
-											{{ (product.price / product.weight) | number_format(2, '.', ',') }}
-											€/{{ product.unit.value }}
-											)
+											({{ (product.price / product.weight) | number_format(2, '.', ',') }}
+											€/{{ product.unit.value }})
 										</p>
 									</div>
 								{% else %}
@@ -74,7 +72,9 @@
 
 
 					</a>
-					
+	
+			
+		
 <p>Sélectionnez la quantité pour le panier.</p>
 
 					{% if productForms[product.id] is defined %}
@@ -82,6 +82,7 @@
 						{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
 						<button type="submit" class="productList__AddToBasket">Ajouter au panier</button>
 						{{ form_end(productForms[product.id]) }}
+	
 					{% else %}
 						<button class="productList__AddToBasket">Indisponible</button>
 					{% endif %}

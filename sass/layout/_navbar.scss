@@ -52,7 +52,7 @@
         border-radius: 30px;
     }
 
-    @media (max-width: 391px) {
+    @media (max-width: 431px) {
         & {
             width: 100%;
         }
@@ -123,7 +123,7 @@
     display: none;
 }
 
-@media (max-width: 391px) {
+@media (max-width: 431px) {
     .navbar_menu {
         display: none;
     }

@@ -1,4 +1,4 @@
-@media (min-width: 392px) {
+@media (min-width: 1064px) {
   .section-icon {
     display: none;
   }
@@ -82,8 +82,9 @@
   footer-link {
     color: var(--text-color);
   }
-  // Stili desktop aggiuntivi
-  @media (min-width: 1024px) {
+
+
+  @media (min-width: 1064px) {
     .footer-nav {
       grid-template-columns: repeat(4, 1fr);
     }
@@ -137,7 +138,7 @@
 
 
 
-@media (max-width: 391px) {
+@media (max-width: 431px) {
 
 
   .section-icon {

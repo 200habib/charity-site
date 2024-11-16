@@ -179,7 +179,9 @@
 
 
 
-@media (max-width: 391px) {
+@media (max-width: 431px) {
+
+
 .productList {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -189,7 +191,20 @@
         
 
         &__title {
+          // .productList__title
           font-size: var(--font-size-h1);
+          max-width: 100%;
+          /* word-break: break-all; */
+          overflow-wrap: break-word;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          text-align: justify;
+          margin-bottom: 10px;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: normal;
+          word-break: break-word;
         }
 
         &__body {
@@ -222,11 +237,15 @@
 
 
 .product__card {
-    display: block;
-    border: 3px solid var(--footer-background-color);
-    padding: 15px;
-    border-radius: 20px;
-    height: auto;
+  border: 3px solid var(--footer-background-color);
+  padding: 15px;
+  border-radius: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  /* max-width: 169px;*/
 
     img {
         height: 90px;
