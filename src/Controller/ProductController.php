@@ -213,9 +213,7 @@ public function show(Product $product, ProductRepository $productRepository, Aut
             // Debug per verificare lo stato del form dopo la gestione della richiesta
             // dd($form->isSubmitted(), $form->isValid(), $form->getData());
             $sortPrice = '';
-            if ($form->isSubmitted()) {
-                $sortPrice = $form->get('sortPrice')->getData();
-            }
+
 
 
 
@@ -232,19 +230,28 @@ public function show(Product $product, ProductRepository $productRepository, Aut
 
             $categories = $this->categoryRepository->findAll();
             $filters = $this->initializeFilters($request);
-    
-            // $products = $this->productRepository->findByFilters(
-            //     $filters['sortPrice'],
-            //     $filters['showSellerProducts']
-            // );
+            $Type= 'id';
+       
             if ($sortPrice !=='') {
-$products = $this->productRepository->findByFilters([],['id'=>$sortPrice]);
-dd();
+                $products = $this->productRepository->findByFilters([],[$Type=>$sortPrice]);
             } else {
-                $sortPrice = 'desc';
-                $products = $this->productRepository->findByFilters([],['id'=>$sortPrice]);
+                $sortPrice = 'desc'; 
+                $Type = 'id'; 
+                $products = $this->productRepository->findByFilters([], [$Type => $sortPrice]);
             }
             
+            if ($form->isSubmitted()) {
+                $sortPrice = $form->get('sortPrice')->getData();
+                // dd($sortPrice);
+                if ($sortPrice=="") {
+                    $sortPrice = 'asc'; 
+                    $Type = 'id';
+                } else {
+                    $sortPrice = $sortPrice; 
+                    $Type = 'price';
+                }
+            }
+
 
     
             $productForms = $this->generateProductForms($products, $authorizationChecker);
@@ -258,7 +265,7 @@ dd();
                 'cart' => $cart,
                 'filterForm' => $filters['formView'],
                 'selectedCategory' => $selectedCategory,
-                'products' => $productRepository->findByFilters([],['id'=>$sortPrice])
+                'products' => $productRepository->findByFilters([],[$Type=>$sortPrice])
                 // 'houses' => $houses
             ]);
         }
@@ -299,13 +306,89 @@ dd();
             $products = $productRepository->findByCategoryId($categoryId);
             $categories = $this->categoryRepository->findAll();
     
+
+            $form = $this->createForm(FilterType::class);
+
+            $form->handleRequest($request);
+
+
+
+            // dd($form->isSubmitted(), $form->isValid(), $form->getData());
+
+            $sortPrice = '';
+
+
+
+
+
+
+            // $page = $request->query->getInt('page', 1);
+            // $limit = $request->query->getInt('limit', 1);
+
+            // $houses = $productRepository->paginate($page, $limit); 
+ 
+
+            // $selectedCategory = $this->categoryRepository->find($categoryId);
+
+
+            $categories = $this->categoryRepository->findAll();
             $filters = $this->initializeFilters($request);
+            $Type= 'id';
+       
+            if ($sortPrice !=='') {
+                $products = $this->productRepository->findByFilters([],[$Type=>$sortPrice]);
+            } else {
+                $sortPrice = 'desc'; 
+                $Type = 'id'; 
+                $products = $this->productRepository->findByFilters([], [$Type => $sortPrice]);
+            }
+            
+            if ($form->isSubmitted()) {
+                $sortPrice = $form->get('sortPrice')->getData();
+                // dd($sortPrice);
+                if ($sortPrice=="") {
+                    $sortPrice = 'asc'; 
+                    $Type = 'id';
+                } else {
+                    $sortPrice = $sortPrice; 
+                    $Type = 'price';
+                }
+            }
+
+            $criteria = [];
+            if ($selectedCategory) {
+                $criteria['category'] = $selectedCategory; 
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $filters = $this->initializeFilters($request);
+
+            
             $productForms = $this->generateProductForms($products, $authorizationChecker);
             $cart = $session->get('cart', []);
     
+
+
+
+
             return $this->render('product/index.html.twig', [
                 'categories' => $categories,
-                'products' => $products,
+                'products' => $productRepository->findByFilters($criteria, [$Type=>$sortPrice]),
                 'productForms' => $productForms,
                 'cart' => $cart,
                 'filterForm' => $filters['formView'],

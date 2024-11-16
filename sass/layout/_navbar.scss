@@ -82,7 +82,15 @@
 
     li a {
         color: var(--text-color);
+        text-decoration: none;
+        transition: border-bottom 0.7s ease, padding-bottom 0.7s ease;
     }
+    
+    li a:hover {
+        padding-bottom: 5px;
+        border-bottom: 1px solid var(--text-color);
+    }
+    
 
     &__item {
         padding: 10px;
@@ -144,7 +152,11 @@
 }
 
 
-@media (min-width: 392px) {
+@media (min-width: 1064px) {
+
+    .navbar__icon {
+        display: none;
+    }
     .navbar {
       padding: 15px 20px 10px 30px;  
 }

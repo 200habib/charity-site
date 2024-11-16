@@ -47,22 +47,28 @@
 
 
 <section class="home_services_list">
-    <h3 class="home_services_title">Services</h3>
+    <h3 class="home_services_title">Nos Services</h3>
     <ul class="home_services_items">
         <li class="home_services_item">
-            <img src="{{ asset('image/home/colect.svg') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="80px">
-            <p class="home_services_description">Collecter et distribuer</p>
-            <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
+            <a href="{{ path('app_faq') }}" class="home_services_items_color">
+                <img src="{{ asset('image/home/colect.svg') }}" alt="Icône Collecter et distribuer" class="home_services_icon" height="80">
+                <p class="home_services_description">Vous avez une question ?</p>
+                <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Flèche pour plus d'informations" class="home_services_icon home_services_arraw" height="35">
+            </a>
         </li>
         <li class="home_services_item">
-            <img src="{{ asset('image/home/white-mode/suividedons.svg') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
-            <p class="home_services_description">Suivi des Dons</p>
-            <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
+            <a href="{{ path('app_accessibility') }}" class="home_services_items_color">
+                <img src="{{ asset('image/home/white-mode/suividedons.svg') }}" alt="Icône Accessibilité" class="home_services_icon" height="80">
+                <p class="home_services_description">Accessible à tous</p>
+                <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Flèche pour plus d'informations" class="home_services_icon home_services_arraw" height="35">
+            </a>
         </li>
         <li class="home_services_item">
-            <img src="{{ asset('image/home/white-mode/dons.svg') }}" alt="Icône Suivi des Dons" class="home_services_icon" height="80px">
-            <p class="home_services_description">Suivi des Dons</p>
-            <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Icona Collecter et distribuer" class="home_services_icon" height="35px">
+            <a href="{{ path('app_product_index') }}" class="home_services_items_color">
+                <img src="{{ asset('image/home/white-mode/dons.svg') }}" alt="Icône Achat de produits" class="home_services_icon" height="80">
+                <p class="home_services_description">Venez acheter</p>
+                <img src="{{ asset('image/home/white-mode/arrow.png') }}" alt="Flèche pour plus d'informations" class="home_services_icon home_services_arraw" height="35">
+            </a>
         </li>
     </ul>
 </section>

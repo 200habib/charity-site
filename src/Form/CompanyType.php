@@ -22,7 +22,13 @@ class CompanyType extends AbstractType
             ->add('numberSiren', IntegerType::class, [
                 'label' => 'SIREN Number',
                 'required' => false,
-                'attr' => ['class' => 'general__input'],
+                'attr' => [
+                    'class' => 'general__input',
+                    'type' => 'number', 
+                    'inputmode' => 'numeric', 
+                    'min' => 0, 
+                    'step' => 1 
+                ],
             ])
             ->add('companyAddress', TextType::class, [
                 'label' => 'Company Address',
@@ -37,12 +43,24 @@ class CompanyType extends AbstractType
             ->add('companyPostalCode', TextType::class, [
                 'label' => 'Postal Code',
                 'required' => false,
-                'attr' => ['class' => 'general__input'],
+                'attr' => [
+                    'class' => 'general__input',
+                    'type' => 'number', 
+                    'inputmode' => 'numeric', 
+                    'min' => 0, 
+                    'step' => 1 
+                ],
             ])
             ->add('creditPoints', IntegerType::class, [
                 'label' => 'Credit Points',
                 'required' => false,
-                'attr' => ['class' => 'general__input'],
+                'attr' => [
+                    'class' => 'general__input',
+                    'type' => 'number', 
+                    'inputmode' => 'numeric', 
+                    'min' => 0, 
+                    'step' => 1 
+                ],
             ]);
     }
 

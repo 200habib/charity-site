@@ -78,11 +78,11 @@ class RegistrationFormType extends AbstractType
             'first_options'  => ['label' => 'Password *'],
             'second_options' => ['label' => 'Repeat Password *'],
         ])
-        // ->add('captcha', Recaptcha3Type::class, [
-        //     'constraints' => new Recaptcha3(),
-        //     'action_name' => 'Registration',
-        //     'locale' => 'de',
-        // ])
+        ->add('captcha', Recaptcha3Type::class, [
+            'constraints' => new Recaptcha3(),
+            'action_name' => 'Registration',
+            'locale' => 'de',
+        ])
         ;
         
         ;
