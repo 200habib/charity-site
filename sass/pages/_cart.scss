@@ -69,3 +69,11 @@
         margin: 0 300px 0 300px;
     }
 }
+
+
+@media (max-width: 430px) {
+    .cart {
+        padding: 30px 22px 33px 22px;
+        min-height: 52vh;
+    }
+}

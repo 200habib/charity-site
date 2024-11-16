@@ -174,8 +174,7 @@ $cart = $request->getSession()->get('cart', []);
                         $entityManager->remove($product);
                     }
 
-                    // Crea un orderItem per l'ordine
-                    $product->setBuyerId($user->getId());
+                
                     $orderItem = new OrderItem();
                     $orderItem->setProduct($product);
                     $orderItem->setQuantity($quantity);

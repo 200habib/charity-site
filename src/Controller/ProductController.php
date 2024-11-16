@@ -240,7 +240,7 @@ public function show(Product $product, ProductRepository $productRepository, Aut
             $paginatedProducts = $paginator->paginate(
                 $data,
                 $request->query->getInt('page', 1),
-                1
+                10
             );
             
 
