@@ -24,6 +24,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 #[Route('/product')]
@@ -202,31 +204,13 @@ public function show(Product $product, ProductRepository $productRepository, Aut
             SessionInterface $session,
             Request $request,
             AuthorizationCheckerInterface $authorizationChecker,
+            CategoryRepository $categoryRepository,
+            PaginatorInterface $paginator,
         ): Response {
 
-
             $form = $this->createForm(FilterType::class);
-
-            // Gestisci il form
             $form->handleRequest($request);
-        
-            // Debug per verificare lo stato del form dopo la gestione della richiesta
-            // dd($form->isSubmitted(), $form->isValid(), $form->getData());
             $sortPrice = '';
-
-
-
-
-
-
-            // $page = $request->query->getInt('page', 1);
-            // $limit = $request->query->getInt('limit', 1);
-
-            // $houses = $productRepository->paginate($page, $limit); 
- 
-
-            // $selectedCategory = $this->categoryRepository->find($categoryId);
-
 
             $categories = $this->categoryRepository->findAll();
             $filters = $this->initializeFilters($request);
@@ -242,7 +226,6 @@ public function show(Product $product, ProductRepository $productRepository, Aut
             
             if ($form->isSubmitted()) {
                 $sortPrice = $form->get('sortPrice')->getData();
-                // dd($sortPrice);
                 if ($sortPrice=="") {
                     $sortPrice = 'asc'; 
                     $Type = 'id';
@@ -252,6 +235,15 @@ public function show(Product $product, ProductRepository $productRepository, Aut
                 }
             }
 
+            $data = $productRepository->findByFilters([], [$Type => $sortPrice]);
+
+            $paginatedProducts = $paginator->paginate(
+                $data,
+                $request->query->getInt('page', 1),
+                1
+            );
+            
+
 
     
             $productForms = $this->generateProductForms($products, $authorizationChecker);
@@ -260,12 +252,12 @@ public function show(Product $product, ProductRepository $productRepository, Aut
     
             return $this->render('product/index.html.twig', [
                 'categories' => $categories,
-                'products' => $products,
+                // 'products' => $products,
                 'productForms' => $productForms,
                 'cart' => $cart,
                 'filterForm' => $filters['formView'],
                 'selectedCategory' => $selectedCategory,
-                'products' => $productRepository->findByFilters([],[$Type=>$sortPrice])
+                'products' => $paginatedProducts 
                 // 'houses' => $houses
             ]);
         }

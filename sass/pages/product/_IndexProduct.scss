@@ -134,7 +134,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 30px;
-      margin: 10px 250px;
+      margin: 10px 95px;
       min-height: 60vh;
     }
   
@@ -189,7 +189,7 @@
         
 
         &__title {
-            font-size: 25px;
+          font-size: var(--font-size-h1);
         }
 
         &__body {
@@ -226,7 +226,7 @@
     border: 3px solid var(--footer-background-color);
     padding: 15px;
     border-radius: 20px;
-    height: 275px;
+    height: auto;
 
     img {
         height: 90px;

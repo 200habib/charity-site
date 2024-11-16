@@ -35,7 +35,8 @@
         margin-bottom: 1.5rem;
 
         .section-title {
-          font-size: 1.1rem;
+          
+          font-size: var(--font-size);
           font-weight: bold;
           text-transform: uppercase;
         }
@@ -60,7 +61,7 @@
           color: var(--text-color);
           display: block;
           margin-bottom: 0.75rem;
-          font-size: 0.9rem;
+          font-size: var(--font-size);
           text-decoration: none;
           transition: color var(--transition);
         }
@@ -92,11 +93,11 @@
     }
 
     .footer-section-header .section-title {
-      font-size: 1.2rem;
+      font-size: var(--font-size);
     }
 
     .footer-list .footer-link {
-      font-size: 1rem;
+      font-size: var(--font-size);
     }
   }
 }
@@ -155,11 +156,14 @@
     background-color: var(--footer-background-color);
   }
   
-  
+  .section-title {
+    line-height: 40px;
+  }
   .footer-nav {
   
     .section-title {
       color: var(--text-color);
+      font-size: var(--font-size);
     }
   
     

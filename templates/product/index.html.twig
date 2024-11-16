@@ -91,6 +91,8 @@
 
 
 			</div>
+			{# {{ knp_pagination_render(products, 'product/_partials/paginator.html.twig') }} #}
+
 		{% else %}
 			<div class="productList__no-products" role="alert">
 				Aucun produit trouvé.
@@ -98,7 +100,7 @@
 		{% endfor %}
 	</div>
 	
-{# {{ knp_pagination_render(houses) }} #}
+
 
 {% endblock %}
 

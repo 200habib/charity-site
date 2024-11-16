@@ -12,11 +12,11 @@
         <p>Merci de nous aider à améliorer notre site ! Nous apprécions énormément vos conseils et suggestions. Grâce à votre retour, nous espérons rendre la plateforme plus accessible et utile pour tous. Vos recommandations nous permettront de guider les clients dans leurs choix, surtout lorsqu'ils ne savent pas quel produit choisir. N'hésitez pas à partager vos idées avec nous ci-dessous.</p>
     </header>
 
-    {% for message in app.flashes('success') %}
+    {# {% for message in app.flashes('success') %}
         <div class="advice-association__alert advice-association__alert--success" role="alert">
             {{ message }}
         </div>
-    {% endfor %}
+    {% endfor %} #}
 
     {{ form_start(form, {'attr': {'class': 'advice-association__form'}}) }}
         <div class="advice-association__form-group">
