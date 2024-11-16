@@ -7,16 +7,25 @@ body {
     padding: 15px 25px 0px 25px;
 }
 
+.home_services_items_color {
+  color: var(--text-color);
+}
 
 
 
 @media (min-width: 1064px) {
 
+.home_services_arraw {
+  display: none;
+}
 
 .home_services_list {
   padding: 50px;
   border-radius: 8px;
-  background-color: var(--main-background-color); /* Background del container */
+  background-color: var(--main-background-color);
+  display: flex;
+        align-items: center;
+        flex-direction: column;
 }
 
 .home_services_items {
@@ -319,7 +328,6 @@ ul {
     padding: 20px;
   }
   
-  /* Article pour chaque étape du service */
   .service-step-item {
     background-color: var(--footer-background-color);
     border: var(--border-color);

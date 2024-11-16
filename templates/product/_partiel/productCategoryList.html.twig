@@ -11,15 +11,15 @@
 	{% endfor %}
 
 <ul class= "product__category_filter_content">
-	<li class="product__category_filter"><img data-light-src="{{ asset('image/category/vectorlight.png') }}" data-dark-src="{{ asset('image/category/Vector.png') }}" alt="category filter"></li>
+	<li class="product__category_filter"><img data-light-src="{{ asset('image/category/vectorlight.png') }}" data-dark-src="{{ asset('image/category/Vector.png') }}" alt="category filter" aria-label="Cliquez sur cette image pour sélectionner un filtre"></li>
 	{{ include('product/_partiel/productFiltres.html.twig') }}
 </ul>
 
 
 	{% if is_granted('ROLE_SELLER') %}
 		<li class="product__category_new">
-			<a href="{{ path('app_product_new') }}">
-				<img src="{{ asset('image/category/morebutton.png') }}" alt="more button">
+			<a href="{{ path('app_product_new') }}" aria-label="Cliquez pour ajouter des produits à votre liste">
+				<img src="{{ asset('image/category/morebutton.png') }}" alt="plus">
 			</a>
 		</li>
 	{% endif %}

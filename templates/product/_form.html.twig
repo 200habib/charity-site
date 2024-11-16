@@ -23,20 +23,20 @@
         <div>
             <div class="product__volume form_product">
                 {{ form_label(form.volumeLitre) }}
-                {{ form_widget(form.volumeLitre, {'attr': {'class': 'product__unitType form_product__label'}}) }}
+                {{ form_widget(form.volumeLitre, {'attr': {'class': 'product__unitType form_product__label general__input'}}) }}
                 {{ form_errors(form.volumeLitre) }}
             </div>
 
             <div class="product__weight form_product">
                 {{ form_label(form.weight) }}
-                {{ form_widget(form.weight, {'attr': {'class': 'product__unitType form_product__label'}}) }}
+                {{ form_widget(form.weight, {'attr': {'class': 'product__unitType form_product__label general__input'}}) }}
                 {{ form_errors(form.weight) }}
             </div>
         </div>
     
             <div class="form_product">
                 {{ form_label(form.unitType) }}
-                {{ form_widget(form.unitType, {'attr': {'class': 'product__unitType form_product__label'}}) }}
+                {{ form_widget(form.unitType, {'attr': {'class': 'product__unitType form_product__label general__input'}}) }}
                 {{ form_errors(form.unitType) }}
             </div>
         </div>
@@ -70,7 +70,7 @@
 
     
 
-    <button class="product__button">{{ button_label|default('enregistrer.') }}</button>
+    <button class="product__button general__button">{{ button_label|default('enregistrer.') }}</button>
 
 {{ form_end(form) }}
 

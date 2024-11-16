@@ -19,11 +19,11 @@ class ContactType extends AbstractType
             ->add('name', TextType::class, ['label' => 'Your Name'])
             ->add('email', EmailType::class, ['label' => 'Your Email'])
             ->add('message', TextareaType::class, ['label' => 'Your Message'])
-            // ->add('captcha', Recaptcha3Type::class, [
-            //     'constraints' => new Recaptcha3(),
-            //     'action_name' => 'Registration',
-            //     'locale' => 'de',
-            // ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'Registration',
+                'locale' => 'de',
+            ])
             ;
     }
 

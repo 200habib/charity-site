@@ -112,7 +112,6 @@ final class UserController extends AbstractController
     
                 return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
             } else {
-                // Mostra gli errori del form per il debug
                 dd($form->getErrors(true, false));
             }
         }

@@ -22,7 +22,6 @@ class AdviceAssociationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configura qui le opzioni, se necessario
         ]);
     }
 }

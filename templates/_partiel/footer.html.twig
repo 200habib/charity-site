@@ -2,78 +2,96 @@
 	<nav
 		class="footer-nav">
 		<!-- Section Nous Contacter -->
-		<section class="footer-section contact-section">
-			<header class="footer-section-header">
-				<h6 class="section-title">Nous contacter</h6>
-				<img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone de Contact" class="section-icon">
-			</header>
-			<ul class="footer-list">
-				<li>
-					<a href="{{ path('app_home') }}" class="footer-link">Accueil</a>
-				</li>
-				<li>
-					<a href="mailto:info@yourcompany.com" class="footer-link">Email: info@yourcompany.com</a>
-				</li>
-				<li>
-					<a href="tel:+1234567890" class="footer-link">Téléphone: +123 456 7890</a>
-				</li>
-				<li>
-					<a href="{{ path('app_contact_us') }}" class="footer-link">Formulaire de contact</a>
-				</li>
-			</ul>
-		</section>
+<section class="footer-section contact-section">
+    <header class="footer-section-header">
+        <h6 class="section-title">Nous contacter</h6>
+        <img 
+            src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-light-src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-dark-src="{{ asset('image/footer/dark-mode/Arrow.png') }}" 
+            alt="Icône de Contact" 
+            aria-label="En cliquant ici, vous verrez la section Contact" 
+            class="section-icon">
+    </header>
+    <ul class="footer-list">
+        <li>
+            <a href="{{ path('app_home') }}" class="footer-link">Accueil</a>
+        </li>
+        <li>
+            <a href="mailto:info@yourcompany.com" class="footer-link">Email : info@yourcompany.com</a>
+        </li>
+        <li>
+            <a href="tel:+1234567890" class="footer-link">Téléphone : +123 456 7890</a>
+        </li>
+        <li>
+            <a href="{{ path('app_contact_us') }}" class="footer-link">Formulaire de contact</a>
+        </li>
+    </ul>
+</section>
 
-		<!-- Section À Propos -->
-		<section class="footer-section about-section">
-			<header class="footer-section-header">
-				<h6 class="section-title">À propos de nous</h6>
-				<img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone À propos" class="section-icon">
-			</header>
-			<ul class="footer-list">
-				<li>
-					<a href="{{ path('app_about_us') }}" class="footer-link">Notre histoire</a>
-				</li>
-				<li>
-					<a href="{{ path('app_sponsor') }}" class="footer-link">Sponsor</a>
-				</li>
+<section class="footer-section about-section">
+    <header class="footer-section-header">
+        <h6 class="section-title">À propos de nous</h6>
+        <img 
+            src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-light-src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-dark-src="{{ asset('image/footer/dark-mode/Arrow.png') }}" 
+            alt="Icône À propos" 
+            aria-label="En cliquant ici, vous verrez la section À propos" 
+            class="section-icon">
+    </header>
+    <ul class="footer-list">
+        <li>
+            <a href="{{ path('app_about_us') }}" class="footer-link">Notre histoire</a>
+        </li>
+        <li>
+            <a href="{{ path('app_sponsor') }}" class="footer-link">Sponsor</a>
+        </li>
+    </ul>
+</section>
 
+<section class="footer-section services-section">
+    <header class="footer-section-header">
+        <h6 class="section-title">Nos Services</h6>
+        <img 
+            src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-light-src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-dark-src="{{ asset('image/footer/dark-mode/Arrow.png') }}" 
+            alt="Icône de Services" 
+            aria-label="En cliquant ici, vous verrez la section Services" 
+            class="section-icon">
+    </header>
+    <ul class="footer-list">
+        <li>
+            <a href="{{ path('app_faq') }}" class="footer-link">FAQ</a>
+        </li>
+        <li>
+            <a href="{{ path('app_accessibility') }}" class="footer-link">Accessibilité</a>
+        </li>
+    </ul>
+</section>
 
-				
-			</ul>
-		</section>
+<section class="footer-section resources-section">
+    <header class="footer-section-header">
+        <h6 class="section-title">Mentions légales et Cookies</h6>
+        <img 
+            src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-light-src="{{ asset('image/footer/white-mode/Arrow.png') }}" 
+            data-dark-src="{{ asset('image/footer/dark-mode/Arrow.png') }}" 
+            alt="Icône de Ressources" 
+            aria-label="En cliquant ici, vous verrez la section Mentions légales et Cookies" 
+            class="section-icon">
+    </header>
+    <ul class="footer-list">
+        <li>
+            <a href="{{ path('app_privacy_policy') }}" class="footer-link">Confidentialité</a>
+        </li>
+        <li>
+            <a href="{{ path('app_my_Terms_and_Conditions') }}" class="footer-link">Conditions générales</a>
+        </li>
+    </ul>
+</section>
 
-		<!-- Section Nos Services -->
-		<section class="footer-section services-section">
-			<header class="footer-section-header">
-				<h6 class="section-title">Nos Services</h6>
-				<img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone de Services" class="section-icon">
-			</header>
-			<ul class="footer-list">
-				<li>
-					<a href="{{ path('app_faq') }}" class="footer-link">FAQ</a>
-				</li>
-				
-				<li>
-					<a href="{{ path('app_accessibility') }}" class="footer-link">Accessibilité</a>
-				</li>
-			</ul>
-		</section>
-
-		<!-- Section Ressources -->
-		<section class="footer-section resources-section">
-			<header class="footer-section-header">
-				<h6 class="section-title">Mentions legales et Cookies</h6>
-				<img src="{{ asset('image/footer/white-mode/Arrow.png') }}" alt="Icone de Ressources" class="section-icon">
-			</header>
-			<ul class="footer-list">
-				<li>
-					<a href="{{ path('app_privacy_policy') }}" class="footer-link">Privacy</a>
-				</li>
-				<li>
-					<a href="{{ path('app_my_Terms_and_Conditions') }}" class="footer-link">Termes et Conditions</a>
-				</li>
-			</ul>
-		</section>
 
 		<!-- Section Suivez-nous -->
 		{# <section class="footer-section social-section">
@@ -99,8 +117,8 @@
 	</nav>
 
 
-	<div class="footer__logo">
-		<img data-light-src="{{ asset('image/navbar/white-mode/logo.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/logo.png') }}" alt="Logo" class="navbar__logo">
+	<div class="footer__logo" aria-label="Aller à la page d'accueil">
+		<img  data-light-src="{{ asset('image/navbar/white-mode/logo.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/logo.png') }}" alt="Logo" class="navbar__logo">
 		<div>
 			© 2024 Ulisse. Tous droits réservés.
 		</div>
