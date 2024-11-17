@@ -135,7 +135,11 @@
     border: none;
 }
     .filter__button_sizes {
+
         display: block;
+        p {
+            margin-top: 10px;
+        }
     }
     
     .filters.visible {

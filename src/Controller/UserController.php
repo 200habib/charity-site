@@ -104,7 +104,6 @@ final class UserController extends AbstractController
                     $hashedPassword = $passwordHasher->hashPassword($user, $password);
                     $user->setPassword($hashedPassword);
                 } else {
-                    // Se il campo password è vuoto, ripristina la password originale
                     $user->setPassword($originalPassword);
                 }
     
