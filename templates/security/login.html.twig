@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!
+{% block title %}
+	Log in!
 {% endblock %}
+
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'password']) }}
+	{% endblock %}
+{% endblock %}
+
 
 {% block body %}
 	<div class="login__content">
@@ -18,27 +26,30 @@
 				</div>
 			{% endif %}
 
-			<h1 class="login__title">Please sign in</h1>
+			<h1 class="login__title">Veuillez vous connecter</h1>
 			<label for="username">Email</label>
 			<input type="email" value="{{ last_username }}" name="_username" id="username" class="general__input" autocomplete="email" required autofocus>
 			<label for="password">Password</label>
-			<input type="password" name="_password" id="password" class="general__input" autocomplete="current-password" required>
+			<div class="password_show_content">
+				<input type="password" name="_password" id="password" class="general__input show_password" autocomplete="current-password" required>
+				<img id="togglePassword" class='password__potition_login' show-src="{{ asset('image/login/show.png') }}" hidden-src="{{ asset('image/login/hidden.png') }}" alt="Toggle visibility">
+			</div>
 
 			<input
 			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 			{#
-						            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-						            See https://symfony.com/doc/current/security/remember_me.html
-						
-						            <div class="checkbox mb-3">
-						                <input type="checkbox" name="_remember_me" id="_remember_me">
-						                <label for="_remember_me">Remember me</label>
-						            </div>
-						        #}
+												            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+												            See https://symfony.com/doc/current/security/remember_me.html
+												
+												            <div class="checkbox mb-3">
+												                <input type="checkbox" name="_remember_me" id="_remember_me">
+												                <label for="_remember_me">Remember me</label>
+												            </div>
+												        #}
 
 			<button class="general__button" type="submit">
-				Sign in
+				Se connecter
 			</button>
 
 			<div class="login__link-Inscrivez-vous_content">

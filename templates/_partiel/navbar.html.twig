@@ -3,7 +3,7 @@
 	<ul class="navbar__list">
 		<li class="navbar__item" id="menu-burger">
 			<div class="navbar_menu-burger__icon-container">
-				<div class="navbar_menu-burger__icon" aria-label="Fermer le menu"></div>
+				<div class="navbar_menu-burger__icon" role="button" aria-label="Fermer le menu"></div>
 			</div>
 			<img data-light-src="{{ asset('image/navbar/white-mode/Menu.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/Menu.png') }}" alt="Menu" class="navbar__icon" id="navbar__icon_open_menu" aria-label="Ouvrir le menu">
 			<img data-light-src="{{ asset('image/navbar/white-mode/closeMenu.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/closeMenu.png') }}" alt="Fermeture du menu" aria-label="Fermer le menu" class="navbar__icon_close" id="navbar__icon_close">
@@ -12,7 +12,7 @@
 				<img data-light-src="{{ asset('image/navbar/white-mode/logo.png') }}" data-dark-src="{{ asset('image/navbar/dark-mode/logo.png') }}" alt="Logo" class="navbar__logo">
 			</a>
 		</li>
-
+<li>
 		<ul class="navbar_menu">
 			<li class="navbar_menu__item">
 				<a href="{{ path('app_home') }}" aria-label="Aller à la page d'accueil">Accueil</a>
@@ -69,8 +69,10 @@
 																					            </li> #}
 
 		</ul>
+</li>
 
 
+<li>
 		<ul class="navbar__item_login_cart">
 
 			<li class="menu__item nav__settings__toggle">
@@ -96,8 +98,9 @@
 
 		
 			{% set cart = app.session.get('cart') %}
-			<li class="navbar__item">
+	
 			{% if cart is not empty %}
+					<li class="navbar__item">
 				<a href="{{ path('cart') }}" aria-label="Accéder au panier" class="navbar__cart">
 					<span>
 						{% set total = 0 %}
@@ -112,5 +115,7 @@
 		
 
 	</ul>
+</li>
+
 
 </ul></nav>{% include '_partiel/_menu_burger.html.twig' %}

@@ -2,10 +2,16 @@
 
 {% block title %}Register{% endblock %}
 
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap(['app', 'password']) }}
+			{% endblock %}
+		{% endblock %}
+        
 {% block body %}
 <div class="Register__content">
 <div class="Register__form">
-    <h1 class= "Register__h1">Register</h1>
+    <h1 class= "Register__h1">Veuillez vous inscrire</h1>
 
     {{ form_errors(registrationForm) }}
 
@@ -13,11 +19,24 @@
         {{ form_row(registrationForm.email, {
             'attr': { 'class': 'general__input' }
         }) }}
+        <div class="register__content_Password">
+        
+<div class="password_show_content">
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password',
-            'attr': { 'class': 'general__input' }
+            'attr': { 'class': 'general__input show_password' }
         }) }}
 
+<img 
+    id="togglePassword" 
+    class='password__potition'
+    show-src="{{ asset('image/login/show.png') }}" 
+    hidden-src="{{ asset('image/login/hidden.png') }}" 
+    alt="Toggle visibility" 
+>
+</div>
+
+        </div>
         <p>
         Le mot de passe doit contenir au minimum huit caractères, avec au moins une lettre majuscule, une lettre minuscule, un chiffre, et un caractère spécial  (#?!@$ %^&*-_).
         </p>
@@ -30,12 +49,13 @@
         </div>
 
 
-        <button type="submit" class="general__button">Register</button>
+
+        <button type="submit" class="general__button">S'inscrire</button>
 
         {# <a href="{{ path('app_login') }}" class="Register__link-login">Vous avez déjà un profil ? Connectez-vous ici</a> #}
 
 			<div class="login__link-Inscrivez-vous_content">
-				<p class="login__link-Inscrivez-vous">Vous avez déjà un profil ?</p>
+				<p class="login__link-Inscrivez-vous-prifil">Vous avez déjà un profil ?</p>
 				<button class="general__button ">
 					<a href="{{ path('app_login') }}" class="login__link-Inscrivez-vous">
 						Connectez-vous ici</a>

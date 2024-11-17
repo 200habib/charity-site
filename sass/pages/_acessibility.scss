@@ -30,3 +30,22 @@
         }
 }
 
+@media (max-width: 431px) {
+   .accessibility__list_cursor{
+    display: none !important; 
+} 
+
+.acessibility__img {
+    img {
+        width: 100%;
+    }
+}
+
+.acessibility__sub_conteiner {
+    padding: 0 30px;
+
+    .productDetail__contentbutton {
+        margin-top: 25px;
+    }
+}
+}

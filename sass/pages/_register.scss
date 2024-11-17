@@ -19,17 +19,33 @@
     border-radius: 20px;
 }
 
+.register__content_Password{
+    ul li {
+    color: red;
+    padding: 10px 0;     
+    }
+   
+}
+
 .Register__check {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: space-evenly;
-    margin-bottom: 16px;
+    margin: 17px 0;
+
+    label {
+        padding-left: 25px;
+    }
 
         label a {
             color: var(--text-color);
         }
+        .register__link {
+            color: blue;
+        }
 }
+
 
 .Register__link-login {
     color: var(--text-color);
@@ -59,4 +75,19 @@
         align-items: center;
         justify-content: center;
     }
+}
+
+
+
+
+.password_show_content {
+position: relative;
+}
+
+.password__potition {
+    cursor: pointer;
+    width: 45px;
+    position: absolute;
+    top: 29px;
+    right: 7px;
 }

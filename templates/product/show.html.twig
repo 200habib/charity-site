@@ -5,7 +5,7 @@
 
 {% block javascripts %}
 	{% block importmap %}
-		{{ importmap(['app', 'product']) }}
+		{{ importmap(['app', 'product', 'buttonShow']) }}
 	{% endblock %}
 {% endblock %}
 
@@ -40,7 +40,7 @@
 					<p>{{ product.description }}</p>
 				</div>
 
-<p>Choisissez la quantité souhaitée pour l'ajouter à votre panier.</p>
+				<p>Choisissez la quantité souhaitée pour l'ajouter à votre panier.</p>
 				<div class="productView__buttons">
 					{% if is_granted('ROLE_SELLER') and userId == product.user.id %}
 						<form action="{{ path('app_product_delete', { 'id': product.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');" class="productView__deleteForm">
@@ -48,18 +48,40 @@
 							<button class="productView__deleteButton">Supprimer</button>
 						</form>
 						<a href="{{ path('app_product_edit', { 'id': product.id }) }}" class="productView__editButton">Modifier</a>
-						
+
 					{% else %}
-					
+
 
 						{% if productForms[product.id] is defined %}
 							{{ form_start(productForms[product.id]) }}
-							{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
-							<button type="submit" class="productList__AddToBasket">Ajouter au panier</button>
+							<div class="product__quantity-controls">
+								<button class="product__quantity-button">-</button>
+								{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'product__quantity-value'}}) }}
+								<button class="product__quantity-button">+</button>
+							</div>
+
+							<button type="submit" class="general__button">Ajouter au panier</button>
 							{{ form_end(productForms[product.id]) }}
+
 						{% else %}
-							<button class="productList__AddToBasket">Indisponible</button>
+							<button class="product__add-to-cart">Indisponible</button>
 						{% endif %}
+
+
+						{# {% if productForms[product.id] is defined %}
+													{{ form_start(productForms[product.id]) }}
+													<div class="product__buton_basket_content">
+														<button class="product__buton_basket">-</button>
+														{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
+														<button class="product__buton_basket">+</button>
+													</div>
+						
+													<button type="submit" class="productList__AddToBasket">Ajouter au panier</button>
+													{{ form_end(productForms[product.id]) }}
+						
+												{% else %}
+													<button class="productList__AddToBasket">Indisponible</button>
+												{% endif %} #}
 					{% endif %}
 				</div>
 
@@ -90,28 +112,28 @@
 		</div>
 
 		{# <div class="productView__recommendations">
-					<h2 class="productView__recommendationsTitle">Dans la même catégorie</h2>
-					<div class="productView__relatedList">
-						{% for relatedProduct in products|slice(0, 5) %}
-							<div class="productView__relatedItem">
-								<a href="{{ path('app_product_show', { 'id': relatedProduct.id }) }}" class="productView__relatedLink">
-									<img src="{{ vich_uploader_asset(relatedProduct) }}" class="productView__relatedImage" alt="{{ relatedProduct.name }}">
-									<div class="productView__relatedBody">
-										<h5 class="productView__relatedTitle">{{ relatedProduct.name }}</h5>
-										<p class="productView__relatedPrice">Prix : {{ relatedProduct.price }} €</p>
+									<h2 class="productView__recommendationsTitle">Dans la même catégorie</h2>
+									<div class="productView__relatedList">
+										{% for relatedProduct in products|slice(0, 5) %}
+											<div class="productView__relatedItem">
+												<a href="{{ path('app_product_show', { 'id': relatedProduct.id }) }}" class="productView__relatedLink">
+													<img src="{{ vich_uploader_asset(relatedProduct) }}" class="productView__relatedImage" alt="{{ relatedProduct.name }}">
+													<div class="productView__relatedBody">
+														<h5 class="productView__relatedTitle">{{ relatedProduct.name }}</h5>
+														<p class="productView__relatedPrice">Prix : {{ relatedProduct.price }} €</p>
+													</div>
+												</a>
+												{% if productForms[relatedProduct.id] is defined %}
+													{{ form_start(productForms[relatedProduct.id]) }}
+													{{ form_widget(productForms[relatedProduct.id].quantity, {'attr': {'class': 'productView__relatedQuantity'}}) }}
+													<button type="submit" class="productView__relatedAddToCart">Ajouter au panier</button>
+													{{ form_end(productForms[relatedProduct.id]) }}
+												{% else %}
+													<button class="productView__relatedUnavailable">Indisponible</button>
+												{% endif %}
+											</div>
+										{% endfor %}
 									</div>
-								</a>
-								{% if productForms[relatedProduct.id] is defined %}
-									{{ form_start(productForms[relatedProduct.id]) }}
-									{{ form_widget(productForms[relatedProduct.id].quantity, {'attr': {'class': 'productView__relatedQuantity'}}) }}
-									<button type="submit" class="productView__relatedAddToCart">Ajouter au panier</button>
-									{{ form_end(productForms[relatedProduct.id]) }}
-								{% else %}
-									<button class="productView__relatedUnavailable">Indisponible</button>
-								{% endif %}
-							</div>
-						{% endfor %}
-					</div>
-				</div> #}
+								</div> #}
 	</div>
 {% endblock %}

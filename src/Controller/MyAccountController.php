@@ -52,7 +52,6 @@ class MyAccountController extends AbstractController
     {
         $user = $this->getUser();
         
-        // Verifica la presenza dell'utente
         if (!$user) {
             throw $this->createAccessDeniedException();
         }
@@ -170,10 +169,10 @@ class MyAccountController extends AbstractController
     }
     
     
-    #[Route('/Terms-and-Conditions', name: 'app_my_Terms_and_Conditions', methods: ['GET', 'POST'])]
-    public function TermsAndConditions(): Response
-    {
-        return $this->render('my_account/TermsAndConditions.html.twig', [
-        ]);
-    }
+    // #[Route('/Terms-and-Conditions', name: 'app_my_Terms_and_Conditions', methods: ['GET', 'POST'])]
+    // public function TermsAndConditions(): Response
+    // {
+    //     return $this->render('my_account/TermsAndConditions.html.twig', [
+    //     ]);
+    // }
 }

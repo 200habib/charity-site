@@ -15,8 +15,11 @@
     margin: 55px 29px;
 }
 
-.login__link-Inscrivez-vous {
+.login__link-Inscrivez-vous-prifil {
     color: var(--text-color);
+}
+.login__link-Inscrivez-vous {
+    color: white;
 }
 
 .login__form {
@@ -107,9 +110,17 @@ input[type="password"]:focus {
 }
 
 
+.password__potition_login {
+    cursor: pointer;
+    width: 45px;
+    position: absolute;
+    top: 3px;
+    right: 17px;
+}
 
-
-
+.show_password {
+    padding-right: 58px;
+}
 
 
 

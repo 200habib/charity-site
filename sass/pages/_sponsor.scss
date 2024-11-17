@@ -36,8 +36,10 @@
 //     margin: 10px auto 0 auto;
 // }
 
+
+
 .sponsor__text {
-    font-size: 18px;
+    font-size: var(--font-size);
     color: var(--text-color);
     margin-bottom: 25px;
     line-height: 1.8;

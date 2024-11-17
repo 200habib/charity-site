@@ -1,4 +1,4 @@
- {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Product index
 {% endblock %}
@@ -8,7 +8,7 @@
 
 {% block javascripts %}
 	{% block importmap %}
-		{{ importmap(['app', 'filtre', 'flashMessages']) }}
+		{{ importmap(['app', 'filtre', 'flashMessages', 'buttonProduct', 'filterSize']) }}
 	{% endblock %}
 {% endblock %}
 
@@ -18,7 +18,7 @@
 	{% include '_partiel/_flash_message.html.twig' %}
 	<div class="productList_navbar">
 		{{ include('product/_partiel/productCategoryList.html.twig') }}
-		
+
 	</div>
 
 	<div class="productList">
@@ -47,7 +47,8 @@
 								{% else %}
 									<div class="productList__body_prix">
 										<p class="productList__prix">
-											{{ (product.price * 2) | number_format(0, ',', ' ') }} points
+											{{ (product.price * 2) | number_format(0, ',', ' ') }}
+											points
 										</p>
 									</div>
 								{% endif %}
@@ -72,17 +73,21 @@
 
 
 					</a>
-	
-			
-		
-<p>Sélectionnez la quantité pour le panier.</p>
+
+
+					<p>Sélectionnez la quantité pour le panier.</p>
 
 					{% if productForms[product.id] is defined %}
 						{{ form_start(productForms[product.id]) }}
-						{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
+						<div class="product__buton_basket_content">
+							<button class="product__buton_basket">-</button>
+							{{ form_widget(productForms[product.id].quantity, {'attr': {'class': 'productList__total'}}) }}
+							<button class="product__buton_basket">+</button>
+						</div>
+
 						<button type="submit" class="productList__AddToBasket">Ajouter au panier</button>
 						{{ form_end(productForms[product.id]) }}
-	
+
 					{% else %}
 						<button class="productList__AddToBasket">Indisponible</button>
 					{% endif %}
@@ -92,7 +97,7 @@
 
 
 			</div>
-			{# {{ knp_pagination_render(products, 'product/_partials/paginator.html.twig') }} #}
+
 
 		{% else %}
 			<div class="productList__no-products" role="alert">
@@ -100,26 +105,14 @@
 			</div>
 		{% endfor %}
 	</div>
-	
+
+		{{ knp_pagination_render(products, 'product/_partiel/paginator.html.twig') }}	
 
 
 {% endblock %}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- {# {% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Product List{% endblock %}
 
@@ -176,4 +169,3 @@
         </ul>
     </div>
 {% endblock %} #}
-

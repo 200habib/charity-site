@@ -14,6 +14,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   min-height: 60vh;
+  margin: 0 63px;
+
   
     &__title {
       font-size: 28px;
@@ -30,7 +32,7 @@
     &__AddToBasket {
       background-color: var(--primary);
       color: #fff;
-      font-size: 16px;
+      font-size: var(--font-size);
       width: 100%;
       height: 40px;
       border: none;
@@ -124,27 +126,73 @@
 
 
 
-
+  .productList__total {
+    width: 100%;
+}
 
 
 
   @media (min-width: 1064px) {
 
-    .productList {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-      margin: 10px 95px;
-      min-height: 60vh;
+    .product__buton_basket_content {
+      display: flex;
+      justify-content: space-evenly;
     }
+
+    .productList__total {
+      text-align: center;
+      width: 53%;
+      border-radius: 21px;
+      border: none;
+  
+    }
+
+.product__buton_basket {
+     width: 33px;
+    height: 33px;
+    border-radius: 30px;
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    font-size: 25px;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
     .product__card {
       padding: 30px;
     }
   
     .productList__AddToBasket {
-      font-size: 18px;
+      font-size: var(--font-size);
     }
+  }
+
+  .productList__AddToBasket {
+    font-size: var(--font-size);
   }
 
 
@@ -176,18 +224,42 @@
 
 
 
-
-
-
 @media (max-width: 431px) {
+  .product__buton_basket {
+    display: none;
+  }
 
-
-.productList {
+  .productList {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     padding: 20px;
     min-height: 47vh;
+  }
+  
+  .productList.active {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+    min-height: 47vh;
+
+    .product__card img {
+      height: 180px;
+    }
+  }
+
+  .productList__AddToBasket.active {
+    height: 47px;
+  }
+
+
+.productList {
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // gap: 20px;
+    // padding: 20px;
+    // min-height: 47vh;
         
 
         &__title {
@@ -214,12 +286,11 @@
 
         &__AddToBasket {
             background-color: var(--primary);
-            height: 30px;
+            height: 60px;
             width: 100%;
             border-radius: 20px;
             border: none;
             color: white;
-            font-size: 14px;
             margin-top: 10px;
         }
 
@@ -261,4 +332,17 @@
         font-size: 20px;
     }
 }
+}
+
+.product__card {
+  font-size: var(--font-size);
+}
+
+.productList__body_prix {
+  font-size: var(--font-size);
+}
+
+.product_quantity_quantity {
+
+  font-size: var(--font-size);
 }
