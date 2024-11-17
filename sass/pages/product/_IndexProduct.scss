@@ -248,11 +248,11 @@
     padding: 20px;
     min-height: 47vh;
 
-    // .product__card img {
-    //   height: 180px;
-    // }
+ 
   }
-
+   .card-img-top.active  {
+      height: 180px;
+    }
   .productList__AddToBasket.active {
     height: 47px;
   }
