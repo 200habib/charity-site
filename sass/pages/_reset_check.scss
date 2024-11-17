@@ -1,0 +1,19 @@
+.reset__check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.reset__check_content{
+    width: 74%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--footer-background-color);
+    padding: 20px;
+    border-radius: 22px;
+    margin: 49px 0;
+}
