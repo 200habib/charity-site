@@ -14,13 +14,20 @@
 		{{ form_errors(filterForm.sortPrice) }}
 	</div>
 
+	<div class="filter__button_sizes">
+<p>
+  Choisissez "1x1" pour une colonne, "1x2" pour deux colonnes.
+</p>
+		<button id="layout-toggle-1x1"	class="filter__size_button">1x1</button>
+		<button id="layout-toggle-1x2"	class="filter__size_button">1x2</button>
+	</div>
 	{# {% if is_granted('ROLE_SELLER') %}
-	        <div class="filters__seller">
-	            {{ form_widget(filterForm.showSellerProducts, {'attr': {'class': 'filters__checkbox', 'id': 'showSellerProducts'}}) }}
-	            {{ form_label(filterForm.showSellerProducts, null, {'label_attr': {'for': 'showSellerProducts'}}) }}
-	            {{ form_errors(filterForm.showSellerProducts) }}
-	        </div>
-	    {% endif %} #}
+		        <div class="filters__seller">
+		            {{ form_widget(filterForm.showSellerProducts, {'attr': {'class': 'filters__checkbox', 'id': 'showSellerProducts'}}) }}
+		            {{ form_label(filterForm.showSellerProducts, null, {'label_attr': {'for': 'showSellerProducts'}}) }}
+		            {{ form_errors(filterForm.showSellerProducts) }}
+		        </div>
+		    {% endif %} #}
 
 	<div class="filters__selectedCategory_name" {% if not selectedCategory or selectedCategory.name == '' %} style="display: none;" {% endif %}>
 		{% if selectedCategory %}
@@ -30,22 +37,21 @@
 		{% endif %}
 	</div>
 
-<div class="filters__selected_autres_categorie">
-    
-    {% if categories|length > 3 %}
-    <h3>Autres catégories</h3>
-        <ul>
-            {% for category in categories|slice(3) %}
-                <li>
-                    <a href="{{ path('change_category', { categoryId: category.id }) }}">
-                        {{ category.name }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</div>
+	<div class="filters__selected_autres_categorie">
 
+		{% if categories|length > 3 %}
+			<h3>Autres catégories</h3>
+			<ul>
+				{% for category in categories|slice(3) %}
+					<li>
+						<a href="{{ path('change_category', { categoryId: category.id }) }}">
+							{{ category.name }}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
 
 
 	<button type="submit" class="filters__button">Appliquer les Filtres</button>

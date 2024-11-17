@@ -120,20 +120,35 @@
     }
 }
 
+.filter__button_sizes {
+    display: none;
+}
+
 @media (max-width: 431px)  {
 
-
+.filter__size_button {
+    width: 60px;
+    border-radius: 26px;
+    font-size: var(--font-size);
+    background-color: var(--primary);
+    color: white;
+    border: none;
+}
+    .filter__button_sizes {
+        display: block;
+    }
     
     .filters.visible {
         transition: opacity 0s ease;
         opacity: 1;
         z-index: 1111;
-        left: -155px;
+        left: -212px;
         top: 42px;
         width: 221px;
     }
 
 
+    
 
 
 

@@ -45,7 +45,15 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             'mapped' => false,
-            'label' => '<a href="/privacy/policy">Terms and Conditions</a> *',
+            'label' => '<div class="register__terms">
+                            <p class="register__terms-text">
+                                En cochant cette case, vous acceptez nos
+                                <a href="/terms-and-conditions" target="_blank" class="register__link" rel="noopener noreferrer">Conditions générales</a>
+                                et vous acceptez que vos données soient recueillies, utilisées et partagées conformément à notre 
+                                <a href="/privacy/policy" target="_blank" class="register__link" rel="noopener noreferrer">Politique de confidentialité</a>.
+                            </p>
+                        </div>
+                        ',
             'label_html' => true,
             'constraints' => [
                 new IsTrue([
@@ -72,8 +80,8 @@ class RegistrationFormType extends AbstractType
                     message: 'Le mot de passe doit contenir au minimum huit caractères, avec au moins une lettre majuscule, une lettre minuscule, un chiffre, et un caractère spécial (#?!@$ %^&*-_).'
                 )
             ],
-            'invalid_message' => 'The password fields must match.',
-            'options' => ['attr' => ['class' => 'general__input']],
+            'invalid_message' => 'Les champs de mot de passe doivent correspondre.',
+            'options' => ['attr' => ['class' => 'general__input show_password']],
             'required' => true,
             'first_options'  => ['label' => 'Password *'],
             'second_options' => ['label' => 'Repeat Password *'],

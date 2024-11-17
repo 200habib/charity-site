@@ -1,48 +1,28 @@
-{# templates/product/_partials/paginator.html.twig #}
+{% if pageCount > 1 %}
+    <nav class="pagination">
+        <ul class="pagination__list">
 
-{% if pagination is defined and pagination.items is not empty %}
-    <nav class="custom-pagination">
-        <ul class="pagination">
-
-            {# Link "Prima" #}
-            {% if pagination.currentPageNumber > 1 %}
-                <li>
-                    <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'page': 1})) }}" aria-label="Prima">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-            {% else %}
-                <li class="disabled">
-                    <span aria-hidden="true">&laquo;</span>
+            {% if previous is defined %}
+                <li class="pagination__item pagination__item--previous">
+                    <a href="{{ path(route, query|merge({ (pageParameterName): previous })) }}" class="">Previous</a>
                 </li>
             {% endif %}
 
-            {# Link per ogni pagina nella gamma di pagine #}
-            {% for page in pagination.pagesInRange %}
-                <li class="{{ page == pagination.currentPageNumber ? 'active' : '' }}">
-                    {% if page != pagination.currentPageNumber %}
-                        <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'page': page})) }}">{{ page }}</a>
-                    {% else %}
-                        <span>{{ page }}</span>
-                    {% endif %}
+            {% for page in pagesInRange %}
+                <li class="pagination__item {% if page == current %}pagination__item--current{% endif %}">
+                    <a href="{{ page != current ? path(route, query|merge({ (pageParameterName): page })) : '#' }}"
+                       class="pagination__link {% if page == current %}pagination__item--previous{% endif %}">
+                        {{ page }}
+                    </a>
                 </li>
             {% endfor %}
 
-            {# Link "Ultima" #}
-            {% if pagination.currentPageNumber < pagination.pageCount %}
-                <li>
-                    <a href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'page': pagination.pageCount})) }}" aria-label="Ultima">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            {% else %}
-                <li class="disabled">
-                    <span aria-hidden="true">&raquo;</span>
+            {% if next is defined %}
+                <li class="pagination__item pagination__item--previous">
+                    <a href="{{ path(route, query|merge({ (pageParameterName): next })) }}" >Next</a>
                 </li>
             {% endif %}
 
         </ul>
     </nav>
-{% else %}
-    <p>Nessun prodotto da mostrare.</p>
 {% endif %}

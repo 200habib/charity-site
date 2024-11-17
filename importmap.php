@@ -16,6 +16,23 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    
+    'filterSize' => [
+        'path' => './assets/javascript/filterSize.js',
+        'entrypoint' => true,
+    ],
+    'buttonShow' => [
+        'path' => './assets/javascript/buttonShow.js',
+        'entrypoint' => true,
+    ],
+    'buttonProduct' => [
+        'path' => './assets/javascript/buttonProduct.js',
+        'entrypoint' => true,
+    ],
+    'password' => [
+        'path' => './assets/javascript/password.js',
+        'entrypoint' => true,
+    ],
     'flashMessages' => [
         'path' => './assets/javascript/flashMessages.js',
         'entrypoint' => true,

@@ -240,7 +240,7 @@ public function show(Product $product, ProductRepository $productRepository, Aut
             $paginatedProducts = $paginator->paginate(
                 $data,
                 $request->query->getInt('page', 1),
-                10
+                4
             );
             
 
@@ -292,7 +292,8 @@ public function show(Product $product, ProductRepository $productRepository, Aut
             ProductRepository $productRepository,
             SessionInterface $session,
             Request $request,
-            AuthorizationCheckerInterface $authorizationChecker
+            AuthorizationCheckerInterface $authorizationChecker,
+            PaginatorInterface $paginator
         ): Response {
             $selectedCategory = $this->categoryRepository->find($categoryId);
             $products = $productRepository->findByCategoryId($categoryId);
@@ -312,15 +313,6 @@ public function show(Product $product, ProductRepository $productRepository, Aut
 
 
 
-
-
-            // $page = $request->query->getInt('page', 1);
-            // $limit = $request->query->getInt('limit', 1);
-
-            // $houses = $productRepository->paginate($page, $limit); 
- 
-
-            // $selectedCategory = $this->categoryRepository->find($categoryId);
 
 
             $categories = $this->categoryRepository->findAll();
@@ -357,7 +349,19 @@ public function show(Product $product, ProductRepository $productRepository, Aut
 
 
 
+            $data = $productRepository->findByFilters($criteria, [$Type=>$sortPrice]);
 
+            $paginatedProducts = $paginator->paginate(
+                $data,
+                $request->query->getInt('page', 1),
+                2
+            );
+            
+
+
+    
+            $productForms = $this->generateProductForms($products, $authorizationChecker);
+            $cart = $session->get('cart', []);
 
 
 
@@ -380,7 +384,8 @@ public function show(Product $product, ProductRepository $productRepository, Aut
 
             return $this->render('product/index.html.twig', [
                 'categories' => $categories,
-                'products' => $productRepository->findByFilters($criteria, [$Type=>$sortPrice]),
+                'products' => $paginatedProducts,
+                // 'products' => $productRepository->findByFilters($criteria, [$Type=>$sortPrice]),
                 'productForms' => $productForms,
                 'cart' => $cart,
                 'filterForm' => $filters['formView'],
