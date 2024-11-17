@@ -18,7 +18,7 @@ return [
     ],
     
     'filterSize' => [
-        'path' => './assets/javascript/filterSize.js',
+        'path' => './assets/javascript/filtersize.js',
         'entrypoint' => true,
     ],
     'buttonShow' => [
