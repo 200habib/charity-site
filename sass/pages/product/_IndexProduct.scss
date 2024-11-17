@@ -111,7 +111,19 @@
 
 
 
-
+  .productList.active {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+    min-height: 47vh;
+  
+    .product__card img {
+      height: 171px;
+      // width: 100%;
+      border-radius: 10px;
+  }
+  }
 
 
 
@@ -328,19 +340,7 @@
 }
 }
 
-.productList.active {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  padding: 20px;
-  min-height: 47vh;
 
-  .product__card img {
-    height: 171px;
-    // width: 100%;
-    border-radius: 10px;
-}
-}
 
 .product__card {
   font-size: var(--font-size);
