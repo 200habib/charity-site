@@ -43,10 +43,14 @@ class UserProfileType extends AbstractType
                 ],
             ])
             ->add('postalCode', IntegerType::class, [
-                'label' => 'Postal Code',
+                'label' => 'Postal ',
                 'required' => false,
                 'attr' => [
-                    'class' => 'general__input', 
+                    'class' => 'general__input',
+                    'type' => 'number', 
+                    'inputmode' => 'numeric', 
+                    'min' => 0, 
+                    'step' => 1 
                 ],
             ])
             ->add('phoneNumber', IntegerType::class, [

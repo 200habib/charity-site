@@ -40,7 +40,7 @@ class CompanyType extends AbstractType
                 'required' => false,
                 'attr' => ['class' => 'general__input'],
             ])
-            ->add('companyPostalCode', TextType::class, [
+            ->add('companyPostalCode', IntegerType::class, [
                 'label' => 'Postal Code',
                 'required' => false,
                 'attr' => [
