@@ -3,6 +3,7 @@ const layoutToggle1x2 = document.getElementById('layout-toggle-1x2');
 const productList = document.querySelector('.productList');
 const AddToBasket = document.querySelectorAll('.card-img-top');
 
+
 productList.classList.remove('active');
 AddToBasket.forEach(button => button.classList.remove('active'));
 

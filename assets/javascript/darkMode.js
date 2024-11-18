@@ -5,10 +5,9 @@ const darkModeImages = document.querySelectorAll('img[data-dark-src]');
 
 const darkModetextContent = document.querySelector('.menu__appearance-textContent');
 
-// Initialize dark mode based on localStorage
 verifyDarkMode();
 
-// Add event listeners for each toggle button
+
 themeToggleButtons.forEach(button => {
     button.addEventListener("click", () => {
         toggleDarkMode();
